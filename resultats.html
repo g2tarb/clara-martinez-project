@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Résultats & Témoignages | Clara Méndez Business Coach</title>
+  <meta name="description" content="Découvrez les témoignages et résultats concrets des clients de Clara Méndez : TJM doublé, CA multiplié, pipeline structuré. Des preuves réelles, pas des promesses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero{padding:10rem 0 5rem;text-align:center;position:relative;}
+    .page-hero .hero-aurora{position:absolute;inset:0;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:50px;padding:.45rem 1.1rem;font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;margin-bottom:1.5rem;}
+    .page-title{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.0;margin-bottom:1.25rem;}
+    .page-desc{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;}
+    .testi-full{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem;}
+    .testi-card-full{border-radius:var(--radius-lg);padding:2.5rem;position:relative;overflow:hidden;transition:transform var(--transition);}
+    .testi-card-full:hover{transform:translateY(-4px);}
+    .testi-card-full.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
+    .tf-result{display:inline-flex;align-items:center;gap:.4rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);color:var(--gold);font-size:.75rem;font-weight:700;padding:.3rem .85rem;border-radius:50px;margin-bottom:1.25rem;}
+    .tf-text{font-size:1rem;line-height:1.8;color:var(--muted);font-style:italic;margin-bottom:1.75rem;}
+    .tf-author{display:flex;align-items:center;gap:1rem;}
+    .tf-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dk),var(--gold-lt));display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:1rem;font-weight:700;color:#0D0D1A;flex-shrink:0;}
+    .tf-name{font-weight:600;font-size:.92rem;color:var(--white);}
+    .tf-role{font-size:.78rem;color:var(--dim);}
+    .tf-stars{color:var(--gold);font-size:.82rem;margin-top:.15rem;}
+    .tf-stats{display:flex;flex-direction:column;gap:1rem;}
+    .tf-stat{border-radius:var(--radius);padding:1.25rem;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.1);}
+    .tf-stat-num{font-family:var(--font-serif);font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1;}
+    .tf-stat-lbl{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
+    .case-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:3rem;}
+    .case-card{border-radius:var(--radius-lg);padding:2.5rem;border:1px solid rgba(255,255,255,.06);transition:all var(--transition);}
+    .case-card:hover{border-color:rgba(201,168,76,.2);transform:translateY(-4px);}
+    .case-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:.75rem;}
+    .case-title{font-family:var(--font-serif);font-size:1.2rem;color:var(--white);margin-bottom:1rem;}
+    .case-context{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;padding:.75rem 1rem;background:rgba(255,255,255,.03);border-radius:var(--radius-sm);}
+    .case-steps{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;}
+    .case-step{display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:var(--muted);}
+    .case-step::before{content:'→';color:var(--gold);flex-shrink:0;}
+    .case-results{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+    .case-result{border-radius:var(--radius-sm);padding:.85rem;text-align:center;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);}
+    .cr-num{font-family:var(--font-serif);font-size:1.5rem;font-weight:900;color:var(--gold);}
+    .cr-lbl{font-size:.7rem;color:var(--muted);margin-top:.15rem;}
+    .cta-band{margin-top:5rem;border-radius:var(--radius-xl);padding:4rem;text-align:center;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);}
+    .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    @media(max-width:768px){.testi-full,.testi-card-full.featured,.case-grid{grid-template-columns:1fr}.testi-card-full.featured{display:block}.case-results{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body data-page="resultats">
+  <canvas id="water-canvas" aria-hidden="true"></canvas>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="nav-logo">CM<span class="logo-dot">.</span></a>
+        <ul class="nav-links" role="list">
+          <li><a href="problematique.html" class="nav-link">Problématique</a></li>
+          <li><a href="methode.html" class="nav-link">Méthode</a></li>
+          <li><a href="offres.html" class="nav-link">Offres</a></li>
+          <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
+          <li><a href="resultats.html" class="nav-link active">Résultats</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <button class="mobile-close" id="mobile-close" aria-label="Fermer"><i data-lucide="x" style="width:24px;height:24px;" aria-hidden="true"></i></button>
+    <nav>
+      <a href="problematique.html" class="mobile-link">Problématique</a>
+      <a href="methode.html" class="mobile-link">Méthode</a>
+      <a href="offres.html" class="mobile-link">Offres</a>
+      <a href="a-propos.html" class="mobile-link">À Propos</a>
+      <a href="resultats.html" class="mobile-link">Résultats</a>
+      <a href="contact.html" class="btn btn-primary mobile-link">Réserver un appel</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div></div>
+      <div class="container page-hero-inner">
+        <div class="page-tag animate"><i data-lucide="trending-up" style="width:13px;height:13px;" aria-hidden="true"></i> Preuves réelles</div>
+        <h1 class="page-title animate delay-1">Des résultats réels,<br /><em>pas des promesses.</em></h1>
+        <p class="page-desc animate delay-2">Chaque témoignage représente un vrai parcours. Pas de résultats exceptionnels sélectionnés — la réalité de ce que vivent mes clients en moyenne.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="stats-bento" style="margin-bottom:4rem;">
+          <article class="stats-card glass animate"><div class="stats-num counter" data-target="120">0</div><div class="stats-plus">+</div><div class="stats-label">Entrepreneurs accompagnés</div></article>
+          <article class="stats-card glass animate delay-1"><div class="stats-num counter" data-target="94">0</div><div class="stats-plus">%</div><div class="stats-label">Taux de satisfaction</div></article>
+          <article class="stats-card glass animate delay-2"><div class="stats-num">×2,4</div><div class="stats-label">Croissance CA moyenne</div></article>
+          <article class="stats-card glass animate delay-3"><div class="stats-num counter" data-target="30">0</div><div class="stats-plus">j</div><div class="stats-label">Pour les 1ers résultats</div></article>
+        </div>
+
+        <div class="section-header animate"><span class="section-label">Ce qu'ils disent</span><h2 class="section-title">Leurs mots,<br /><em>leurs résultats.</em></h2></div>
+
+        <div class="testi-full">
+          <article class="testi-card-full featured glass animate">
+            <div>
+              <div class="tf-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> TJM doublé en 4 mois</div>
+              <blockquote class="tf-text" style="font-size:1.15rem;">"Avant Clara, je facturais 350€/jour et j'osais à peine le dire à voix haute. J'avais honte de mes tarifs, j'acceptais tout ce qu'on me proposait par peur du vide. Après 3 mois avec la méthode Clarity, je travaille à 720€/jour, j'ai une liste d'attente de 6 semaines et je refuse des missions qui ne me correspondent pas. Ce n'est pas de la magie — c'est une méthode rigoureuse et un miroir honnête que Clara m'a tendu."</blockquote>
+              <div class="tf-author"><div class="tf-avatar">SL</div><div><div class="tf-name">Sophie L.</div><div class="tf-role">Consultante RH indépendante · Paris · Programme 3 Mois</div><div class="tf-stars">★★★★★</div></div></div>
+            </div>
+            <div class="tf-stats">
+              <div class="tf-stat"><div class="tf-stat-num">350€ → 720€</div><div class="tf-stat-lbl">TJM en 4 mois</div></div>
+              <div class="tf-stat"><div class="tf-stat-num">6 semaines</div><div class="tf-stat-lbl">Liste d'attente constituée</div></div>
+              <div class="tf-stat"><div class="tf-stat-num">0 négociation</div><div class="tf-stat-lbl">Les clients acceptent sans discuter</div></div>
+            </div>
+          </article>
+
+          <article class="testi-card-full glass animate">
+            <div class="tf-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> +65 000€ de CA en 6 mois</div>
+            <blockquote class="tf-text">"J'étais un technicien excellent qui gérait un business amateur. Clara m'a donné les outils pour penser comme un CEO. Le pilier Pricing a été une révélation : j'ai arrêté de vendre des journées pour vendre des résultats. En 6 mois, j'ai généré 65 000€ de CA supplémentaire. Le ROI est ×26 sur l'investissement dans le programme."</blockquote>
+            <div class="tf-author"><div class="tf-avatar">MT</div><div><div class="tf-name">Marc T.</div><div class="tf-role">Développeur Full-Stack · Lyon · Programme 3 Mois</div><div class="tf-stars">★★★★★</div></div></div>
+          </article>
+
+          <article class="testi-card-full glass animate delay-1">
+            <div class="tf-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> 3 clients premium en 8 semaines</div>
+            <blockquote class="tf-text">"Ce que j'ai apprécié c'est qu'on n'est jamais dans du générique. Clara connaît mon activité, mes clients, mes blocages. Elle m'a aidée à me positionner sur le segment premium du design de marque. En 8 semaines, j'ai signé 3 contrats long-terme avec des clients qui paient 3 500€/mois sans négocier. Ça change radicalement mon rapport au travail."</blockquote>
+            <div class="tf-author"><div class="tf-avatar">IR</div><div><div class="tf-name">Inès R.</div><div class="tf-role">Brand Designer · Bordeaux · Programme 3 Mois</div><div class="tf-stars">★★★★★</div></div></div>
+          </article>
+
+          <article class="testi-card-full glass animate">
+            <div class="tf-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> De 0 à 8 000€/mois récurrents</div>
+            <blockquote class="tf-text">"Je sortais d'une carrière en agence et je voulais créer mon activité de conseil marketing. Clara m'a aidé à structurer une offre de retainer mensuel dès le lancement, au lieu de vendre des missions one-shot. En 3 mois, j'avais 4 clients à 2 000€/mois. 8 000€ récurrents dès le départ — un rêve."</blockquote>
+            <div class="tf-author"><div class="tf-avatar">TB</div><div><div class="tf-name">Thomas B.</div><div class="tf-role">Consultant Marketing Digital · Nantes · Programme 3 Mois</div><div class="tf-stars">★★★★★</div></div></div>
+          </article>
+
+          <article class="testi-card-full glass animate delay-2">
+            <div class="tf-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> CA triplé en 12 mois</div>
+            <blockquote class="tf-text">"J'avais commencé par une Session Stratégique pour 'tester'. Clara a identifié en 2h un problème de positionnement que je n'avais pas vu en 3 ans. J'ai ensuite pris le Programme 3 Mois. Résultat : mon CA a triplé en 12 mois, de 45K€ à 140K€. Et surtout, je travaille avec des clients que j'adore."</blockquote>
+            <div class="tf-author"><div class="tf-avatar">AC</div><div><div class="tf-name">Aurore C.</div><div class="tf-role">Formatrice Leadership · Strasbourg · Session + Programme 3 Mois</div><div class="tf-stars">★★★★★</div></div></div>
+          </article>
+
+          <article class="testi-card-full glass animate delay-2">
+            <div class="tf-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> Premier client signé en 12 jours</div>
+            <blockquote class="tf-text">"J'hésitais à me lancer en indépendant depuis 2 ans. L'appel découverte avec Clara m'a donné la clarté qui me manquait. J'ai rejoint le programme, on a construit mon positionnement et mon offre en 3 semaines. 12 jours après le lancement, je signais mon premier client à 2 800€/mois. Clara ne promet pas des miracles — elle construit les fondations pour que les résultats arrivent."</blockquote>
+            <div class="tf-author"><div class="tf-avatar">KD</div><div><div class="tf-name">Kévin D.</div><div class="tf-role">Consultant Data · Paris · Programme 3 Mois</div><div class="tf-stars">★★★★★</div></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <div class="section-header animate"><span class="section-label">Études de cas</span><h2 class="section-title">Derrière les chiffres,<br /><em>des histoires humaines.</em></h2></div>
+        <div class="case-grid">
+          <article class="case-card animate">
+            <div class="case-tag">Cas #1 · Consultant RH</div>
+            <h3 class="case-title">De 350€/j à 720€/j sans perdre de clients</h3>
+            <p class="case-context">Sophie, 34 ans, consultante RH depuis 4 ans. Bloquée à 350€/jour depuis 2 ans par peur d'augmenter ses tarifs. CA annuel : 63 000€ pour 180 jours travaillés.</p>
+            <div class="case-steps">
+              <div class="case-step">Audit : problème de positionnement généraliste ("je fais tout en RH")</div>
+              <div class="case-step">Repositionnement sur la niche "RH tech scale-ups série A-B"</div>
+              <div class="case-step">Construction d'une offre premium de restructuration RH à 720€/j</div>
+              <div class="case-step">Réécriture du profil LinkedIn + 2 articles de positionnement</div>
+              <div class="case-step">Script de revalorisation tarifaire pour clients existants</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result"><div class="cr-num">×2,06</div><div class="cr-lbl">TJM en 4 mois</div></div>
+              <div class="case-result"><div class="cr-num">6 sem.</div><div class="cr-lbl">Liste d'attente</div></div>
+              <div class="case-result"><div class="cr-num">0</div><div class="cr-lbl">Clients perdus</div></div>
+              <div class="case-result"><div class="cr-num">+58K€</div><div class="cr-lbl">CA annuel projeté</div></div>
+            </div>
+          </article>
+          <article class="case-card animate delay-1">
+            <div class="case-tag">Cas #2 · Développeur</div>
+            <h3 class="case-title">De missions one-shot à des retainers 6 mois</h3>
+            <p class="case-context">Marc, 38 ans, développeur full-stack indépendant. Excellent technicien, revenue irrégulier (35K à 85K selon les années). Pas de vision, pas de pipeline.</p>
+            <div class="case-steps">
+              <div class="case-step">Audit : offre trop centrée sur l'exécution technique, pas sur les résultats client</div>
+              <div class="case-step">Repositionnement sur "développeur produit pour startups SaaS B2B"</div>
+              <div class="case-step">Création d'une offre "CTO externalisé" en retainer 6 mois à 6K€/mois</div>
+              <div class="case-step">Stratégie d'acquisition via LinkedIn + 2 partenariats agences</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result"><div class="cr-num">+65K€</div><div class="cr-lbl">CA en 6 mois</div></div>
+              <div class="case-result"><div class="cr-num">×26</div><div class="cr-lbl">ROI programme</div></div>
+              <div class="case-result"><div class="cr-num">3 mois</div><div class="cr-lbl">Visibilité pipeline</div></div>
+              <div class="case-result"><div class="cr-num">2 clients</div><div class="cr-lbl">En retainer 6 mois</div></div>
+            </div>
+          </article>
+          <article class="case-card animate delay-2">
+            <div class="case-tag">Cas #3 · Formatrice</div>
+            <h3 class="case-title">45K€ à 140K€ en 12 mois</h3>
+            <p class="case-context">Aurore, 41 ans, formatrice en leadership. CA de 45K€ après 3 ans d'activité. Blocage sur le positionnement : trop généraliste, incapable de justifier des tarifs élevés.</p>
+            <div class="case-steps">
+              <div class="case-step">Repositionnement : "Leadership pour femmes managers en CAC 40"</div>
+              <div class="case-step">Création d'un programme de formation sur mesure à 8 000€/groupe</div>
+              <div class="case-step">Tunnel LinkedIn : articles + masterclasses gratuites + appel découverte</div>
+              <div class="case-step">Partenariats avec 3 cabinets RH pour apport d'affaires</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result"><div class="cr-num">×3,1</div><div class="cr-lbl">CA en 12 mois</div></div>
+              <div class="case-result"><div class="cr-num">140K€</div><div class="cr-lbl">CA annuel atteint</div></div>
+              <div class="case-result"><div class="cr-num">8 000€</div><div class="cr-lbl">Prix par groupe</div></div>
+              <div class="case-result"><div class="cr-num">-50%</div><div class="cr-lbl">Jours travaillés</div></div>
+            </div>
+          </article>
+          <article class="case-card animate delay-3">
+            <div class="case-tag">Cas #4 · Consultant Data</div>
+            <h3 class="case-title">Premier client à 2 800€/mois en 12 jours</h3>
+            <p class="case-context">Kévin, 29 ans, ex-analyste data en CDI. Voulait se lancer en indépendant depuis 2 ans mais paralysé par le "et si ça ne marche pas". Zéro client au démarrage.</p>
+            <div class="case-steps">
+              <div class="case-step">Positionnement : "Data Analyst pour e-commerce DTC en croissance"</div>
+              <div class="case-step">Offre retainer mensuel : tableau de bord + analyse hebdo à 2 800€/mois</div>
+              <div class="case-step">Prospection ciblée : 20 e-commerçants contactés en 2 semaines</div>
+              <div class="case-step">Premier client signé en 12 jours, deuxième à la semaine 6</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result"><div class="cr-num">12j</div><div class="cr-lbl">1er client signé</div></div>
+              <div class="case-result"><div class="cr-num">2 800€</div><div class="cr-lbl">Retainer mensuel</div></div>
+              <div class="case-result"><div class="cr-num">2 clients</div><div class="cr-lbl">En 6 semaines</div></div>
+              <div class="case-result"><div class="cr-num">5 600€</div><div class="cr-lbl">MRR à M+6</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section"><div class="container"><div class="cta-band animate"><span class="section-label">Votre tour</span><h2 class="section-title">Prêt à écrire<br /><em>votre propre résultat ?</em></h2><p style="color:var(--muted);max-width:480px;margin:0 auto 2rem;">Un appel de 30 minutes pour faire le diagnostic. Je vous dirai honnêtement si je peux vous aider et comment.</p><div class="cta-actions"><a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a><a href="offres.html" class="btn btn-ghost"><span>Voir les offres</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a></div></div></div></section>
+  </main>
+
+  <footer role="contentinfo"><div class="container"><div class="footer-inner"><div class="footer-logo">CM<span>.</span></div><nav class="footer-links"><a href="methode.html">Méthode</a><a href="offres.html">Offres</a><a href="a-propos.html">À Propos</a><a href="contact.html">Contact</a></nav><p class="footer-copy">© 2026 Clara Méndez. Tous droits réservés.</p></div></div></footer>
+  <script src="main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Problématique | Clara Méndez Business Coach</title>
+  <meta name="description" content="Sous-facturation, manque de système, solitude décisionnelle : ces blocages invisibles qui plafonnent la croissance des freelances et entrepreneurs indépendants." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { padding: 10rem 0 5rem; text-align: center; position: relative; }
+    .page-hero .hero-aurora { position: absolute; inset: 0; }
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-tag { display: inline-flex; align-items: center; gap: .5rem; background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.2); border-radius: 50px; padding: .45rem 1.1rem; font-size: .75rem; font-weight: 600; color: var(--gold); letter-spacing: .08em; margin-bottom: 1.5rem; }
+    .page-title { font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; line-height: 1.0; margin-bottom: 1.25rem; }
+    .page-desc { font-size: 1.1rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.5rem; }
+    .diag-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 4rem; }
+    .diag-card { border-radius: var(--radius-lg); padding: 2.5rem; position: relative; overflow: hidden; transition: transform var(--transition); }
+    .diag-card:hover { transform: translateY(-5px); }
+    .diag-card.full { grid-column: 1/-1; }
+    .diag-num { font-family: var(--font-serif); font-size: 5rem; font-weight: 900; color: rgba(201,168,76,.07); position: absolute; top:.5rem; right:1.5rem; line-height:1; }
+    .diag-icon { width:52px; height:52px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.2); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--gold); margin-bottom:1.5rem; }
+    .diag-title { font-size:1.3rem; margin-bottom:.75rem; color:var(--white); }
+    .diag-text { font-size:.92rem; color:var(--muted); line-height:1.8; margin-bottom:1.25rem; }
+    .diag-quote { padding:1rem 1.25rem; background:rgba(201,168,76,.05); border-left:2px solid var(--gold); border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-style:italic; font-size:.85rem; color:var(--gold-lt); line-height:1.6; }
+    .diag-detail { margin-top:1.25rem; display:flex; flex-direction:column; gap:.5rem; }
+    .diag-detail li { display:flex; align-items:flex-start; gap:.6rem; font-size:.85rem; color:var(--muted); }
+    .diag-detail li::before { content:'→'; color:var(--gold); flex-shrink:0; }
+    .stat-banner { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin:5rem 0; }
+    .stat-b-card { border-radius:var(--radius-lg); padding:2rem; text-align:center; position:relative; overflow:hidden; }
+    .stat-b-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold-lt)); }
+    .stat-b-num { font-family:var(--font-serif); font-size:3.5rem; font-weight:900; color:var(--gold); line-height:1; }
+    .stat-b-lbl { font-size:.85rem; color:var(--muted); margin-top:.5rem; line-height:1.5; }
+    .cost-section { padding:5rem 0; border-top:1px solid rgba(255,255,255,.06); }
+    .cost-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:3rem; }
+    .cost-items { display:flex; flex-direction:column; gap:1.5rem; }
+    .cost-item { display:flex; align-items:flex-start; gap:1rem; }
+    .cost-icon { width:44px; height:44px; flex-shrink:0; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; }
+    .cost-icon.red { background:rgba(248,113,113,.1); color:#F87171; }
+    .cost-icon.gold { background:rgba(201,168,76,.1); color:var(--gold); }
+    .cost-item-title { font-weight:600; color:var(--white); margin-bottom:.2rem; font-size:.95rem; }
+    .cost-item-text { font-size:.85rem; color:var(--muted); line-height:1.6; }
+    .cta-band { margin-top:5rem; border-radius:var(--radius-xl); padding:4rem; text-align:center; position:relative; overflow:hidden; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.15); }
+    .cta-band h2 { font-size:clamp(1.8rem,4vw,2.8rem); margin-bottom:1rem; }
+    .cta-band p { color:var(--muted); max-width:480px; margin:0 auto 2rem; }
+    .cta-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    @media(max-width:768px){.diag-grid{grid-template-columns:1fr}.diag-card.full{grid-column:1}.stat-banner{grid-template-columns:1fr}.cost-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body data-page="problematique">
+  <canvas id="water-canvas" aria-hidden="true"></canvas>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index.html" class="nav-logo">CM<span class="logo-dot">.</span></a>
+        <ul class="nav-links" role="list">
+          <li><a href="problematique.html" class="nav-link active">Problématique</a></li>
+          <li><a href="methode.html" class="nav-link">Méthode</a></li>
+          <li><a href="offres.html" class="nav-link">Offres</a></li>
+          <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
+          <li><a href="resultats.html" class="nav-link">Résultats</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <button class="mobile-close" id="mobile-close" aria-label="Fermer"><i data-lucide="x" style="width:24px;height:24px;" aria-hidden="true"></i></button>
+    <nav>
+      <a href="problematique.html" class="mobile-link">Problématique</a>
+      <a href="methode.html" class="mobile-link">Méthode</a>
+      <a href="offres.html" class="mobile-link">Offres</a>
+      <a href="a-propos.html" class="mobile-link">À Propos</a>
+      <a href="resultats.html" class="mobile-link">Résultats</a>
+      <a href="contact.html" class="btn btn-primary mobile-link">Réserver un appel</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-aurora" aria-hidden="true">
+        <div class="aurora a1"></div><div class="aurora a2"></div>
+      </div>
+      <div class="container page-hero-inner">
+        <div class="page-tag animate"><i data-lucide="alert-triangle" style="width:13px;height:13px;" aria-hidden="true"></i> Diagnostic honnête</div>
+        <h1 class="page-title animate delay-1">Ces blocages invisibles<br /><em>plafonnent votre croissance</em></h1>
+        <p class="page-desc animate delay-2">La plupart des freelances talentueux ne manquent pas de compétences. Ils manquent d'une architecture business solide. Vous reconnaissez-vous dans ces situations ?</p>
+        <a href="contact.html" class="btn btn-primary magnetic animate delay-3"><span>Faire mon diagnostic gratuit</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="stat-banner">
+          <article class="stat-b-card glass animate" aria-label="78% des freelances sous-facturent">
+            <div class="stat-b-num">78%</div>
+            <div class="stat-b-lbl">des freelances reconnaissent sous-facturer leurs prestations par peur de perdre des clients</div>
+          </article>
+          <article class="stat-b-card glass animate delay-1" aria-label="63% sans système d'acquisition">
+            <div class="stat-b-num">63%</div>
+            <div class="stat-b-lbl">n'ont aucun système d'acquisition structuré et dépendent exclusivement du bouche-à-oreille</div>
+          </article>
+          <article class="stat-b-card glass animate delay-2" aria-label="89% se sentent seuls">
+            <div class="stat-b-num">89%</div>
+            <div class="stat-b-lbl">se sentent seuls face aux grandes décisions business et manquent d'un regard extérieur expert</div>
+          </article>
+        </div>
+
+        <div class="section-header animate">
+          <span class="section-label">Les 3 blocages majeurs</span>
+          <h2 class="section-title">Où en êtes-vous<br /><em>réellement ?</em></h2>
+        </div>
+
+        <div class="diag-grid">
+          <article class="diag-card glass animate" aria-label="Blocage 1 : Sous-facturation">
+            <div class="diag-num">01</div>
+            <div class="diag-icon"><i data-lucide="trending-down" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+            <h2 class="diag-title">Vous sous-facturez vos prestations</h2>
+            <p class="diag-text">Vous avez peur de perdre des clients en augmentant vos tarifs. Alors vous acceptez des missions en dessous de votre valeur réelle, par manque de positionnement clair et de confiance en votre offre.</p>
+            <blockquote class="diag-quote">"Je sais que je vaux plus, mais j'ai peur que mes clients partent si j'augmente. Alors je reste coincée à 350€/jour depuis 2 ans."</blockquote>
+            <ul class="diag-detail">
+              <li>Vous acceptez des missions sous-rémunérées "pour ne pas perdre le client"</li>
+              <li>Vous n'osez pas annoncer vos prix en premier lors d'un devis</li>
+              <li>Vous bradez vos tarifs face à la moindre objection</li>
+              <li>Vous travaillez plus longtemps pour gagner le même niveau de vie</li>
+            </ul>
+          </article>
+
+          <article class="diag-card glass animate delay-1" aria-label="Blocage 2 : Pas de système">
+            <div class="diag-num">02</div>
+            <div class="diag-icon"><i data-lucide="shuffle" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+            <h2 class="diag-title">Vous n'avez pas de système d'acquisition</h2>
+            <p class="diag-text">Votre portefeuille client repose sur le bouche-à-oreille et les coups de chance. Chaque mois vous recommencez à zéro, sans pipeline fiable, sans offre scalable, sans machine à attirer des clients qualifiés.</p>
+            <blockquote class="diag-quote">"Je cours après les clients plutôt que de les attirer naturellement. Certains mois sont excellents, d'autres catastrophiques."</blockquote>
+            <ul class="diag-detail">
+              <li>Vos revenus oscillent entre les extrêmes d'un mois à l'autre</li>
+              <li>Vous n'avez aucune visibilité sur votre CA à 3 mois</li>
+              <li>Votre LinkedIn est actif seulement quand vous manquez de clients</li>
+              <li>Vous n'avez pas de tunnel de conversion défini</li>
+            </ul>
+          </article>
+
+          <article class="diag-card glass animate delay-2" aria-label="Blocage 3 : Solitude">
+            <div class="diag-num">03</div>
+            <div class="diag-icon"><i data-lucide="user-x" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+            <h2 class="diag-title">La solitude décisionnelle vous pèse</h2>
+            <p class="diag-text">Chaque grande décision — tarifs, pivot, recrutement, refus d'un client — vous la prenez seul·e. Sans feedback expert, vous tournez en rond et la procrastination s'installe durablement.</p>
+            <blockquote class="diag-quote">"Je n'ai personne à qui parler stratégie sans que ça me coûte une fortune ou me juge. Je tourne en rond sur les mêmes questions depuis des mois."</blockquote>
+            <ul class="diag-detail">
+              <li>Vous remettez des décisions importantes à "plus tard" depuis des semaines</li>
+              <li>Vous cherchez des validations auprès de pairs qui n'ont pas la réponse</li>
+              <li>Vous passez des heures sur des questions qui méritent 30 min avec un expert</li>
+              <li>Vous manquez d'un miroir extérieur objectif et bienveillant</li>
+            </ul>
+          </article>
+
+          <article class="diag-card glass full animate delay-3" aria-label="Blocage 4 : Syndrome de l'imposteur">
+            <div class="diag-num">04</div>
+            <div class="diag-icon"><i data-lucide="brain" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+            <h2 class="diag-title">Le syndrome de l'imposteur vous freine</h2>
+            <p class="diag-text">Même avec des années d'expérience, une partie de vous doute encore. Vous sabotez inconsciemment vos opportunités, vous vous comparez aux autres, vous attendez d'être "encore plus prêt" avant de hausser vos tarifs ou de vous lancer dans une nouvelle offre.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;">
+              <div>
+                <blockquote class="diag-quote">"J'ai 8 ans d'expérience et je me bats encore avec la légitimité. Qui suis-je pour facturer 1000€/jour ?"</blockquote>
+              </div>
+              <ul class="diag-detail" style="margin-top:0">
+                <li>Vous minimisez systématiquement vos réalisations devant les prospects</li>
+                <li>Vous sur-livrez pour "mériter" vos honoraires</li>
+                <li>Vous attendez la "permission" de monter en gamme</li>
+                <li>Vous vous comparez à des concurrents moins expérimentés que vous</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cost-section">
+      <div class="container">
+        <div class="cost-grid">
+          <div>
+            <span class="section-label animate">Le coût de l'inaction</span>
+            <h2 class="section-title animate delay-1">Chaque mois sans<br /><em>structure vous coûte cher.</em></h2>
+            <p class="section-sub animate delay-2">Ces blocages ne se résolvent pas seuls avec le temps. Au contraire, ils s'ancrent et vous éloignent chaque mois un peu plus de l'activité que vous méritez.</p>
+            <a href="contact.html" class="btn btn-primary magnetic animate delay-3" style="margin-top:2rem;"><span>Sortir de ce cycle maintenant</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+          </div>
+          <div class="cost-items animate delay-1">
+            <div class="cost-item">
+              <div class="cost-icon red"><i data-lucide="x-circle" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+              <div><div class="cost-item-title">Manque à gagner mensuel</div><div class="cost-item-text">Un freelance qui sous-facture de 200€/jour sur 15 jours travaillés perd 36 000€ par an. Chaque mois d'inaction est un mois de trop.</div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-icon red"><i data-lucide="clock" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+              <div><div class="cost-item-title">Énergie gaspillée</div><div class="cost-item-text">Chercher des clients en urgence chaque mois consomme 30% de votre énergie mentale. Énergie que vous pourriez investir dans votre expertise ou votre vie personnelle.</div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-icon red"><i data-lucide="trending-down" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+              <div><div class="cost-item-title">Épuisement progressif</div><div class="cost-item-text">Travailler plus pour gagner pareil, sans perspective de sortie, mène inévitablement au burnout. 68% des freelances en ressentent les premiers signes dans les 3 premières années.</div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-icon gold"><i data-lucide="lightbulb" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+              <div><div class="cost-item-title">La bonne nouvelle</div><div class="cost-item-text">Ces trois blocages sont structurels, pas personnels. Ils se résolvent avec la bonne méthode et le bon accompagnement. Mes clients voient leurs premiers résultats en 30 jours.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band animate">
+          <div class="aurora a3" style="opacity:.12;"></div>
+          <span class="section-label">Prochaine étape</span>
+          <h2 class="section-title">Prêt à identifier<br /><em>vos vrais blocages ?</em></h2>
+          <p>Un appel de 30 minutes suffit pour faire le diagnostic et repartir avec une direction claire. Sans engagement, sans pitch — juste une conversation honnête.</p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+            <a href="methode.html" class="btn btn-ghost"><span>Voir la méthode Clarity</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">CM<span>.</span></div>
+        <nav class="footer-links" aria-label="Liens pied de page">
+          <a href="methode.html">Méthode</a><a href="offres.html">Offres</a>
+          <a href="a-propos.html">À Propos</a><a href="contact.html">Contact</a>
+        </nav>
+        <p class="footer-copy">© 2026 Clara Méndez. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="main.js" defer></script>
+</body>
+</html>

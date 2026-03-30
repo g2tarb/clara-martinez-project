@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offres & Tarifs | Clara Méndez Business Coach</title>
+  <meta name="description" content="Session Stratégique à 490€, Programme 3 Mois à 2500€, Accompagnement VIP à 6500€. Trouvez l'offre de coaching business qui correspond à votre situation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero{padding:10rem 0 5rem;text-align:center;position:relative;}
+    .page-hero .hero-aurora{position:absolute;inset:0;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:50px;padding:.45rem 1.1rem;font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;margin-bottom:1.5rem;}
+    .page-title{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.0;margin-bottom:1.25rem;}
+    .page-desc{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;}
+    .process-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;position:relative;}
+    .process-steps::before{content:'';position:absolute;top:28px;left:calc(12.5% + .75rem);right:calc(12.5% + .75rem);height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold),transparent);}
+    .proc-step{text-align:center;}
+    .proc-icon{width:56px;height:56px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);margin:0 auto 1rem;position:relative;z-index:1;}
+    .proc-title{font-family:var(--font-serif);font-size:1rem;color:var(--white);margin-bottom:.5rem;}
+    .proc-text{font-size:.8rem;color:var(--muted);line-height:1.5;}
+    .compare-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .compare-table{width:100%;border-collapse:collapse;margin-top:3rem;}
+    .compare-table th{padding:1.25rem 1.5rem;text-align:left;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.06);}
+    .compare-table th:not(:first-child){text-align:center;}
+    .compare-table td{padding:1.1rem 1.5rem;font-size:.88rem;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.04);}
+    .compare-table td:not(:first-child){text-align:center;}
+    .compare-table tr:hover td{background:rgba(255,255,255,.02);}
+    .col-featured{background:rgba(201,168,76,.04);border-left:1px solid rgba(201,168,76,.12);border-right:1px solid rgba(201,168,76,.12);}
+    .check-yes{color:var(--gold);}
+    .check-no{color:rgba(255,255,255,.15);}
+    .col-head-featured{background:rgba(201,168,76,.08);border-radius:var(--radius) var(--radius) 0 0;}
+    .faq-pricing{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .guarantee-band{margin-top:3rem;border-radius:var(--radius-xl);padding:3rem;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.12);display:flex;align-items:flex-start;gap:2rem;}
+    .g-icon{width:64px;height:64px;flex-shrink:0;background:rgba(74,222,128,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4ADE80;}
+    .g-title{font-family:var(--font-serif);font-size:1.3rem;color:var(--white);margin-bottom:.5rem;}
+    .g-text{font-size:.9rem;color:var(--muted);line-height:1.7;}
+    .cta-band{margin-top:5rem;border-radius:var(--radius-xl);padding:4rem;text-align:center;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);}
+    .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    @media(max-width:768px){.process-steps{grid-template-columns:repeat(2,1fr)}.process-steps::before{display:none}.compare-table{font-size:.78rem}.guarantee-band{flex-direction:column}}
+  </style>
+</head>
+<body data-page="offres">
+  <canvas id="water-canvas" aria-hidden="true"></canvas>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="nav-logo">CM<span class="logo-dot">.</span></a>
+        <ul class="nav-links" role="list">
+          <li><a href="problematique.html" class="nav-link">Problématique</a></li>
+          <li><a href="methode.html" class="nav-link">Méthode</a></li>
+          <li><a href="offres.html" class="nav-link active">Offres</a></li>
+          <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
+          <li><a href="resultats.html" class="nav-link">Résultats</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <button class="mobile-close" id="mobile-close" aria-label="Fermer"><i data-lucide="x" style="width:24px;height:24px;" aria-hidden="true"></i></button>
+    <nav>
+      <a href="problematique.html" class="mobile-link">Problématique</a>
+      <a href="methode.html" class="mobile-link">Méthode</a>
+      <a href="offres.html" class="mobile-link">Offres</a>
+      <a href="a-propos.html" class="mobile-link">À Propos</a>
+      <a href="resultats.html" class="mobile-link">Résultats</a>
+      <a href="contact.html" class="btn btn-primary mobile-link">Réserver un appel</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div></div>
+      <div class="container page-hero-inner">
+        <div class="page-tag animate"><i data-lucide="gem" style="width:13px;height:13px;" aria-hidden="true"></i> Investissement & ROI</div>
+        <h1 class="page-title animate delay-1">L'accompagnement<br /><em>qui vous correspond</em></h1>
+        <p class="page-desc animate delay-2">Chaque programme est personnalisé à votre situation. Ces investissements sont pensés pour générer un ROI mesurable en 90 jours — en moyenne ×4 sur le premier mois.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="pricing-grid">
+          <article class="pricing-card glass animate">
+            <div class="pricing-tag">Démarrage</div>
+            <h2 class="pricing-name">Session Stratégique</h2>
+            <p class="pricing-desc">Pour débloquer un problème précis et repartir avec un plan d'action concret. Idéal si vous ne savez pas encore par où commencer.</p>
+            <div class="pricing-price-wrap"><sup>€</sup><span class="pricing-price">490</span></div>
+            <p class="pricing-cycle">Paiement unique · 1 session de 2h</p>
+            <ul class="pricing-features">
+              <li><i data-lucide="check" aria-hidden="true"></i> Audit de votre situation (30 min)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Session de travail approfondie (90 min)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Plan d'action sur mesure (PDF livré 48h)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Replay vidéo de la session</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Support email 7 jours post-session</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Accès aux ressources de la session</li>
+            </ul>
+            <p style="font-size:.78rem;color:var(--dim);margin-bottom:1.5rem;">Parfait pour : valider une direction, débloquer un frein précis, tester l'approche avant un engagement plus long.</p>
+            <a href="contact.html" class="btn btn-ghost full magnetic"><span>Réserver une session</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="pricing-card pricing-featured glass animate delay-1">
+            <div class="featured-badge">⭐ Le plus populaire</div>
+            <div class="pricing-tag">Transformation</div>
+            <h2 class="pricing-name">Programme 3 Mois</h2>
+            <p class="pricing-desc">L'accompagnement complet pour transformer votre business de A à Z avec la méthode Clarity. Le choix de 94% de mes clients.</p>
+            <div class="pricing-price-wrap"><sup>€</sup><span class="pricing-price">2 500</span></div>
+            <p class="pricing-cycle">ou 3× 900€ sans frais · 12 sessions individuelles</p>
+            <ul class="pricing-features">
+              <li><i data-lucide="check" aria-hidden="true"></i> 12 sessions individuelles (1h/semaine)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Méthode Clarity complète (3 piliers)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Ressources & templates exclusifs (50+)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Support WhatsApp illimité lun-ven</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Révision de vos supports commerciaux</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Compte rendu détaillé après chaque session</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Garantie résultats ou 2 sessions offertes</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Facture déductible de votre activité</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary full magnetic"><span>Je démarre maintenant</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="pricing-card glass animate delay-2">
+            <div class="pricing-tag">Excellence</div>
+            <h2 class="pricing-name">Accompagnement VIP</h2>
+            <p class="pricing-desc">Pour les entrepreneurs ambitieux qui veulent un partenaire stratégique sur le long terme. Accès total, sans limite.</p>
+            <div class="pricing-price-wrap"><sup>€</sup><span class="pricing-price">6 500</span></div>
+            <p class="pricing-cycle">Paiement unique · 12 mois complets</p>
+            <ul class="pricing-features">
+              <li><i data-lucide="check" aria-hidden="true"></i> Sessions hebdomadaires illimitées</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Accès direct (appels impromptus 15 min)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Co-création de vos offres et pitchs</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Introduction au réseau de Clara</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Revue trimestrielle stratégique</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Journée intensive en présentiel (Paris)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Accès prioritaire aux nouveaux programmes</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Relecture & feedback sur tous vos contenus</li>
+            </ul>
+            <a href="contact.html" class="btn btn-ghost full magnetic"><span>Candidater au VIP</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+          </article>
+        </div>
+
+        <div class="guarantee-band animate">
+          <div class="g-icon"><i data-lucide="shield-check" style="width:28px;height:28px;" aria-hidden="true"></i></div>
+          <div>
+            <div class="g-title">Garantie résultats — Programme 3 Mois</div>
+            <p class="g-text">Si à l'issue des 12 semaines vous n'avez pas observé d'évolution mesurable sur au moins un des 3 piliers (positionnement, pricing, acquisition), je vous offre 2 sessions supplémentaires sans frais et sans condition. 94% de mes clients obtiennent leurs premiers résultats concrets dans les 30 premiers jours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="compare-section">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Comparaison détaillée</span>
+          <h2 class="section-title">Ce qui est inclus<br /><em>dans chaque formule</em></h2>
+        </div>
+        <div style="overflow-x:auto;margin-top:3rem;">
+          <table class="compare-table animate delay-1">
+            <thead>
+              <tr>
+                <th>Fonctionnalité</th>
+                <th>Session</th>
+                <th class="col-head-featured" style="color:var(--gold);">Programme 3 Mois</th>
+                <th>VIP 12 Mois</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Sessions individuelles</td><td>1 × 2h</td><td class="col-featured">12 × 1h</td><td>Illimitées</td></tr>
+              <tr><td>Support entre les sessions</td><td>Email 7j</td><td class="col-featured">WhatsApp illimité</td><td>Appels directs</td></tr>
+              <tr><td>Méthode Clarity complète</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td></tr>
+              <tr><td>Templates & ressources</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured">50+ ressources</td><td>Accès total</td></tr>
+              <tr><td>Révision supports commerciaux</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td></tr>
+              <tr><td>Journée intensive présentiel</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td></tr>
+              <tr><td>Introduction réseau Clara</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td></tr>
+              <tr><td>Garantie résultats</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="check-yes"><i data-lucide="check" style="width:16px;height:16px;" aria-hidden="true"></i></td></tr>
+              <tr><td>Paiement en plusieurs fois</td><td class="check-no"><i data-lucide="minus" style="width:16px;height:16px;" aria-hidden="true"></i></td><td class="col-featured">3× 900€</td><td>Sur devis</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Comment ça se passe</span>
+          <h2 class="section-title">De l'appel découverte<br /><em>à vos premiers résultats</em></h2>
+        </div>
+        <div class="process-steps">
+          <div class="proc-step animate"><div class="proc-icon"><i data-lucide="phone" style="width:22px;height:22px;" aria-hidden="true"></i></div><div class="proc-title">Appel découverte</div><p class="proc-text">30 min gratuits pour faire le diagnostic et valider que nous sommes alignés.</p></div>
+          <div class="proc-step animate delay-1"><div class="proc-icon"><i data-lucide="file-text" style="width:22px;height:22px;" aria-hidden="true"></i></div><div class="proc-title">Proposition sur mesure</div><p class="proc-text">Je vous envoie le programme adapté à votre situation avec les modalités pratiques.</p></div>
+          <div class="proc-step animate delay-2"><div class="proc-icon"><i data-lucide="credit-card" style="width:22px;height:22px;" aria-hidden="true"></i></div><div class="proc-title">Démarrage</div><p class="proc-text">Signature, facturation, accès aux ressources. On commence dès la semaine suivante.</p></div>
+          <div class="proc-step animate delay-3"><div class="proc-icon"><i data-lucide="trending-up" style="width:22px;height:22px;" aria-hidden="true"></i></div><div class="proc-title">Résultats mesurables</div><p class="proc-text">Premiers changements visibles dans les 30 jours. Bilan à 90 jours avec métriques.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-pricing">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Questions fréquentes</span>
+          <h2 class="section-title">Tout ce que vous voulez<br /><em>savoir sur les offres</em></h2>
+        </div>
+        <div class="faq-list animate delay-1" role="list">
+          <div class="faq-item" role="listitem"><button class="faq-btn" aria-expanded="false" aria-controls="faq1">Puis-je payer en plusieurs fois ?<span class="faq-icon"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button><div class="faq-body" id="faq1" role="region"><div class="faq-body-inner">Oui, le Programme 3 Mois est disponible en 3 mensualités de 900€ sans frais ni intérêts. La facture est émise au nom de votre structure professionnelle, ce qui vous permet de déduire l'investissement de votre activité.</div></div></div>
+          <div class="faq-item" role="listitem"><button class="faq-btn" aria-expanded="false" aria-controls="faq2">Que se passe-t-il si nous ne sommes pas compatibles ?<span class="faq-icon"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button><div class="faq-body" id="faq2" role="region"><div class="faq-body-inner">C'est exactement pour ça que l'appel découverte existe. Si après cet appel je ne pense pas pouvoir vous aider efficacement, je vous le dirai honnêtement et vous orienterai vers d'autres ressources. Je n'accepte pas tous les profils — je préfère refuser un client que de prendre son argent sans pouvoir lui apporter de vraie valeur.</div></div></div>
+          <div class="faq-item" role="listitem"><button class="faq-btn" aria-expanded="false" aria-controls="faq3">Les sessions se tiennent quand ?<span class="faq-icon"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button><div class="faq-body" id="faq3" role="region"><div class="faq-body-inner">Les sessions sont planifiées ensemble selon vos disponibilités, en général le mardi ou jeudi entre 9h et 18h (heure de Paris). Elles durent 60 minutes et se tiennent via Zoom. Un lien de réservation Calendly vous est envoyé après l'inscription.</div></div></div>
+          <div class="faq-item" role="listitem"><button class="faq-btn" aria-expanded="false" aria-controls="faq4">Puis-je passer d'une Session Stratégique au Programme 3 Mois ?<span class="faq-icon"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button><div class="faq-body" id="faq4" role="region"><div class="faq-body-inner">Absolument. Beaucoup de clients commencent par une Session Stratégique pour "tester" l'approche avant de s'engager sur 3 mois. Dans ce cas, le montant de la session (490€) est déduit du Programme 3 Mois si vous décidez de continuer dans les 30 jours suivants.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section"><div class="container"><div class="cta-band animate"><span class="section-label">Prochaine étape</span><h2 class="section-title">Une question sur les offres ?<br /><em>Parlons-en.</em></h2><p style="color:var(--muted);max-width:480px;margin:0 auto 2rem;">L'appel découverte est gratuit et sans engagement. C'est le meilleur moyen de savoir quelle formule vous convient.</p><div class="cta-actions"><a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a><a href="resultats.html" class="btn btn-ghost"><span>Voir les témoignages</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a></div></div></div></section>
+  </main>
+
+  <footer role="contentinfo"><div class="container"><div class="footer-inner"><div class="footer-logo">CM<span>.</span></div><nav class="footer-links"><a href="methode.html">Méthode</a><a href="resultats.html">Résultats</a><a href="a-propos.html">À Propos</a><a href="contact.html">Contact</a></nav><p class="footer-copy">© 2026 Clara Méndez. Tous droits réservés.</p></div></div></footer>
+  <script src="main.js" defer></script>
+</body>
+</html>

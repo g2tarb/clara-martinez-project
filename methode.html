@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Méthode Clarity | Clara Méndez Business Coach</title>
+  <meta name="description" content="La méthode Clarity en 3 piliers : Positionnement, Pricing, Acquisition. Découvrez comment Clara Méndez structure l'accompagnement de ses clients freelances et entrepreneurs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero{padding:10rem 0 5rem;text-align:center;position:relative;}
+    .page-hero .hero-aurora{position:absolute;inset:0;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:50px;padding:.45rem 1.1rem;font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;margin-bottom:1.5rem;}
+    .page-title{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.0;margin-bottom:1.25rem;}
+    .page-desc{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;}
+    .pillar-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .pillar-section:first-of-type{border-top:none;}
+    .pillar-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:center;margin-top:3rem;}
+    .pillar-grid.reverse{direction:rtl;}
+    .pillar-grid.reverse>*{direction:ltr;}
+    .pillar-num{font-family:var(--font-serif);font-size:8rem;font-weight:900;line-height:1;color:rgba(201,168,76,.08);margin-bottom:-1rem;}
+    .pillar-icon-big{width:72px;height:72px;background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.3);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:1.5rem;}
+    .pillar-title{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:1rem;}
+    .pillar-desc{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem;}
+    .pillar-steps{display:flex;flex-direction:column;gap:1rem;}
+    .pillar-step{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;border-radius:var(--radius);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);transition:border-color var(--transition);}
+    .pillar-step:hover{border-color:rgba(201,168,76,.2);}
+    .ps-num{width:28px;height:28px;background:rgba(201,168,76,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--gold);flex-shrink:0;}
+    .ps-title{font-weight:600;font-size:.9rem;color:var(--white);margin-bottom:.2rem;}
+    .ps-text{font-size:.82rem;color:var(--muted);line-height:1.5;}
+    .pillar-visual{border-radius:var(--radius-xl);overflow:hidden;position:relative;}
+    .pv-card{border-radius:var(--radius-lg);padding:2rem;position:relative;}
+    .pv-result{display:flex;align-items:center;gap:1rem;padding:1.25rem;border-radius:var(--radius);background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);margin-top:1rem;}
+    .pv-result-num{font-family:var(--font-serif);font-size:2rem;font-weight:900;color:var(--gold);line-height:1;flex-shrink:0;}
+    .pv-result-lbl{font-size:.82rem;color:var(--muted);}
+    .timeline-section{padding:5rem 0;}
+    .timeline{position:relative;max-width:700px;margin:3rem auto 0;padding-left:2rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--gold),var(--gold),transparent);}
+    .tl-item{position:relative;padding-bottom:3rem;}
+    .tl-item:last-child{padding-bottom:0;}
+    .tl-dot{position:absolute;left:-2.4rem;top:.25rem;width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,.15);}
+    .tl-week{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:.4rem;}
+    .tl-title{font-family:var(--font-serif);font-size:1.15rem;color:var(--white);margin-bottom:.5rem;}
+    .tl-text{font-size:.88rem;color:var(--muted);line-height:1.7;}
+    .cta-band{margin-top:5rem;border-radius:var(--radius-xl);padding:4rem;text-align:center;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);}
+    .cta-band h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1rem;}
+    .cta-band p{color:var(--muted);max-width:480px;margin:0 auto 2rem;}
+    .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    @media(max-width:768px){.pillar-grid,.pillar-grid.reverse{grid-template-columns:1fr;direction:ltr;}.timeline{padding-left:1.5rem;}.tl-dot{left:-1.9rem;}}
+  </style>
+</head>
+<body data-page="methode">
+  <canvas id="water-canvas" aria-hidden="true"></canvas>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index.html" class="nav-logo">CM<span class="logo-dot">.</span></a>
+        <ul class="nav-links" role="list">
+          <li><a href="problematique.html" class="nav-link">Problématique</a></li>
+          <li><a href="methode.html" class="nav-link active">Méthode</a></li>
+          <li><a href="offres.html" class="nav-link">Offres</a></li>
+          <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
+          <li><a href="resultats.html" class="nav-link">Résultats</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <button class="mobile-close" id="mobile-close" aria-label="Fermer"><i data-lucide="x" style="width:24px;height:24px;" aria-hidden="true"></i></button>
+    <nav>
+      <a href="problematique.html" class="mobile-link">Problématique</a>
+      <a href="methode.html" class="mobile-link">Méthode</a>
+      <a href="offres.html" class="mobile-link">Offres</a>
+      <a href="a-propos.html" class="mobile-link">À Propos</a>
+      <a href="resultats.html" class="mobile-link">Résultats</a>
+      <a href="contact.html" class="btn btn-primary mobile-link">Réserver un appel</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div></div>
+      <div class="container page-hero-inner">
+        <div class="page-tag animate"><i data-lucide="sparkles" style="width:13px;height:13px;" aria-hidden="true"></i> Méthode propriétaire</div>
+        <h1 class="page-title animate delay-1">La méthode <em>Clarity</em></h1>
+        <p class="page-desc animate delay-2">Trois piliers. Un système. Des résultats mesurables en 90 jours. Voici la méthode que j'ai développée après 8 ans de terrain et +120 accompagnements individuels.</p>
+        <a href="contact.html" class="btn btn-primary magnetic animate delay-3"><span>Démarrer l'accompagnement</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <!-- PILIER 1 -->
+    <section class="pillar-section section">
+      <div class="container">
+        <div class="pillar-grid">
+          <div class="animate">
+            <div class="pillar-num">01</div>
+            <div class="pillar-icon-big"><i data-lucide="crosshair" style="width:32px;height:32px;" aria-hidden="true"></i></div>
+            <h2 class="pillar-title">Positionnement<br /><em>de précision</em></h2>
+            <p class="pillar-desc">Devenez la référence évidente dans votre niche. On arrête de vous demander de "tout faire pour tout le monde" — on construit votre unicité perçue pour attirer les bons clients à la juste valeur.</p>
+            <div class="pillar-steps">
+              <div class="pillar-step"><div class="ps-num">1</div><div><div class="ps-title">Audit de votre positionnement actuel</div><div class="ps-text">Analyse complète de votre offre, vos clients actuels, votre message — et les écarts avec ce que vous voulez vraiment faire.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">2</div><div><div class="ps-title">Définition de votre Client Idéal (ICP)</div><div class="ps-text">Portrait ultra-précis de votre client parfait : secteur, budget, douleurs, langage, canaux de contact. Le profil qui paie bien et aime travailler avec vous.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">3</div><div><div class="ps-title">Construction de votre message différenciant</div><div class="ps-text">Une proposition de valeur en une phrase qui explique en quoi vous êtes unique et pourquoi votre ICP devrait vous choisir plutôt qu'un concurrent.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">4</div><div><div class="ps-title">Refonte de vos supports de présentation</div><div class="ps-text">LinkedIn, site web, pitch oral, signature email — tout aligné sur votre nouveau positionnement pour créer une cohérence totale.</div></div></div>
+            </div>
+          </div>
+          <div class="animate delay-2">
+            <div class="pv-card glass">
+              <span class="section-label">Résultat attendu</span>
+              <h3 style="font-size:1.2rem;margin:1rem 0 .75rem;">Après le pilier Positionnement</h3>
+              <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;">Vous avez un positionnement limpide que vous pouvez expliquer en 30 secondes. Vos prospects comprennent immédiatement pourquoi vous et pourquoi maintenant.</p>
+              <div class="pv-result"><div class="pv-result-num">3×</div><div class="pv-result-lbl">plus de demandes entrantes qualifiées en moyenne après repositionnement</div></div>
+              <div class="pv-result" style="margin-top:.75rem;"><div class="pv-result-num">+40%</div><div class="pv-result-lbl">de taux de conversion sur les devis (les bons clients disent oui plus vite)</div></div>
+              <div class="pv-result" style="margin-top:.75rem;"><div class="pv-result-num">-60%</div><div class="pv-result-lbl">de négociation tarifaire (quand vous êtes la référence, on ne négocie plus)</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILIER 2 -->
+    <section class="pillar-section section">
+      <div class="container">
+        <div class="pillar-grid reverse">
+          <div class="animate">
+            <div class="pillar-num">02</div>
+            <div class="pillar-icon-big"><i data-lucide="banknote" style="width:32px;height:32px;" aria-hidden="true"></i></div>
+            <h2 class="pillar-title">Pricing<br /><em>sans complexe</em></h2>
+            <p class="pillar-desc">Valorisez votre expertise à sa juste valeur. On construit des offres premium irrésistibles qui justifient des tarifs 2 à 3× supérieurs à votre niveau actuel — sans perdre de clients.</p>
+            <div class="pillar-steps">
+              <div class="pillar-step"><div class="ps-num">1</div><div><div class="ps-title">Audit tarifaire complet</div><div class="ps-text">Analyse de vos prix actuels, comparatif marché, calcul de votre TJM cible selon vos objectifs de vie et d'activité.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">2</div><div><div class="ps-title">Architecture de vos offres</div><div class="ps-text">Construction de 3 niveaux d'offres (entrée, cœur, premium) pour maximiser votre panier moyen et créer de l'upsell naturel.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">3</div><div><div class="ps-title">Stratégie de revalorisation sans rupture</div><div class="ps-text">Un plan en 4 étapes pour augmenter vos tarifs progressivement sans perdre vos clients existants ni créer de friction inutile.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">4</div><div><div class="ps-title">Scripts de vente et closing éthique</div><div class="ps-text">Les mots exacts pour présenter vos prix avec assurance, répondre aux objections et conclure une vente sans malaise.</div></div></div>
+            </div>
+          </div>
+          <div class="animate delay-2">
+            <div class="pv-card glass">
+              <span class="section-label">Résultat attendu</span>
+              <h3 style="font-size:1.2rem;margin:1rem 0 .75rem;">Après le pilier Pricing</h3>
+              <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;">Vous annoncez vos prix avec assurance. Vous avez une offre premium claire et un argumentaire qui justifie naturellement vos honoraires.</p>
+              <div class="pv-result"><div class="pv-result-num">×2,4</div><div class="pv-result-lbl">de TJM moyen constaté chez mes clients après 3 mois d'accompagnement</div></div>
+              <div class="pv-result" style="margin-top:.75rem;"><div class="pv-result-num">100%</div><div class="pv-result-lbl">ont augmenté leurs tarifs sans perdre leurs clients stratégiques</div></div>
+              <div class="pv-result" style="margin-top:.75rem;"><div class="pv-result-num">+30%</div><div class="pv-result-lbl">de CA supplémentaire en travaillant le même nombre d'heures</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILIER 3 -->
+    <section class="pillar-section section">
+      <div class="container">
+        <div class="pillar-grid">
+          <div class="animate">
+            <div class="pillar-num">03</div>
+            <div class="pillar-icon-big"><i data-lucide="magnet" style="width:32px;height:32px;" aria-hidden="true"></i></div>
+            <h2 class="pillar-title">Acquisition<br /><em>prévisible</em></h2>
+            <p class="pillar-desc">Créez un flux régulier de clients qualifiés qui viennent à vous. On construit votre machine à attirer — contenu, réseau, SEO, referral — pour ne plus jamais dépendre du hasard.</p>
+            <div class="pillar-steps">
+              <div class="pillar-step"><div class="ps-num">1</div><div><div class="ps-title">Stratégie de contenu et personal branding</div><div class="ps-text">Plan éditorial LinkedIn sur 90 jours. Formats, fréquence, angles — pour positionner votre expertise et générer des inbounds qualifiés.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">2</div><div><div class="ps-title">Funnel de conversion</div><div class="ps-text">Du premier contact à la signature : tunnel défini, emails de nurturing, appel découverte cadré. Chaque étape optimisée pour convertir sans forcer.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">3</div><div><div class="ps-title">Système de referral et partenariats</div><div class="ps-text">Mise en place d'un programme d'apporteurs d'affaires et d'alliances stratégiques avec des complémentaires. La source d'acquisition la moins chère.</div></div></div>
+              <div class="pillar-step"><div class="ps-num">4</div><div><div class="ps-title">Dashboard et KPIs hebdomadaires</div><div class="ps-text">Tableau de bord simple avec 5 métriques clés à suivre chaque semaine pour piloter votre acquisition et ajuster en temps réel.</div></div></div>
+            </div>
+          </div>
+          <div class="animate delay-2">
+            <div class="pv-card glass">
+              <span class="section-label">Résultat attendu</span>
+              <h3 style="font-size:1.2rem;margin:1rem 0 .75rem;">Après le pilier Acquisition</h3>
+              <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;">Vous avez un pipeline prévisible. Chaque semaine, de nouveaux prospects qualifiés entrent dans votre orbite sans que vous ayez à les chasser.</p>
+              <div class="pv-result"><div class="pv-result-num">4-6</div><div class="pv-result-lbl">nouvelles opportunités qualifiées par mois en moyenne après 90 jours</div></div>
+              <div class="pv-result" style="margin-top:.75rem;"><div class="pv-result-num">-70%</div><div class="pv-result-lbl">de temps passé à prospecter activement (les clients viennent à vous)</div></div>
+              <div class="pv-result" style="margin-top:.75rem;"><div class="pv-result-num">+3 mois</div><div class="pv-result-lbl">de visibilité sur le CA (le pipeline devient prédictible)</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Semaine par semaine</span>
+          <h2 class="section-title">Ce qui se passe<br /><em>pendant les 12 semaines</em></h2>
+        </div>
+        <div class="timeline">
+          <div class="tl-item animate"><div class="tl-dot"></div><div class="tl-week">Semaines 1-2</div><h3 class="tl-title">Diagnostic & fondations</h3><p class="tl-text">Audit complet de votre situation actuelle : offre, tarifs, clients, canaux. On pose un diagnostic honnête avant de bâtir quoi que ce soit. Vous repartez avec une clarté totale sur où vous en êtes et où vous allez.</p></div>
+          <div class="tl-item animate delay-1"><div class="tl-dot"></div><div class="tl-week">Semaines 3-4</div><h3 class="tl-title">Positionnement & ICP</h3><p class="tl-text">Construction de votre positionnement de précision. Définition du Client Idéal, message différenciant, refonte des supports. Vos prospects commencent à mieux comprendre pourquoi vous choisir.</p></div>
+          <div class="tl-item animate delay-2"><div class="tl-dot"></div><div class="tl-week">Semaines 5-6</div><h3 class="tl-title">Architecture tarifaire</h3><p class="tl-text">Construction de vos 3 niveaux d'offres, calcul de votre TJM cible, scripts de vente. Vous pouvez désormais présenter vos prix avec assurance et répondre à n'importe quelle objection.</p></div>
+          <div class="tl-item animate delay-2"><div class="tl-dot"></div><div class="tl-week">Semaines 7-8</div><h3 class="tl-title">Stratégie d'acquisition</h3><p class="tl-text">Plan de contenu LinkedIn sur 90 jours, mise en place du funnel de conversion, système de referral. Les premiers inbounds qualifiés commencent à arriver.</p></div>
+          <div class="tl-item animate delay-3"><div class="tl-dot"></div><div class="tl-week">Semaines 9-10</div><h3 class="tl-title">Exécution & ajustements</h3><p class="tl-text">Mise en action du plan, premiers retours marché. On ajuste en temps réel selon ce que vous observez. Votre pipeline commence à se remplir de façon prévisible.</p></div>
+          <div class="tl-item animate delay-3"><div class="tl-dot"></div><div class="tl-week">Semaines 11-12</div><h3 class="tl-title">Consolidation & autonomie</h3><p class="tl-text">Bilan des 90 jours, mesure des résultats, plan de continuation. Vous repartez avec un système autonome, des rituels hebdomadaires et une roadmap pour les 6 prochains mois.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band animate">
+          <span class="section-label">Prochaine étape</span>
+          <h2 class="section-title">Prêt à démarrer<br /><em>la méthode Clarity ?</em></h2>
+          <p>Un appel découverte de 30 minutes pour vérifier si vous êtes au bon endroit et quel programme correspond à votre situation.</p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+            <a href="offres.html" class="btn btn-ghost"><span>Voir les offres</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">CM<span>.</span></div>
+        <nav class="footer-links"><a href="problematique.html">Problématique</a><a href="offres.html">Offres</a><a href="a-propos.html">À Propos</a><a href="contact.html">Contact</a></nav>
+        <p class="footer-copy">© 2026 Clara Méndez. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="main.js" defer></script>
+</body>
+</html>

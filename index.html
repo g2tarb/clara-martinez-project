@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clara Méndez | Business Coach Paris</title>
+  <meta name="description" content="Clara Méndez accompagne les freelances et entrepreneurs à structurer leur business, valoriser leur expertise et doubler leur CA. Réservez votre appel gratuit." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://claramendez.fr/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://claramendez.fr/" />
+  <meta property="og:title" content="Clara Méndez | Business Coach Paris" />
+  <meta property="og:description" content="Passez de freelance débordé à entrepreneur structuré. +120 accompagnements. Méthode Clarity éprouvée." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://claramendez.fr/#person","name":"Clara Méndez","jobTitle":"Business Coach","url":"https://claramendez.fr/"},{"@type":"LocalBusiness","@id":"https://claramendez.fr/#biz","name":"Clara Méndez Business Coaching","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"priceRange":"€€€"}]}</script>
+</head>
+<body>
+
+  <!-- Canvas eau -->
+  <canvas id="water-canvas" aria-hidden="true"></canvas>
+
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index.html" class="nav-logo" aria-label="Accueil Clara Méndez">CM<span class="logo-dot">.</span></a>
+        <ul class="nav-links" role="list">
+          <li><a href="problematique.html" class="nav-link">Problématique</a></li>
+          <li><a href="methode.html" class="nav-link">Méthode</a></li>
+          <li><a href="offres.html" class="nav-link">Offres</a></li>
+          <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
+          <li><a href="resultats.html" class="nav-link">Résultats</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-nav magnetic" aria-label="Réserver un appel gratuit">
+          <span>Appel Gratuit</span>
+          <i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu principal">
+    <button class="mobile-close" id="mobile-close" aria-label="Fermer le menu">
+      <i data-lucide="x" style="width:24px;height:24px;" aria-hidden="true"></i>
+    </button>
+    <nav aria-label="Menu mobile">
+      <a href="problematique.html" class="mobile-link">Problématique</a>
+      <a href="methode.html" class="mobile-link">Méthode</a>
+      <a href="offres.html" class="mobile-link">Offres</a>
+      <a href="a-propos.html" class="mobile-link">À Propos</a>
+      <a href="resultats.html" class="mobile-link">Résultats</a>
+      <a href="contact.html" class="btn btn-primary mobile-link">Réserver un appel</a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section id="hero" aria-label="Présentation">
+      <div class="hero-aurora" aria-hidden="true">
+        <div class="aurora a1"></div>
+        <div class="aurora a2"></div>
+        <div class="aurora a3"></div>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <div class="hero-badge animate">
+            <span class="badge-dot"></span>
+            Business Coach · Paris · 100% en ligne
+          </div>
+          <h1 class="hero-title animate delay-1">
+            Passez de<br /><em>freelance débordé</em><br />à entrepreneur<br />structuré.
+          </h1>
+          <p class="hero-sub animate delay-2">Vous avez le talent. Il vous manque la structure, le positionnement juste et la stratégie pour passer à l'échelle. C'est exactement ce que je construis avec vous.</p>
+          <div class="hero-actions animate delay-3">
+            <a href="#contact" class="btn btn-primary magnetic">
+              <span>Réserver mon appel découverte</span>
+              <i data-lucide="calendar" style="width:18px;height:18px;" aria-hidden="true"></i>
+            </a>
+            <a href="#method" class="btn btn-ghost">
+              <span>Découvrir la méthode</span>
+              <i data-lucide="chevron-down" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+          </div>
+          <p class="hero-note animate delay-4">
+            <i data-lucide="shield-check" style="width:14px;height:14px;" aria-hidden="true"></i>
+            Sans engagement · 30 min · 100% offert
+          </p>
+        </div>
+        <div class="hero-right animate delay-2">
+          <div class="hero-bento" role="img" aria-label="Statistiques clés de Clara Méndez">
+            <div class="bento-card bento-main glass">
+              <div class="bento-avatar" aria-hidden="true">
+                <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs><radialGradient id="sg" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#E8B98A"/><stop offset="100%" stop-color="#C8905A"/></radialGradient></defs>
+                  <ellipse cx="100" cy="215" rx="70" ry="20" fill="rgba(0,0,0,0.2)"/>
+                  <path d="M35 175 Q40 140 65 128 L100 138 L135 128 Q160 140 165 175 L180 220 H20 Z" fill="#12121E"/>
+                  <path d="M78 128 L100 148 L122 128 L119 118 H81 Z" fill="#F5F0E8"/>
+                  <rect x="88" y="105" width="24" height="20" rx="8" fill="url(#sg)"/>
+                  <ellipse cx="100" cy="90" rx="40" ry="44" fill="url(#sg)"/>
+                  <path d="M60 82 Q58 52 100 45 Q142 52 140 82 Q132 47 100 42 Q68 47 60 82Z" fill="#1C0E08"/>
+                  <ellipse cx="60" cy="94" rx="6" ry="14" fill="#1C0E08"/>
+                  <ellipse cx="140" cy="94" rx="6" ry="14" fill="#1C0E08"/>
+                  <ellipse cx="86" cy="90" rx="6" ry="7" fill="#1C0E08"/>
+                  <ellipse cx="114" cy="90" rx="6" ry="7" fill="#1C0E08"/>
+                  <ellipse cx="87.5" cy="88.5" rx="2" ry="2" fill="white" opacity="0.7"/>
+                  <ellipse cx="115.5" cy="88.5" rx="2" ry="2" fill="white" opacity="0.7"/>
+                  <path d="M100 97 Q97 103 100 106 Q103 103 100 97Z" fill="#B87040" opacity="0.5"/>
+                  <path d="M91 116 Q100 122 109 116" stroke="#1C0E08" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                  <circle cx="60" cy="96" r="4" fill="#C9A84C"/>
+                  <circle cx="140" cy="96" r="4" fill="#C9A84C"/>
+                </svg>
+              </div>
+              <div class="bento-main-info">
+                <p class="bento-name">Clara Méndez</p>
+                <p class="bento-title-tag">Business Coach · Paris</p>
+                <div class="bento-stars" aria-label="Note 5 étoiles">★★★★★</div>
+              </div>
+            </div>
+            <div class="bento-card bento-stat glass">
+              <i data-lucide="trending-up" style="width:22px;height:22px;color:var(--gold);" aria-hidden="true"></i>
+              <div class="bento-stat-num">+120</div>
+              <div class="bento-stat-lbl">Accompagnements</div>
+            </div>
+            <div class="bento-card bento-stat glass">
+              <i data-lucide="zap" style="width:22px;height:22px;color:var(--gold);" aria-hidden="true"></i>
+              <div class="bento-stat-num">×2,4</div>
+              <div class="bento-stat-lbl">Croissance CA moy.</div>
+            </div>
+            <div class="bento-card bento-wide glass">
+              <div class="bento-wide-label">Satisfaction client</div>
+              <div class="bento-progress-bar" aria-hidden="true"><div class="bento-progress-fill"></div></div>
+              <div class="bento-wide-stat">94% de clients satisfaits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll animate delay-4" aria-label="Défiler">
+        <div class="scroll-line"></div>
+        <span>Défiler</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section id="social-proof" aria-label="Médias">
+      <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">Le Monde</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Maddyness</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Forbes France</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">BFM Business</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">L'Usine Digitale</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Challenges</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Le Monde</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Maddyness</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Forbes France</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">BFM Business</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">L'Usine Digitale</span><span class="marquee-sep">✦</span>
+          <span class="marquee-item">Challenges</span><span class="marquee-sep">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats" class="section" aria-label="Chiffres clés">
+      <div class="container">
+        <div class="stats-bento">
+          <article class="stats-card glass animate" aria-label="120 entrepreneurs accompagnés">
+            <div class="stats-num counter" data-target="120">0</div><div class="stats-plus">+</div>
+            <div class="stats-label">Entrepreneurs accompagnés</div>
+          </article>
+          <article class="stats-card glass animate delay-1" aria-label="94% satisfaction">
+            <div class="stats-num counter" data-target="94">0</div><div class="stats-plus">%</div>
+            <div class="stats-label">Taux de satisfaction</div>
+          </article>
+          <article class="stats-card glass animate delay-2" aria-label="Croissance 2.4x">
+            <div class="stats-num">×2,4</div>
+            <div class="stats-label">Croissance CA moyenne</div>
+          </article>
+          <article class="stats-card glass animate delay-3" aria-label="8 ans d'expertise">
+            <div class="stats-num counter" data-target="8">0</div><div class="stats-plus"> ans</div>
+            <div class="stats-label">D'expertise RH & Business</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAIN POINTS -->
+    <section id="pain" class="section" aria-label="Les défis des freelances">
+      <div class="container">
+        <div class="section-header animate">
+          <span class="section-label">Vous reconnaissez-vous ?</span>
+          <h2 class="section-title">Ces blocages invisibles<br /><em>plafonnent votre croissance</em></h2>
+        </div>
+        <div class="pain-bento">
+          <article class="pain-card glass animate" aria-label="Sous-facturation">
+            <div class="pain-num" aria-hidden="true">01</div>
+            <div class="pain-icon-wrap" aria-hidden="true"><i data-lucide="trending-down" style="width:26px;height:26px;"></i></div>
+            <h3 class="pain-title">Vous sous-facturez vos prestations</h3>
+            <p class="pain-text">Vous avez peur de perdre des clients en augmentant vos tarifs. Alors vous acceptez des missions en dessous de votre valeur réelle, faute de positionnement clair.</p>
+            <blockquote class="pain-quote">"Je sais que je vaux plus, mais j'ai peur que mes clients partent si j'augmente…"</blockquote>
+          </article>
+          <article class="pain-card glass animate delay-1" aria-label="Manque de système">
+            <div class="pain-num" aria-hidden="true">02</div>
+            <div class="pain-icon-wrap" aria-hidden="true"><i data-lucide="shuffle" style="width:26px;height:26px;"></i></div>
+            <h3 class="pain-title">Vous n'avez pas de système d'acquisition</h3>
+            <p class="pain-text">Votre portefeuille client repose sur le bouche-à-oreille. Chaque mois vous recommencez à zéro, sans pipeline fiable ni offre scalable.</p>
+            <blockquote class="pain-quote">"Je cours après les clients plutôt que de les attirer naturellement."</blockquote>
+          </article>
+          <article class="pain-card glass animate delay-2" aria-label="Solitude décisionnelle">
+            <div class="pain-num" aria-hidden="true">03</div>
+            <div class="pain-icon-wrap" aria-hidden="true"><i data-lucide="user-x" style="width:26px;height:26px;"></i></div>
+            <h3 class="pain-title">La solitude décisionnelle vous pèse</h3>
+            <p class="pain-text">Chaque grande décision, vous la prenez seul·e. Sans feedback expert, vous tournez en rond et la procrastination s'installe durablement.</p>
+            <blockquote class="pain-quote">"Je n'ai personne à qui parler stratégie sans que ça me juge."</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHOD -->
+    <section id="method" class="section" aria-label="La méthode Clarity">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">La méthode Clarity</span>
+          <h2 class="section-title">Trois piliers.<br /><em>Un business qui vous ressemble.</em></h2>
+          <p class="section-sub">Après 8 ans à structurer des organisations et +120 accompagnements, j'ai distillé les leviers qui font vraiment la différence.</p>
+        </div>
+        <div class="method-grid">
+          <article class="method-card glass animate" aria-label="Pilier Positionnement">
+            <div class="method-step" aria-hidden="true">01</div>
+            <div class="method-icon" aria-hidden="true"><i data-lucide="crosshair" style="width:30px;height:30px;"></i></div>
+            <h3 class="method-name">Positionnement</h3>
+            <p class="method-desc">Devenez la référence évidente dans votre niche. Arrêtez de tout faire pour tout le monde et attirez des clients qui paient le juste prix.</p>
+            <ul class="method-list" aria-label="Livrables">
+              <li>Définition de votre Client Idéal (ICP) précis</li>
+              <li>Message de positionnement différenciant</li>
+              <li>Audit et ajustement tarifaire de votre offre</li>
+            </ul>
+            <div class="method-bar" aria-hidden="true"><div class="method-bar-fill" style="width:92%"></div></div>
+          </article>
+          <article class="method-card glass animate delay-1" aria-label="Pilier Pricing">
+            <div class="method-step" aria-hidden="true">02</div>
+            <div class="method-icon" aria-hidden="true"><i data-lucide="banknote" style="width:30px;height:30px;"></i></div>
+            <h3 class="method-name">Pricing</h3>
+            <p class="method-desc">Valorisez votre expertise à sa juste valeur. Construisez des offres premium irrésistibles qui justifient des tarifs 2 à 3× supérieurs.</p>
+            <ul class="method-list" aria-label="Livrables">
+              <li>Architecture de vos offres (entrée, cœur, premium)</li>
+              <li>Stratégie de revalorisation sans perte de clients</li>
+              <li>Scripts de vente et techniques de closing éthique</li>
+            </ul>
+            <div class="method-bar" aria-hidden="true"><div class="method-bar-fill" style="width:86%"></div></div>
+          </article>
+          <article class="method-card glass animate delay-2" aria-label="Pilier Acquisition">
+            <div class="method-step" aria-hidden="true">03</div>
+            <div class="method-icon" aria-hidden="true"><i data-lucide="magnet" style="width:30px;height:30px;"></i></div>
+            <h3 class="method-name">Acquisition</h3>
+            <p class="method-desc">Créez un flux prévisible de clients qualifiés. Construisez votre pipeline sur des fondations solides, sans dépendre du hasard.</p>
+            <ul class="method-list" aria-label="Livrables">
+              <li>Système de contenu et personal branding LinkedIn</li>
+              <li>Funnel de conversion et séquences de nurturing</li>
+              <li>Tableau de bord et KPIs hebdomadaires</li>
+            </ul>
+            <div class="method-bar" aria-hidden="true"><div class="method-bar-fill" style="width:78%"></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFERS -->
+    <section id="offers" class="section" aria-label="Offres et tarifs">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Investissez dans votre croissance</span>
+          <h2 class="section-title">L'accompagnement<br /><em>qui vous correspond</em></h2>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card glass animate" aria-label="Session Stratégique 490€">
+            <div class="pricing-tag">Démarrage</div>
+            <h3 class="pricing-name">Session Stratégique</h3>
+            <p class="pricing-desc">Une session intensive pour débloquer un problème précis et repartir avec un plan d'action concret.</p>
+            <div class="pricing-price-wrap"><sup>€</sup><span class="pricing-price">490</span></div>
+            <p class="pricing-cycle">Paiement unique · 1 session de 2h</p>
+            <ul class="pricing-features" aria-label="Ce qui est inclus">
+              <li><i data-lucide="check" aria-hidden="true"></i> Audit de votre situation (30 min)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Session de travail de 90 minutes</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Plan d'action sur mesure (PDF)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Replay de la session</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Support email 7 jours post-session</li>
+            </ul>
+            <a href="#contact" class="btn btn-ghost full magnetic" aria-label="Réserver la session à 490€">
+              <span>Réserver une session</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+          </article>
+          <article class="pricing-card pricing-featured glass animate delay-1" aria-label="Programme 3 Mois 2500€ — Le plus populaire">
+            <div class="featured-badge">⭐ Le plus populaire</div>
+            <div class="pricing-tag">Transformation</div>
+            <h3 class="pricing-name">Programme 3 Mois</h3>
+            <p class="pricing-desc">L'accompagnement complet pour transformer votre business de A à Z avec la méthode Clarity.</p>
+            <div class="pricing-price-wrap"><sup>€</sup><span class="pricing-price">2 500</span></div>
+            <p class="pricing-cycle">ou 3× 900€ · 12 sessions individuelles</p>
+            <ul class="pricing-features" aria-label="Ce qui est inclus">
+              <li><i data-lucide="check" aria-hidden="true"></i> 12 sessions individuelles (1h/sem.)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Méthode Clarity complète (3 piliers)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Ressources & templates exclusifs</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Support WhatsApp illimité (lun-ven)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Révision de vos supports commerciaux</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Garantie résultats ou session offerte</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary full magnetic" aria-label="Démarrer le programme 3 mois">
+              <span>Je démarre maintenant</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+          </article>
+          <article class="pricing-card glass animate delay-2" aria-label="Accompagnement VIP 6500€">
+            <div class="pricing-tag">Excellence</div>
+            <h3 class="pricing-name">Accompagnement VIP</h3>
+            <p class="pricing-desc">Pour les entrepreneurs ambitieux qui veulent un partenaire stratégique sur le long terme.</p>
+            <div class="pricing-price-wrap"><sup>€</sup><span class="pricing-price">6 500</span></div>
+            <p class="pricing-cycle">Paiement unique · 12 mois d'accompagnement</p>
+            <ul class="pricing-features" aria-label="Ce qui est inclus">
+              <li><i data-lucide="check" aria-hidden="true"></i> Sessions hebdomadaires illimitées</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Accès direct (appels impromptus 15 min)</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Co-création de vos offres et pitchs</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Introduction aux partenaires & réseau</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Revue trimestrielle stratégique</li>
+              <li><i data-lucide="check" aria-hidden="true"></i> Journée intensive en présentiel (Paris)</li>
+            </ul>
+            <a href="#contact" class="btn btn-ghost full magnetic" aria-label="Candidater au programme VIP">
+              <span>Candidater au VIP</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-label="À propos de Clara Méndez">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual animate">
+            <div class="about-frame glass" role="img" aria-label="Portrait de Clara Méndez">
+              <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs><radialGradient id="sg2" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#E8B98A"/><stop offset="100%" stop-color="#C8905A"/></radialGradient></defs>
+                <ellipse cx="150" cy="375" rx="90" ry="18" fill="rgba(0,0,0,0.15)"/>
+                <path d="M55 265 Q62 220 90 205 L150 218 L210 205 Q238 220 245 265 L265 380 H35 Z" fill="#12121E"/>
+                <path d="M113 205 L150 228 L187 205 L183 190 H117 Z" fill="#F5F0E8"/>
+                <rect x="132" y="168" width="36" height="30" rx="12" fill="url(#sg2)"/>
+                <ellipse cx="150" cy="145" rx="58" ry="62" fill="url(#sg2)"/>
+                <path d="M92 132 Q89 88 150 78 Q211 88 208 132 Q198 82 150 74 Q102 82 92 132Z" fill="#1C0E08"/>
+                <ellipse cx="91" cy="146" rx="8" ry="18" fill="#1C0E08"/>
+                <ellipse cx="209" cy="146" rx="8" ry="18" fill="#1C0E08"/>
+                <ellipse cx="132" cy="143" rx="8" ry="9" fill="#1C0E08"/>
+                <ellipse cx="168" cy="143" rx="8" ry="9" fill="#1C0E08"/>
+                <ellipse cx="134" cy="141" rx="3" ry="3" fill="white" opacity="0.7"/>
+                <ellipse cx="170" cy="141" rx="3" ry="3" fill="white" opacity="0.7"/>
+                <path d="M150 156 Q146 165 150 168 Q154 165 150 156Z" fill="#B87040" opacity="0.5"/>
+                <path d="M137 182 Q150 192 163 182" stroke="#1C0E08" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <circle cx="91" cy="150" r="5" fill="#C9A84C"/>
+                <circle cx="209" cy="150" r="5" fill="#C9A84C"/>
+                <rect x="100" y="225" width="100" height="65" rx="5" fill="#C9A84C" opacity="0.4"/>
+                <rect x="102" y="227" width="96" height="61" rx="4" fill="#E8D49A" opacity="0.7"/>
+                <line x1="150" y1="227" x2="150" y2="288" stroke="#C9A84C" stroke-width="1.5" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="about-badge glass animate delay-2" aria-label="8 ans d'expertise">
+              <div class="about-badge-num">8 ans</div>
+              <div class="about-badge-lbl">d'expertise RH<br />& Business</div>
+            </div>
+            <div class="about-deco" aria-hidden="true"></div>
+          </div>
+          <div class="about-content">
+            <span class="section-label animate">Mon parcours</span>
+            <h2 class="section-title animate delay-1">Ex-DRH reconvertie<br /><em>en architecte de business.</em></h2>
+            <p class="about-text animate delay-2">Pendant <strong>8 ans, j'ai été Directrice des Ressources Humaines</strong> dans un groupe tech parisien de 400 personnes. J'ai accompagné des dizaines de managers à développer leur leadership.</p>
+            <p class="about-text animate delay-3">En 2019, j'ai sauté le pas. Et j'ai vécu — en accéléré — tout ce que mes clients vivent : <strong>la peur de se positionner, la difficulté à vendre sa valeur, la solitude des grandes décisions.</strong></p>
+            <p class="about-text animate delay-3">Résultat : 120 000€ de CA dès ma deuxième année. <strong>Ma mission : vous faire gagner les 3 ans d'erreurs que j'ai mis à surmonter.</strong></p>
+            <div class="about-values animate delay-4">
+              <div class="about-value"><div class="av-icon" aria-hidden="true"><i data-lucide="heart-handshake" style="width:18px;height:18px;"></i></div><div><strong>Authenticité</strong><span>Coaching ancré dans votre réalité.</span></div></div>
+              <div class="about-value"><div class="av-icon" aria-hidden="true"><i data-lucide="zap" style="width:18px;height:18px;"></i></div><div><strong>Exigence</strong><span>Je vous pousse au-delà de vos croyances.</span></div></div>
+              <div class="about-value"><div class="av-icon" aria-hidden="true"><i data-lucide="bar-chart-3" style="width:18px;height:18px;"></i></div><div><strong>Résultats mesurables</strong><span>Livrables concrets à chaque session.</span></div></div>
+              <div class="about-value"><div class="av-icon" aria-hidden="true"><i data-lucide="shield" style="width:18px;height:18px;"></i></div><div><strong>Confidentialité</strong><span>Un espace safe et sans jugement.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section" aria-label="Témoignages clients">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Ils ont fait le saut</span>
+          <h2 class="section-title">Des résultats réels,<br /><em>pas des promesses.</em></h2>
+        </div>
+        <div class="testi-grid">
+          <article class="testi-card glass animate" aria-label="Témoignage Sophie L.">
+            <div class="testi-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> TJM doublé en 4 mois</div>
+            <blockquote class="testi-text">"Avant Clara, je facturais 350€/jour et j'osais à peine le dire. Aujourd'hui je travaille à 720€/jour avec une liste d'attente. Ce n'est pas de la magie — c'est une méthode. Elle m'a aidée à construire une offre qui se vend toute seule."</blockquote>
+            <footer class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">SL</div>
+              <div><div class="testi-name">Sophie L.</div><div class="testi-role">Consultante RH · Paris</div><div class="testi-stars" aria-label="5 étoiles">★★★★★</div></div>
+            </footer>
+          </article>
+          <article class="testi-card glass animate delay-1" aria-label="Témoignage Marc T.">
+            <div class="testi-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> +65 000€ de CA en 6 mois</div>
+            <blockquote class="testi-text">"J'étais un technicien excellent qui gérait un business amateur. Clara m'a donné les outils pour penser comme un CEO. En 6 mois, j'ai généré 65 000€ de CA supplémentaire. Le ROI est réel et mesurable."</blockquote>
+            <footer class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">MT</div>
+              <div><div class="testi-name">Marc T.</div><div class="testi-role">Développeur Full-Stack · Lyon</div><div class="testi-stars" aria-label="5 étoiles">★★★★★</div></div>
+            </footer>
+          </article>
+          <article class="testi-card glass animate delay-2" aria-label="Témoignage Inès R.">
+            <div class="testi-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> 3 clients premium en 8 semaines</div>
+            <blockquote class="testi-text">"Ce que j'ai apprécié c'est qu'on n'est jamais dans du générique. En 8 semaines, j'ai signé 3 contrats long-terme avec des clients qui paient sans négocier. Ça change tout dans ma façon de travailler."</blockquote>
+            <footer class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">IR</div>
+              <div><div class="testi-name">Inès R.</div><div class="testi-role">Brand Designer · Bordeaux</div><div class="testi-stars" aria-label="5 étoiles">★★★★★</div></div>
+            </footer>
+          </article>
+          <article class="testi-card glass animate delay-3" aria-label="Témoignage Thomas B.">
+            <div class="testi-result"><i data-lucide="trending-up" style="width:12px;height:12px;" aria-hidden="true"></i> De 0 à 8 000€/mois récurrents</div>
+            <blockquote class="testi-text">"Clara m'a aidé à structurer une offre de retainer mensuel dès mon lancement. En 3 mois, j'avais 4 clients à 2 000€/mois. Je n'aurais jamais imaginé ça aussi rapidement sans son accompagnement."</blockquote>
+            <footer class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">TB</div>
+              <div><div class="testi-name">Thomas B.</div><div class="testi-role">Consultant Marketing · Nantes</div><div class="testi-stars" aria-label="5 étoiles">★★★★★</div></div>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section" aria-label="Questions fréquentes">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">FAQ</span>
+          <h2 class="section-title">Les questions<br /><em>que vous vous posez</em></h2>
+        </div>
+        <div class="faq-list animate delay-1" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq1">Comment se déroule l'appel découverte gratuit ?<span class="faq-icon" aria-hidden="true"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button>
+            <div class="faq-body" id="faq1" role="region"><div class="faq-body-inner">L'appel dure 30 minutes, 100% sans engagement. On fait le point sur votre situation actuelle, vos objectifs à 6 mois et les obstacles qui vous freinent. À la fin, je vous partage une direction claire — que vous travailliez avec moi ou non. C'est un appel de valeur, pas un pitch commercial.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq2">Est-ce que ça marche si je viens de me lancer ?<span class="faq-icon" aria-hidden="true"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button>
+            <div class="faq-body" id="faq2" role="region"><div class="faq-body-inner">Mes programmes sont conçus pour des freelances et entrepreneurs qui ont déjà une activité (même jeune) et veulent la structurer sérieusement. Si vous avez généré vos premiers revenus indépendants, vous êtes au bon endroit. Pour les profils en création pure, une Session Stratégique est souvent le bon point d'entrée.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq3">Quelle est la différence avec un consultant ou un mentor ?<span class="faq-icon" aria-hidden="true"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button>
+            <div class="faq-body" id="faq3" role="region"><div class="faq-body-inner">Un consultant fait le travail à votre place. Un mentor partage son expérience. Moi, je fais les deux : je vous transmets des méthodes éprouvées ET je co-construis avec vous leur application à votre contexte précis. Vous repartez de chaque session avec un plan d'action concret.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq4">Puis-je payer en plusieurs fois ?<span class="faq-icon" aria-hidden="true"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button>
+            <div class="faq-body" id="faq4" role="region"><div class="faq-body-inner">Oui, le Programme 3 Mois est disponible en paiement comptant (2 500€) ou en 3 mensualités de 900€ sans frais. La facture est émise au nom de votre structure pour déduction fiscale.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq5">Travaillez-vous avec tous les secteurs d'activité ?<span class="faq-icon" aria-hidden="true"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button>
+            <div class="faq-body" id="faq5" role="region"><div class="faq-body-inner">Ma méthode Clarity fonctionne pour toute activité de service intellectuel à haute valeur ajoutée : consultants, coachs, designers, développeurs, formateurs, thérapeutes, juristes indépendants… Si vous vendez votre expertise, les leviers s'appliquent directement.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq6">Quelle garantie ai-je que ça va fonctionner ?<span class="faq-icon" aria-hidden="true"><i data-lucide="plus" style="width:18px;height:18px;"></i></span></button>
+            <div class="faq-body" id="faq6" role="region"><div class="faq-body-inner">Pour le Programme 3 Mois, si à l'issue des 12 semaines vous n'avez pas observé d'évolution mesurable sur au moins un des 3 piliers, je vous offre 2 sessions supplémentaires sans frais. 94% de mes clients obtiennent leurs premiers résultats dans les 30 premiers jours.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-label="Formulaire de contact">
+      <div class="contact-aurora" aria-hidden="true"><div class="aurora a4"></div></div>
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <span class="section-label animate">Passez à l'action</span>
+            <h2 class="section-title animate delay-1">Votre prochain chapitre<br /><em>commence ici.</em></h2>
+            <p class="contact-sub animate delay-2">Réservez votre appel découverte gratuit de 30 minutes. Sans engagement, sans pitch — juste une conversation honnête sur votre situation.</p>
+            <div class="contact-feats animate delay-3">
+              <div class="contact-feat"><div class="cf-icon" aria-hidden="true"><i data-lucide="calendar-check" style="width:20px;height:20px;"></i></div><div><strong>Réponse sous 24h ouvrées</strong><span>Je lis personnellement chaque message.</span></div></div>
+              <div class="contact-feat"><div class="cf-icon" aria-hidden="true"><i data-lucide="video" style="width:20px;height:20px;"></i></div><div><strong>Appel 100% en ligne</strong><span>Via Zoom ou Google Meet. Flexible.</span></div></div>
+              <div class="contact-feat"><div class="cf-icon" aria-hidden="true"><i data-lucide="lock" style="width:20px;height:20px;"></i></div><div><strong>Confidentialité garantie</strong><span>Vos informations ne sont jamais partagées.</span></div></div>
+            </div>
+          </div>
+          <div class="contact-form-wrap animate delay-2">
+            <form class="contact-form glass" id="contact-form" novalidate aria-label="Formulaire d'appel découverte">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstname">Prénom <span aria-hidden="true">*</span></label>
+                  <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Sophie" autocomplete="given-name" required aria-required="true" aria-describedby="err-firstname" />
+                  <span class="form-err" id="err-firstname" role="alert">Veuillez entrer votre prénom.</span>
+                </div>
+                <div class="form-group">
+                  <label for="lastname">Nom <span aria-hidden="true">*</span></label>
+                  <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Martin" autocomplete="family-name" required aria-required="true" aria-describedby="err-lastname" />
+                  <span class="form-err" id="err-lastname" role="alert">Veuillez entrer votre nom.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email professionnel <span aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="sophie@monactivite.fr" autocomplete="email" required aria-required="true" aria-describedby="err-email" />
+                <span class="form-err" id="err-email" role="alert">Veuillez entrer un email valide.</span>
+              </div>
+              <div class="form-group">
+                <label for="activity">Votre activité <span aria-hidden="true">*</span></label>
+                <input type="text" id="activity" name="activity" class="form-control" placeholder="Ex: Consultante RH, Designer UX…" required aria-required="true" aria-describedby="err-activity" />
+                <span class="form-err" id="err-activity" role="alert">Décrivez brièvement votre activité.</span>
+              </div>
+              <div class="form-group">
+                <label for="message">Votre situation <span aria-hidden="true">*</span></label>
+                <textarea id="message" name="message" class="form-control" placeholder="Parlez-moi de là où vous en êtes et ce que vous souhaitez transformer…" required aria-required="true" aria-describedby="err-message"></textarea>
+                <span class="form-err" id="err-message" role="alert">Veuillez décrire votre situation.</span>
+              </div>
+              <button type="submit" class="btn btn-primary full magnetic" id="form-submit">
+                <span>Réserver mon appel découverte gratuit</span>
+                <i data-lucide="send" style="width:18px;height:18px;" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class="form-success glass" id="form-success" role="alert" aria-live="polite">
+              <div class="success-icon" aria-hidden="true"><i data-lucide="check-circle" style="width:40px;height:40px;"></i></div>
+              <h3>Message envoyé !</h3>
+              <p>Je reviens vers vous sous 24h ouvrées. À très vite !</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">CM<span>.</span></div>
+        <nav class="footer-links" aria-label="Liens pied de page">
+          <a href="#method">Méthode</a>
+          <a href="#offers">Offres</a>
+          <a href="#about">À Propos</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Confidentialité</a>
+        </nav>
+        <p class="footer-copy">© 2026 Clara Méndez. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

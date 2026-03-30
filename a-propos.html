@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À Propos | Clara Méndez Business Coach Paris</title>
+  <meta name="description" content="Ex-DRH reconvertie en business coach, Clara Méndez partage son parcours, ses valeurs et sa vision pour aider les freelances et entrepreneurs à structurer leur activité." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero{padding:10rem 0 5rem;text-align:center;position:relative;}
+    .page-hero .hero-aurora{position:absolute;inset:0;}
+    .page-hero-inner{position:relative;z-index:1;}
+    .page-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:50px;padding:.45rem 1.1rem;font-size:.75rem;font-weight:600;color:var(--gold);letter-spacing:.08em;margin-bottom:1.5rem;}
+    .page-title{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.0;margin-bottom:1.25rem;}
+    .page-desc{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;}
+    .story-section{padding:5rem 0;}
+    .story-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;}
+    .story-visual{position:relative;}
+    .story-frame{border-radius:30px 30px 80px 30px;overflow:hidden;aspect-ratio:3/4;display:flex;align-items:flex-end;justify-content:center;position:relative;}
+    .story-badge{position:absolute;bottom:-1rem;right:-1.5rem;border-radius:var(--radius);padding:1.25rem 1.5rem;text-align:center;z-index:2;}
+    .story-badge-num{font-family:var(--font-serif);font-size:2rem;color:var(--gold);font-weight:900;line-height:1;}
+    .story-badge-lbl{font-size:.72rem;color:var(--muted);margin-top:.25rem;}
+    .story-deco{position:absolute;top:-1.5rem;left:-1.5rem;width:120px;height:120px;border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--gold),var(--gold-lt));opacity:.06;z-index:-1;}
+    .story-text p{font-size:1rem;color:var(--muted);line-height:1.9;margin-bottom:1.25rem;}
+    .story-text p strong{color:var(--white);font-weight:600;}
+    .story-text blockquote{margin:2rem 0;padding:1.5rem 2rem;background:rgba(201,168,76,.05);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;font-family:var(--font-serif);font-size:1.2rem;color:var(--white);font-style:italic;line-height:1.5;}
+    .career-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .career-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem;}
+    .career-card{border-radius:var(--radius-lg);padding:2rem;position:relative;overflow:hidden;transition:transform var(--transition);}
+    .career-card:hover{transform:translateY(-4px);}
+    .career-year{font-family:var(--font-serif);font-size:2.5rem;font-weight:900;color:rgba(201,168,76,.15);line-height:1;position:absolute;top:1rem;right:1.5rem;}
+    .career-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:.75rem;}
+    .career-title{font-family:var(--font-serif);font-size:1.1rem;margin-bottom:.6rem;color:var(--white);}
+    .career-text{font-size:.85rem;color:var(--muted);line-height:1.7;}
+    .values-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem;}
+    .value-card{border-radius:var(--radius-lg);padding:2rem;border:1px solid rgba(255,255,255,.06);transition:all var(--transition);}
+    .value-card:hover{border-color:rgba(201,168,76,.2);transform:translateY(-3px);}
+    .value-icon{width:52px;height:52px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:1.25rem;}
+    .value-title{font-size:1.1rem;margin-bottom:.6rem;color:var(--white);}
+    .value-text{font-size:.88rem;color:var(--muted);line-height:1.7;}
+    .certif-section{padding:5rem 0;border-top:1px solid rgba(255,255,255,.05);}
+    .certif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+    .certif-card{border-radius:var(--radius-lg);padding:1.75rem;text-align:center;border:1px solid rgba(255,255,255,.06);}
+    .certif-icon{width:48px;height:48px;background:rgba(201,168,76,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);margin:0 auto 1rem;}
+    .certif-title{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.4rem;}
+    .certif-org{font-size:.78rem;color:var(--dim);}
+    .cta-band{margin-top:5rem;border-radius:var(--radius-xl);padding:4rem;text-align:center;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);}
+    .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    @media(max-width:768px){.story-grid{grid-template-columns:1fr}.career-grid,.values-grid{grid-template-columns:1fr}.certif-grid{grid-template-columns:repeat(2,1fr)}.story-visual{max-width:320px;margin:0 auto}}
+  </style>
+</head>
+<body data-page="a-propos">
+  <canvas id="water-canvas" aria-hidden="true"></canvas>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="nav-logo">CM<span class="logo-dot">.</span></a>
+        <ul class="nav-links" role="list">
+          <li><a href="problematique.html" class="nav-link">Problématique</a></li>
+          <li><a href="methode.html" class="nav-link">Méthode</a></li>
+          <li><a href="offres.html" class="nav-link">Offres</a></li>
+          <li><a href="a-propos.html" class="nav-link active">À Propos</a></li>
+          <li><a href="resultats.html" class="nav-link">Résultats</a></li>
+        </ul>
+        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+    <button class="mobile-close" id="mobile-close" aria-label="Fermer"><i data-lucide="x" style="width:24px;height:24px;" aria-hidden="true"></i></button>
+    <nav>
+      <a href="problematique.html" class="mobile-link">Problématique</a>
+      <a href="methode.html" class="mobile-link">Méthode</a>
+      <a href="offres.html" class="mobile-link">Offres</a>
+      <a href="a-propos.html" class="mobile-link">À Propos</a>
+      <a href="resultats.html" class="mobile-link">Résultats</a>
+      <a href="contact.html" class="btn btn-primary mobile-link">Réserver un appel</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div></div>
+      <div class="container page-hero-inner">
+        <div class="page-tag animate"><i data-lucide="user" style="width:13px;height:13px;" aria-hidden="true"></i> Mon histoire</div>
+        <h1 class="page-title animate delay-1">Ex-DRH reconvertie<br /><em>en architecte de business.</em></h1>
+        <p class="page-desc animate delay-2">Je suis Clara Méndez. Avant d'être business coach, j'ai été celle qui avait peur d'augmenter ses tarifs. Voici ce qui a tout changé.</p>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-visual animate">
+            <div class="story-frame glass" role="img" aria-label="Portrait de Clara Méndez">
+              <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:80%">
+                <defs><radialGradient id="sg3" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#E8B98A"/><stop offset="100%" stop-color="#C8905A"/></radialGradient></defs>
+                <ellipse cx="150" cy="375" rx="90" ry="18" fill="rgba(0,0,0,0.15)"/>
+                <path d="M55 265 Q62 220 90 205 L150 218 L210 205 Q238 220 245 265 L265 380 H35 Z" fill="#12121E"/>
+                <path d="M113 205 L150 228 L187 205 L183 190 H117 Z" fill="#F5F0E8"/>
+                <rect x="132" y="168" width="36" height="30" rx="12" fill="url(#sg3)"/>
+                <ellipse cx="150" cy="145" rx="58" ry="62" fill="url(#sg3)"/>
+                <path d="M92 132 Q89 88 150 78 Q211 88 208 132 Q198 82 150 74 Q102 82 92 132Z" fill="#1C0E08"/>
+                <ellipse cx="91" cy="146" rx="8" ry="18" fill="#1C0E08"/>
+                <ellipse cx="209" cy="146" rx="8" ry="18" fill="#1C0E08"/>
+                <ellipse cx="132" cy="143" rx="8" ry="9" fill="#1C0E08"/>
+                <ellipse cx="168" cy="143" rx="8" ry="9" fill="#1C0E08"/>
+                <ellipse cx="134" cy="141" rx="3" ry="3" fill="white" opacity="0.7"/>
+                <ellipse cx="170" cy="141" rx="3" ry="3" fill="white" opacity="0.7"/>
+                <path d="M150 156 Q146 165 150 168 Q154 165 150 156Z" fill="#B87040" opacity="0.5"/>
+                <path d="M137 182 Q150 192 163 182" stroke="#1C0E08" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <circle cx="91" cy="150" r="5" fill="#C9A84C"/>
+                <circle cx="209" cy="150" r="5" fill="#C9A84C"/>
+                <rect x="100" y="225" width="100" height="65" rx="5" fill="#C9A84C" opacity="0.4"/>
+                <rect x="102" y="227" width="96" height="61" rx="4" fill="#E8D49A" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="story-badge glass animate delay-2">
+              <div class="story-badge-num">120K€</div>
+              <div class="story-badge-lbl">CA dès la 2e année<br />en indépendant</div>
+            </div>
+            <div class="story-deco" aria-hidden="true"></div>
+          </div>
+
+          <div class="story-text animate delay-1">
+            <span class="section-label">2012 – 2019</span>
+            <h2 class="section-title" style="margin-bottom:1.5rem;">Les années <em>DRH</em></h2>
+            <p>Pendant <strong>8 ans, j'ai dirigé les Ressources Humaines</strong> d'un groupe tech parisien de 400 collaborateurs. J'ai recruté, formé, développé des talents. J'ai accompagné des managers dans leurs transformations, géré des crises, piloté des projets de réorganisation complexes.</p>
+            <p>C'était passionnant. Mais quelque chose me manquait. <strong>La liberté.</strong> La liberté de choisir avec qui je travaille, sur quoi je me concentre, comment j'organise mes journées.</p>
+            <blockquote>"J'avais l'expertise de développer des organisations entières. Il était temps de l'appliquer à ma propre activité."</blockquote>
+            <span class="section-label">2019 – 2020</span>
+            <h2 class="section-title" style="margin-bottom:1.5rem;font-size:clamp(1.6rem,3vw,2.2rem);">Le grand <em>saut</em></h2>
+            <p>En septembre 2019, j'ai démissionné. <strong>Sans filet.</strong> J'ai lancé mon activité de consultant RH indépendant. Et là, j'ai découvert ce que mes futurs clients allaient vivre : la peur de se positionner, la difficulté à vendre sa valeur, la solitude des grandes décisions.</p>
+            <p>Ma première année : 38 000€ de CA. Une déception. Non pas parce que je manquais de compétences, mais parce que je n'avais pas de méthode. Je sous-facturais par peur, je n'avais aucun système d'acquisition, je prenais toutes mes décisions dans le brouillard.</p>
+            <span class="section-label">2020 – Aujourd'hui</span>
+            <h2 class="section-title" style="margin-bottom:1.5rem;font-size:clamp(1.6rem,3vw,2.2rem);">La <em>transformation</em></h2>
+            <p>J'ai tout restructuré. Positionnement, pricing, acquisition. En 12 mois, je suis passée de 38 000€ à <strong>120 000€ de CA</strong>. En travaillant avec des clients que j'aimais, sur des missions qui m'excitaient, à des tarifs qui valorisaient mon expertise.</p>
+            <p>Aujourd'hui, <strong>ma mission est simple : vous faire gagner les 3 ans que j'ai mis à comprendre ces mécanismes.</strong> La méthode Clarity est le condensé de ce que j'aurais voulu avoir au début.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="career-section">
+      <div class="container">
+        <div class="section-header animate">
+          <span class="section-label">Parcours</span>
+          <h2 class="section-title">Les étapes qui ont<br /><em>façonné ma méthode</em></h2>
+        </div>
+        <div class="career-grid">
+          <article class="career-card glass animate"><div class="career-year">2012</div><div class="career-tag">Début de carrière</div><h3 class="career-title">DRH Junior — Startup SaaS</h3><p class="career-text">Premiers pas en RH dans une startup en hypercroissance (15 → 80 personnes en 18 mois). J'apprends à recruter vite, à structurer des processus et à accompagner des transformations rapides.</p></article>
+          <article class="career-card glass animate delay-1"><div class="career-year">2015</div><div class="career-tag">Montée en responsabilité</div><h3 class="career-title">DRH — Groupe Tech 400 personnes</h3><p class="career-text">Prise en charge d'une équipe RH de 8 personnes. Pilotage des projets de formation, d'évaluation de la performance et de développement des talents. Direction de 3 projets de réorganisation.</p></article>
+          <article class="career-card glass animate delay-2"><div class="career-year">2018</div><div class="career-tag">Formation & certification</div><h3 class="career-title">Certification Coach Professionnel ICF</h3><p class="career-text">Formation intensive de 200h au coaching professionnel. Certification par l'International Coaching Federation (ICF), référence mondiale du secteur. Début des accompagnements individuels en parallèle du salariat.</p></article>
+          <article class="career-card glass animate delay-3"><div class="career-year">2019</div><div class="career-tag">Création d'activité</div><h3 class="career-title">Lancement en indépendant</h3><p class="career-text">Démission et création de mon activité de consultant & coach. Première année difficile (38K€ de CA), mais apprentissage intense des fondamentaux du business indépendant — dont j'ai tiré la méthode Clarity.</p></article>
+          <article class="career-card glass animate delay-1"><div class="career-year">2020</div><div class="career-tag">Pivot stratégique</div><h3 class="career-title">Focus Business Coaching Freelances</h3><p class="career-text">Repositionnement complet sur l'accompagnement des freelances et entrepreneurs en services intellectuels. CA passé de 38K à 120K€ en 12 mois. La méthode Clarity est formalisée pour la première fois.</p></article>
+          <article class="career-card glass animate delay-2"><div class="career-year">2026</div><div class="career-tag">Aujourd'hui</div><h3 class="career-title">+120 entrepreneurs accompagnés</h3><p class="career-text">La méthode Clarity est aujourd'hui rodée sur +120 accompagnements. 94% de taux de satisfaction. Présence régulière dans les médias (Forbes, Maddyness, BFM Business) comme référence du business coaching freelance.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="values-section">
+      <div class="container">
+        <div class="section-header center animate">
+          <span class="section-label">Ce qui me guide</span>
+          <h2 class="section-title">Mes valeurs,<br /><em>mon engagement.</em></h2>
+        </div>
+        <div class="values-grid">
+          <article class="value-card animate"><div class="value-icon"><i data-lucide="heart-handshake" style="width:22px;height:22px;" aria-hidden="true"></i></div><h3 class="value-title">Authenticité radicale</h3><p class="value-text">Je ne vous dirai pas ce que vous voulez entendre. Je vous dirai ce que vous avez besoin d'entendre — avec bienveillance, mais sans filtre. Un coach qui vous ménage ne vous aide pas.</p></article>
+          <article class="value-card animate delay-1"><div class="value-icon"><i data-lucide="zap" style="width:22px;height:22px;" aria-hidden="true"></i></div><h3 class="value-title">Exigence bienveillante</h3><p class="value-text">Je vous pousse à dépasser vos croyances limitantes. Pas en vous brusquant, mais en vous confrontant à vos propres contradictions et en maintenant le cap quand vous voulez baisser les bras.</p></article>
+          <article class="value-card animate delay-2"><div class="value-icon"><i data-lucide="bar-chart-3" style="width:22px;height:22px;" aria-hidden="true"></i></div><h3 class="value-title">Résultats mesurables</h3><p class="value-text">Je ne crois pas au coaching "feel good" sans résultats tangibles. Chaque session produit des livrables concrets et actionnables. On mesure, on ajuste, on progresse — avec des chiffres.</p></article>
+          <article class="value-card animate delay-3"><div class="value-icon"><i data-lucide="shield" style="width:22px;height:22px;" aria-hidden="true"></i></div><h3 class="value-title">Confidentialité absolue</h3><p class="value-text">Ce que vous partagez en session reste entre nous. Je ne partage jamais d'informations sur mes clients, même anonymisées, sans autorisation explicite. Un espace safe n'a de valeur que s'il est vraiment safe.</p></article>
+          <article class="value-card animate"><div class="value-icon"><i data-lucide="users" style="width:22px;height:22px;" aria-hidden="true"></i></div><h3 class="value-title">Partenariat, pas dependance</h3><p class="value-text">Mon objectif est que vous n'ayez plus besoin de moi. Je construis votre autonomie, pas votre dépendance. À la fin du programme, vous avez un système que vous pouvez faire tourner seul·e.</p></article>
+          <article class="value-card animate delay-1"><div class="value-icon"><i data-lucide="compass" style="width:22px;height:22px;" aria-hidden="true"></i></div><h3 class="value-title">Contexte avant conseil</h3><p class="value-text">Il n'existe pas de solution universelle. Avant de vous conseiller quoi que ce soit, je prends le temps de comprendre votre contexte, votre histoire, vos contraintes. Les meilleures solutions sont toujours contextuelles.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="certif-section">
+      <div class="container">
+        <div class="section-header center animate"><span class="section-label">Formations & certifications</span><h2 class="section-title">Les bases de<br /><em>mon expertise</em></h2></div>
+        <div class="certif-grid">
+          <div class="certif-card glass animate"><div class="certif-icon"><i data-lucide="award" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Certification ICF (ACC)</div><div class="certif-org">International Coaching Federation · 2018</div></div>
+          <div class="certif-card glass animate delay-1"><div class="certif-icon"><i data-lucide="graduation-cap" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Master RH & Management</div><div class="certif-org">Sciences Po Paris · 2012</div></div>
+          <div class="certif-card glass animate delay-2"><div class="certif-icon"><i data-lucide="brain" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Formation PNL Praticien</div><div class="certif-org">Institut PNL de Paris · 2019</div></div>
+          <div class="certif-card glass animate delay-3"><div class="certif-icon"><i data-lucide="trending-up" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Certification Growth Hacking</div><div class="certif-org">Growth Tribe Amsterdam · 2020</div></div>
+          <div class="certif-card glass animate"><div class="certif-icon"><i data-lucide="book-open" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Formation Storytelling Business</div><div class="certif-org">HEC Executive · 2021</div></div>
+          <div class="certif-card glass animate delay-1"><div class="certif-icon"><i data-lucide="star" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Certification Pricing Strategy</div><div class="certif-org">MIT OpenCourseWare · 2022</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section"><div class="container"><div class="cta-band animate"><span class="section-label">Travaillons ensemble</span><h2 class="section-title">Vous voulez me parler<br /><em>de votre projet ?</em></h2><p style="color:var(--muted);max-width:480px;margin:0 auto 2rem;">Un appel de 30 minutes pour faire connaissance et voir si nous sommes alignés. Sans engagement, sans pitch — une vraie conversation.</p><div class="cta-actions"><a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a><a href="resultats.html" class="btn btn-ghost"><span>Voir les témoignages</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a></div></div></div></section>
+  </main>
+
+  <footer role="contentinfo"><div class="container"><div class="footer-inner"><div class="footer-logo">CM<span>.</span></div><nav class="footer-links"><a href="methode.html">Méthode</a><a href="offres.html">Offres</a><a href="resultats.html">Résultats</a><a href="contact.html">Contact</a></nav><p class="footer-copy">© 2026 Clara Méndez. Tous droits réservés.</p></div></div></footer>
+  <script src="main.js" defer></script>
+</body>
+</html>
