@@ -311,8 +311,24 @@ const navObs = new IntersectionObserver((entries) => {
 sections.forEach(s => navObs.observe(s));
 
 /* ================================================
-   SMOOTH ANCHOR SCROLL
+   SMOOTH ANCHOR SCROLL — easing cubic doux
    ================================================ */
+const smoothScrollTo = (targetY, duration = 900) => {
+  const startY = window.scrollY;
+  const dist   = targetY - startY;
+  let start = null;
+  const ease = t => t < 0.5
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2; // ease-in-out cubic
+  const step = ts => {
+    if (!start) start = ts;
+    const elapsed  = Math.min((ts - start) / duration, 1);
+    window.scrollTo(0, startY + dist * ease(elapsed));
+    if (elapsed < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const target = document.querySelector(this.getAttribute('href'));
@@ -320,7 +336,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     e.preventDefault();
     const offset = header.offsetHeight + 16;
     const top    = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    smoothScrollTo(top);
   });
 });
 

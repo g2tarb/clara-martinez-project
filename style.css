@@ -32,7 +32,14 @@
 
 /* -------- RESET -------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scroll-padding-top: 80px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 body {
   font-family: var(--font-sans);
   background: var(--bg);
@@ -40,6 +47,7 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
   cursor: none;
+  overscroll-behavior-y: smooth;
 }
 @media (pointer: coarse) { body { cursor: auto; } }
 img, svg { display: block; max-width: 100%; }
@@ -891,6 +899,7 @@ footer {
   .section-header { margin-bottom: 2.5rem; }
 
   /* Hero */
+  .hero-scroll  { display: none; }
   .hero-inner   { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
   .hero-sub, .hero-note { margin-left: auto; margin-right: auto; }
   .hero-actions { justify-content: center; flex-direction: column; align-items: center; }
@@ -903,6 +912,9 @@ footer {
   .pain-bento   { grid-template-columns: 1fr; }
   .method-grid  { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-info, .contact-form-wrap { min-width: 0; max-width: 100%; }
+  .contact-form { overflow: hidden; }
+  .contact-feats { gap: 1.1rem; }
   .form-row     { grid-template-columns: 1fr; }
   .stats-bento  { grid-template-columns: repeat(2, 1fr); }
 
