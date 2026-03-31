@@ -5,205 +5,100 @@
    ================================================ */
 
 /* ================================================
-   WATER RIPPLE EFFECT
-   Simulation physique en 2 tampons (wave equation)
-   Rendu par manipulation de pixels sur canvas offscreen
+   GENTLE WAVE — effet lumineux doux (gradient radial)
+   Aucune manipulation de pixels, très léger sur le CPU
    ================================================ */
-class WaterRipple {
+class GentleWave {
   constructor(canvasId) {
-    this.canvas  = document.getElementById(canvasId);
+    this.canvas = document.getElementById(canvasId);
     if (!this.canvas) return;
 
-    // Canvas offscreen à résolution réduite (gain perf majeur)
-    this.off     = document.createElement('canvas');
-    this.ctx     = this.canvas.getContext('2d');
-    this.octx    = this.off.getContext('2d', { willReadFrequently: true });
+    this.ctx = this.canvas.getContext('2d');
+    this.t   = 0;
 
-    this.SCALE   = 3;          // 1 pixel sim = 3px écran
-    this.DAMP    = 0.972;      // amortissement fort → ondes courtes et légères
-    this.MOUSE_R = 10;         // rayon du drop souris (en px écran)
-    this.MOUSE_F = 0.28;       // force réduite → sillage discret
-    this.CLICK_R = 40;         // rayon click
-    this.CLICK_F = 800;        // force click
-
-    this._mx = -999; this._my = -999;
-    this._lx = -999; this._ly = -999;
-    this._pending = [];        // { x, y, r, f }
+    // Position souris courante (lissée) et cible
+    this.mx = null; this.my = null;
+    this.tx = null; this.ty = null;
 
     this._resize();
     this._setupEvents();
-    this._scheduleRandomDrops();
     this._loop();
   }
 
-  /* ---- taille ---- */
   _resize() {
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-    this.canvas.width  = W;
-    this.canvas.height = H;
-    const w = Math.ceil(W / this.SCALE);
-    const h = Math.ceil(H / this.SCALE);
-    this.off.width  = w;
-    this.off.height = h;
-    this.W = W; this.H = H;
-    this.w = w; this.h = h;
-    // Deux tampons float pour l'équation des ondes
-    this.A = new Float32Array(w * h); // courant
-    this.B = new Float32Array(w * h); // précédent
-    this.imgData = this.octx.createImageData(w, h);
+    this.canvas.width  = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.W = window.innerWidth;
+    this.H = window.innerHeight;
   }
 
-  /* ---- événements ---- */
   _setupEvents() {
     window.addEventListener('resize', () => this._resize(), { passive: true });
-
     document.addEventListener('mousemove', (e) => {
-      this._mx = e.clientX;
-      this._my = e.clientY;
-    }, { passive: true });
-
-    document.addEventListener('click', (e) => {
-      const x = e.clientX, y = e.clientY;
-      this._pending.push({ x, y, r: 18, f: 1400 });
-      setTimeout(() => this._pending.push({ x, y, r: 42, f: 700 }), 70);
-      setTimeout(() => this._pending.push({ x, y, r: 68, f: 320 }), 170);
-    }, { passive: true });
-
-    // Touch support
-    document.addEventListener('touchmove', (e) => {
-      const t = e.touches[0];
-      this._pending.push({ x: t.clientX, y: t.clientY, r: this.MOUSE_R, f: 120 });
-    }, { passive: true });
-
-    document.addEventListener('touchstart', (e) => {
-      const t = e.touches[0];
-      this._pending.push({ x: t.clientX, y: t.clientY, r: this.CLICK_R, f: this.CLICK_F });
+      this.tx = e.clientX;
+      this.ty = e.clientY;
     }, { passive: true });
   }
 
-
-  /* ---- gouttes aléatoires périodiques (légères et espacées) ---- */
-  _scheduleRandomDrops() {
-    const drop = () => {
-      const x = Math.random() * this.W;
-      const y = Math.random() * this.H;
-      const r = 6 + Math.random() * 12;
-      const f = 60 + Math.random() * 100;
-      this._pending.push({ x, y, r, f });
-      setTimeout(drop, 2000 + Math.random() * 4000);
-    };
-    setTimeout(drop, 1200);
-  }
-
-  /* ---- ajouter une ondulation dans le tampon ---- */
-  _addDrop(x, y, radiusPx, force) {
-    const gx = Math.floor(x / this.SCALE);
-    const gy = Math.floor(y / this.SCALE);
-    const gr = Math.max(1, Math.ceil(radiusPx / this.SCALE));
-    const { w, h, A } = this;
-
-    for (let dy = -gr; dy <= gr; dy++) {
-      for (let dx = -gr; dx <= gr; dx++) {
-        const d2 = dx * dx + dy * dy;
-        if (d2 > gr * gr) continue;
-        const nx = gx + dx, ny = gy + dy;
-        if (nx < 1 || nx >= w - 1 || ny < 1 || ny >= h - 1) continue;
-        const d  = Math.sqrt(d2);
-        A[ny * w + nx] += force * (1 - d / gr);
-      }
-    }
-  }
-
-  /* ---- propagation des ondes (équation des ondes 2D) ---- */
-  _update() {
-    const { w, h, DAMP } = this;
-    let { A, B } = this;
-
-    for (let y = 1; y < h - 1; y++) {
-      for (let x = 1; x < w - 1; x++) {
-        const i   = y * w + x;
-        const val = (A[i - 1] + A[i + 1] + A[i - w] + A[i + w]) * 0.5 - B[i];
-        B[i] = val * DAMP;
-      }
-    }
-    // swap buffers
-    this.A = B;
-    this.B = A;
-  }
-
-  /* ---- rendu pixel par pixel ---- */
-  _render() {
-    const { w, h, A, imgData } = this;
-    const px = imgData.data;
-
-    // Couleurs de base du design (#08080F = r8 g8 b15)
-    const BR = 8, BG = 9, BB = 18;
-
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const i  = y * w + x;
-        const v  = A[i];
-
-        // Gradient (normale de surface) = refraction + lumière
-        const gx = x > 0 && x < w - 1 ? (A[i + 1] - A[i - 1]) : 0;
-        const gy = y > 0 && y < h - 1 ? (A[i + w] - A[i - w]) : 0;
-
-        // Lumière directionnelle — très douce
-        const light = (gx - gy) * 0.10;
-
-        // Crête → reflet doré très subtil
-        const crest = Math.max(0, v) * 0.012;
-        const goldR = crest * (201 - BR);
-        const goldG = crest * (168 - BG);
-        const goldB = crest * ( 76 - BB);
-
-        // Creux → légère teinte bleue
-        const trough  = Math.max(0, -v) * 0.008;
-        const deepB   = trough * 20;
-
-        // Accumulation
-        const r = BR + light * 18 + goldR;
-        const g = BG + light * 14 + goldG;
-        const b = BB + light * 24 + goldB + deepB;
-
-        const pi = i * 4;
-        px[pi]     = r < 0 ? 0 : r > 255 ? 255 : r;
-        px[pi + 1] = g < 0 ? 0 : g > 255 ? 255 : g;
-        px[pi + 2] = b < 0 ? 0 : b > 255 ? 255 : b;
-        px[pi + 3] = 255;
-      }
-    }
-
-    this.octx.putImageData(imgData, 0, 0);
-    // Upscale vers le canvas principal (lissage bilinéaire par défaut)
-    this.ctx.drawImage(this.off, 0, 0, this.W, this.H);
-  }
-
-  /* ---- boucle principale RAF ---- */
   _loop() {
-    // Drops en attente
-    for (const d of this._pending) this._addDrop(d.x, d.y, d.r, d.f);
-    this._pending.length = 0;
+    this.t += 0.006;
+    const { ctx, t, W, H } = this;
 
-    // Souris — drop proportionnel à la vitesse
-    const dx = this._mx - this._lx;
-    const dy = this._my - this._ly;
-    const speed = Math.sqrt(dx * dx + dy * dy);
-    if (speed > 2) {
-      this._addDrop(this._mx, this._my, this.MOUSE_R, speed * this.MOUSE_F);
-      this._lx = this._mx;
-      this._ly = this._my;
+    // Lissage souris (lerp doux)
+    if (this.tx !== null) {
+      if (this.mx === null) { this.mx = this.tx; this.my = this.ty; }
+      this.mx += (this.tx - this.mx) * 0.045;
+      this.my += (this.ty - this.my) * 0.045;
     }
 
-    this._update();
-    this._render();
+    // Fond
+    ctx.fillStyle = '#08080F';
+    ctx.fillRect(0, 0, W, H);
+
+    // Blob ambiant 1 — dérive lentement (vague de fond)
+    this._drawBlob(
+      W * 0.5 + Math.sin(t * 0.55) * W * 0.28,
+      H * 0.5 + Math.cos(t * 0.42) * H * 0.22,
+      W * 0.72,
+      [[0,   'rgba(80, 55, 180, 0.18)'],
+       [0.6, 'rgba(40, 25, 110, 0.08)'],
+       [1,   'rgba(0,  0,  0,  0)'   ]]
+    );
+
+    // Blob ambiant 2 — contre-phase douce
+    this._drawBlob(
+      W * 0.35 + Math.cos(t * 0.48) * W * 0.22,
+      H * 0.55 + Math.sin(t * 0.65) * H * 0.18,
+      W * 0.55,
+      [[0,   'rgba(50, 90, 200, 0.14)'],
+       [0.6, 'rgba(25, 50, 140, 0.06)'],
+       [1,   'rgba(0,  0,  0,  0)'   ]]
+    );
+
+    // Lueur souris — suit le curseur avec douceur
+    if (this.mx !== null) {
+      this._drawBlob(
+        this.mx, this.my,
+        Math.min(W, H) * 0.42,
+        [[0,   'rgba(180, 150, 255, 0.22)'],
+         [0.35,'rgba(110,  85, 210, 0.10)'],
+         [1,   'rgba(0,    0,   0,  0)'   ]]
+      );
+    }
+
     requestAnimationFrame(() => this._loop());
+  }
+
+  _drawBlob(cx, cy, r, stops) {
+    const g = this.ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    stops.forEach(([pos, color]) => g.addColorStop(pos, color));
+    this.ctx.fillStyle = g;
+    this.ctx.fillRect(0, 0, this.W, this.H);
   }
 }
 
-// Démarrage de l'effet eau
-new WaterRipple('water-canvas');
+// Démarrage de l'effet doux
+new GentleWave('water-canvas');
 
 // -------- LUCIDE ICONS --------
 document.addEventListener('DOMContentLoaded', () => {
@@ -237,7 +132,7 @@ if (cursor && cursorFollow && window.matchMedia('(pointer: fine)').matches) {
   };
   raf = requestAnimationFrame(animateCursor);
 
-  // Hover states
+  // Hover states — liens & boutons
   const hoverEls = document.querySelectorAll('a, button, .faq-btn, .pricing-card, .testi-card, input, textarea');
   hoverEls.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -247,6 +142,19 @@ if (cursor && cursorFollow && window.matchMedia('(pointer: fine)').matches) {
     el.addEventListener('mouseleave', () => {
       cursor.classList.remove('hovered');
       cursorFollow.classList.remove('hovered');
+    });
+  });
+
+  // Hover texte — rond négatif sur les titres et paragraphes
+  const textEls = document.querySelectorAll('h1, h2, h3, h4, p, li, blockquote, label, .section-label');
+  textEls.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('text-hovered');
+      cursorFollow.classList.add('text-hovered');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('text-hovered');
+      cursorFollow.classList.remove('text-hovered');
     });
   });
 
@@ -293,29 +201,11 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ================================================
-   BURGER / MOBILE MENU
+   BOTTOM NAV — état actif selon la page courante
    ================================================ */
-const burger     = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileClose = document.getElementById('mobile-close');
-const mobileLinks = document.querySelectorAll('.mobile-link');
-
-const toggleMenu = (open) => {
-  burger.classList.toggle('active', open);
-  mobileMenu.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', String(open));
-  document.body.style.overflow = open ? 'hidden' : '';
-};
-
-burger?.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
-mobileClose?.addEventListener('click', () => toggleMenu(false));
-mobileLinks.forEach(l => l.addEventListener('click', () => toggleMenu(false)));
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
-    toggleMenu(false);
-    burger?.focus();
-  }
+const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.bnav-link').forEach(link => {
+  if (link.getAttribute('href') === currentFile) link.classList.add('active');
 });
 
 /* ================================================
