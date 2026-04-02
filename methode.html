@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+<!-- ================================================
+     HEAD — SEO, POLICES, SCRIPTS
+     Métadonnées SEO (title, description), polices
+     Google, icônes Lucide, feuille de style globale
+     et styles spécifiques à cette page.
+     ================================================ -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,12 +60,32 @@
     @media(max-width:768px){.pillar-grid,.pillar-grid.reverse{grid-template-columns:1fr;direction:ltr;}.timeline{padding-left:1.5rem;}.tl-dot{left:-1.9rem;}}
   </style>
 </head>
+
 <body data-page="methode">
+
+  <!-- ================================================
+       CANVAS AURORA
+       Fond animé interactif, commun à toutes les pages.
+       ================================================ -->
   <canvas id="water-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================================================
+       CURSEUR PERSONNALISÉ
+       Double calque : point doré et anneau suiveur.
+       ================================================ -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ================================================
+       OVERLAY BRUIT (NOISE)
+       Texture grain SVG fixe sur toute la page.
+       ================================================ -->
   <div class="noise" aria-hidden="true"></div>
 
+  <!-- ================================================
+       HEADER / NAVIGATION PRINCIPALE
+       Header fixe avec lien actif sur "Méthode".
+       ================================================ -->
   <header id="header" role="banner">
     <div class="container">
       <nav class="nav" aria-label="Navigation principale">
@@ -70,23 +97,45 @@
           <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
           <li><a href="resultats.html" class="nav-link">Résultats</a></li>
         </ul>
-        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <a href="contact.html" class="btn btn-nav magnetic">
+          <span>Appel Gratuit</span>
+          <i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
       </nav>
     </div>
   </header>
 
   <main>
+
+    <!-- ================================================
+         HERO DE PAGE — TITRE MÉTHODE
+         Section d'en-tête avec aurora décorative, tag
+         "Méthode propriétaire", titre et sous-titre
+         présentant la méthode Clarity et son CTA.
+         ================================================ -->
     <section class="page-hero">
-      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div></div>
+      <div class="hero-aurora" aria-hidden="true">
+        <div class="aurora a1"></div>
+        <div class="aurora a2"></div>
+      </div>
       <div class="container page-hero-inner">
-        <div class="page-tag animate"><i data-lucide="sparkles" style="width:13px;height:13px;" aria-hidden="true"></i> Méthode propriétaire</div>
+        <div class="page-tag animate">
+          <i data-lucide="sparkles" style="width:13px;height:13px;" aria-hidden="true"></i> Méthode propriétaire
+        </div>
         <h1 class="page-title animate delay-1">La méthode <em>Clarity</em></h1>
         <p class="page-desc animate delay-2">Trois piliers. Un système. Des résultats mesurables en 90 jours. Voici la méthode que j'ai développée après 8 ans de terrain et +120 accompagnements individuels.</p>
-        <a href="contact.html" class="btn btn-primary magnetic animate delay-3"><span>Démarrer l'accompagnement</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <a href="contact.html" class="btn btn-primary magnetic animate delay-3">
+          <span>Démarrer l'accompagnement</span>
+          <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
       </div>
     </section>
 
-    <!-- PILIER 1 -->
+    <!-- ================================================
+         PILIER 1 — POSITIONNEMENT
+         Grille 2 colonnes : 4 étapes du pilier à gauche,
+         carte résultats attendus avec 3 métriques à droite.
+         ================================================ -->
     <section class="pillar-section section">
       <div class="container">
         <div class="pillar-grid">
@@ -116,7 +165,11 @@
       </div>
     </section>
 
-    <!-- PILIER 2 -->
+    <!-- ================================================
+         PILIER 2 — PRICING
+         Grille inversée (reverse) : carte résultats à gauche,
+         4 étapes du pilier pricing à droite.
+         ================================================ -->
     <section class="pillar-section section">
       <div class="container">
         <div class="pillar-grid reverse">
@@ -146,7 +199,11 @@
       </div>
     </section>
 
-    <!-- PILIER 3 -->
+    <!-- ================================================
+         PILIER 3 — ACQUISITION
+         Grille normale : 4 étapes à gauche, carte résultats
+         avec métriques sur le pipeline prévisible à droite.
+         ================================================ -->
     <section class="pillar-section section">
       <div class="container">
         <div class="pillar-grid">
@@ -176,7 +233,13 @@
       </div>
     </section>
 
-    <!-- TIMELINE -->
+    <!-- ================================================
+         TIMELINE — 12 SEMAINES D'ACCOMPAGNEMENT
+         Frise chronologique verticale détaillant le
+         déroulement semaine par semaine du programme
+         (diagnostic, positionnement, pricing, acquisition,
+         exécution, consolidation).
+         ================================================ -->
     <section class="timeline-section">
       <div class="container">
         <div class="section-header center animate">
@@ -194,6 +257,11 @@
       </div>
     </section>
 
+    <!-- ================================================
+         CTA — APPEL À L'ACTION FINAL
+         Bande de conversion avec titre, sous-titre et
+         deux boutons (appel gratuit + voir les offres).
+         ================================================ -->
     <section class="section">
       <div class="container">
         <div class="cta-band animate">
@@ -201,23 +269,44 @@
           <h2 class="section-title">Prêt à démarrer<br /><em>la méthode Clarity ?</em></h2>
           <p>Un appel découverte de 30 minutes pour vérifier si vous êtes au bon endroit et quel programme correspond à votre situation.</p>
           <div class="cta-actions">
-            <a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a>
-            <a href="offres.html" class="btn btn-ghost"><span>Voir les offres</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+            <a href="contact.html" class="btn btn-primary magnetic">
+              <span>Réserver mon appel gratuit</span>
+              <i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+            <a href="offres.html" class="btn btn-ghost">
+              <span>Voir les offres</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
+  <!-- ================================================
+       FOOTER
+       Pied de page avec logo, liens et copyright.
+       ================================================ -->
   <footer role="contentinfo">
     <div class="container">
       <div class="footer-inner">
         <div class="footer-logo">CM<span>.</span></div>
-        <nav class="footer-links"><a href="problematique.html">Problématique</a><a href="offres.html">Offres</a><a href="a-propos.html">À Propos</a><a href="contact.html">Contact</a></nav>
+        <nav class="footer-links">
+          <a href="problematique.html">Problématique</a>
+          <a href="offres.html">Offres</a>
+          <a href="a-propos.html">À Propos</a>
+          <a href="contact.html">Contact</a>
+        </nav>
         <p class="footer-copy">© 2026 Clara Martinez. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
+
+  <!-- ================================================
+       BOTTOM NAVIGATION (MOBILE)
+       Barre de navigation fixe en bas visible sur mobile.
+       ================================================ -->
   <nav class="bottom-nav" aria-label="Navigation mobile">
     <div class="bnav-inner">
       <a href="index.html" class="bnav-link" aria-label="Accueil">
@@ -242,6 +331,12 @@
       </a>
     </div>
   </nav>
+
+  <!-- ================================================
+       SCRIPTS — PIED DE PAGE
+       main.js chargé en différé (defer).
+       ================================================ -->
   <script src="main.js" defer></script>
+
 </body>
 </html>

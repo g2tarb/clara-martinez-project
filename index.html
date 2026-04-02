@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+<!-- ================================================
+     HEAD — SEO, POLICES, SCRIPTS
+     Métadonnées SEO (title, description, robots,
+     canonical), Open Graph, Twitter Card, polices
+     Google (Playfair Display + Inter), icônes Lucide,
+     feuille de style et données structurées JSON-LD.
+     ================================================ -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,16 +28,38 @@
   <link rel="stylesheet" href="style.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://claramartinez.fr/#person","name":"Clara Martinez","jobTitle":"Business Coach","url":"https://claramartinez.fr/"},{"@type":"LocalBusiness","@id":"https://claramartinez.fr/#biz","name":"Clara Martinez Business Coaching","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"priceRange":"€€€"}]}</script>
 </head>
+
 <body>
 
-  <!-- Canvas eau -->
+  <!-- ================================================
+       CANVAS AURORA
+       Fond animé interactif généré par AuroraBorealis
+       dans main.js. Positionné en fixe derrière tout
+       le contenu via z-index: -1.
+       ================================================ -->
   <canvas id="water-canvas" aria-hidden="true"></canvas>
 
+  <!-- ================================================
+       CURSEUR PERSONNALISÉ
+       Double calque : point doré (#cursor) et anneau
+       suiveur (#cursor-follower). Masqué sur mobile.
+       ================================================ -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ================================================
+       OVERLAY BRUIT (NOISE)
+       Texture grain SVG fixe superposée à tout le
+       contenu pour simuler un effet analogique.
+       ================================================ -->
   <div class="noise" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- ================================================
+       HEADER / NAVIGATION PRINCIPALE
+       Header fixe avec logo "CM.", liens de navigation
+       et bouton CTA "Appel Gratuit". Devient opaque
+       au scroll via la classe .scrolled (JS).
+       ================================================ -->
   <header id="header" role="banner">
     <div class="container">
       <nav class="nav" aria-label="Navigation principale">
@@ -51,7 +81,13 @@
 
   <main id="main">
 
-    <!-- HERO -->
+    <!-- ================================================
+         HERO SECTION
+         Section principale plein écran : titre accrocheur,
+         sous-titre, boutons CTA et bento grid avec l'avatar,
+         les statistiques clés et la barre de satisfaction.
+         Aurora décorative en arrière-plan.
+         ================================================ -->
     <section id="hero" aria-label="Présentation">
       <div class="hero-aurora" aria-hidden="true">
         <div class="aurora a1"></div>
@@ -60,7 +96,6 @@
       </div>
       <div class="container hero-inner">
         <div class="hero-left">
-        
           <h1 class="hero-title animate delay-1">
             Passez de<br /><em>freelance débordé</em><br />à entrepreneur<br />structuré.
           </h1>
@@ -134,7 +169,12 @@
       </div>
     </section>
 
-    <!-- MARQUEE -->
+    <!-- ================================================
+         MARQUEE — BANDE PRESSE
+         Défilement horizontal infini des médias dans
+         lesquels Clara Martinez a été mentionnée.
+         Pause au survol gérée par main.js.
+         ================================================ -->
     <section id="social-proof" aria-label="Médias">
       <div class="marquee-wrap" aria-hidden="true">
         <div class="marquee-track">
@@ -154,7 +194,12 @@
       </div>
     </section>
 
-    <!-- STATS -->
+    <!-- ================================================
+         STATS — CHIFFRES CLÉS
+         Grille de 4 cartes avec compteurs animés :
+         entrepreneurs accompagnés, taux de satisfaction,
+         croissance CA, années d'expertise.
+         ================================================ -->
     <section id="stats" class="section" aria-label="Chiffres clés">
       <div class="container">
         <div class="stats-bento">
@@ -178,7 +223,13 @@
       </div>
     </section>
 
-    <!-- PAIN POINTS -->
+    <!-- ================================================
+         PAIN POINTS — BLOCAGES DES FREELANCES
+         Trois cartes présentant les problèmes typiques
+         des freelances : sous-facturation, absence de
+         système d'acquisition, solitude décisionnelle.
+         Chaque carte inclut un numéro, icône, texte et citation.
+         ================================================ -->
     <section id="pain" class="section" aria-label="Les défis des freelances">
       <div class="container">
         <div class="section-header animate">
@@ -211,7 +262,13 @@
       </div>
     </section>
 
-    <!-- METHOD -->
+    <!-- ================================================
+         METHOD — LA MÉTHODE CLARITY
+         Présentation des 3 piliers : Positionnement,
+         Pricing, Acquisition. Chaque carte contient
+         un numéro, icône, description, liste de livrables
+         et une barre de progression animée.
+         ================================================ -->
     <section id="method" class="section" aria-label="La méthode Clarity">
       <div class="container">
         <div class="section-header center animate">
@@ -260,7 +317,13 @@
       </div>
     </section>
 
-    <!-- OFFERS -->
+    <!-- ================================================
+         OFFRES ET TARIFS
+         Trois cartes de pricing : Session Stratégique
+         (490€), Programme 3 Mois (2500€, mis en avant),
+         Accompagnement VIP (6500€). Chaque carte liste
+         les inclus et propose un CTA.
+         ================================================ -->
     <section id="offers" class="section" aria-label="Offres et tarifs">
       <div class="container">
         <div class="section-header center animate">
@@ -329,7 +392,13 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ================================================
+         ABOUT — À PROPOS DE CLARA MARTINEZ
+         Section biographique : illustration portrait à
+         gauche avec badge "8 ans", texte narratif à droite
+         et grille de 4 valeurs (authenticité, exigence,
+         résultats mesurables, confidentialité).
+         ================================================ -->
     <section id="about" class="section" aria-label="À propos de Clara Martinez">
       <div class="container">
         <div class="about-grid">
@@ -381,7 +450,12 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- ================================================
+         TÉMOIGNAGES
+         Grille de 4 témoignages clients avec résultat
+         chiffré, citation longue, avatar initiales,
+         nom, rôle et note 5 étoiles.
+         ================================================ -->
     <section id="testimonials" class="section" aria-label="Témoignages clients">
       <div class="container">
         <div class="section-header center animate">
@@ -425,7 +499,13 @@
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- ================================================
+         FAQ — QUESTIONS FRÉQUENTES
+         Accordéon de 6 questions sur l'appel découverte,
+         les prérequis, la différence avec un consultant,
+         le paiement, les secteurs couverts et la garantie.
+         Ouverture/fermeture gérée par main.js.
+         ================================================ -->
     <section id="faq" class="section" aria-label="Questions fréquentes">
       <div class="container">
         <div class="section-header center animate">
@@ -461,7 +541,14 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- ================================================
+         CONTACT — FORMULAIRE DE RÉSERVATION
+         Section de contact avec aurora décorative, texte
+         de réassurance à gauche (délai réponse, mode en
+         ligne, confidentialité) et formulaire glassmorphisme
+         à droite (prénom, nom, email, activité, message).
+         Validation et succès gérés par main.js.
+         ================================================ -->
     <section id="contact" class="section" aria-label="Formulaire de contact">
       <div class="contact-aurora" aria-hidden="true"><div class="aurora a4"></div></div>
       <div class="container">
@@ -522,6 +609,11 @@
 
   </main>
 
+  <!-- ================================================
+       FOOTER
+       Pied de page avec logo, liens de navigation
+       secondaire et mention de copyright.
+       ================================================ -->
   <footer role="contentinfo">
     <div class="container">
       <div class="footer-inner">
@@ -538,6 +630,13 @@
     </div>
   </footer>
 
+  <!-- ================================================
+       BOTTOM NAVIGATION (MOBILE)
+       Barre de navigation fixe en bas visible sur mobile
+       (< 768px). 5 liens : Accueil, Méthode, Offres,
+       Résultats et le CTA "Appel" en doré. L'état actif
+       est défini par main.js selon le fichier courant.
+       ================================================ -->
   <nav class="bottom-nav" aria-label="Navigation mobile">
     <div class="bnav-inner">
       <a href="index.html" class="bnav-link" aria-label="Accueil">
@@ -562,6 +661,13 @@
       </a>
     </div>
   </nav>
+
+  <!-- ================================================
+       SCRIPTS — PIED DE PAGE
+       main.js chargé en différé (defer) pour ne pas
+       bloquer le rendu de la page.
+       ================================================ -->
   <script src="main.js" defer></script>
+
 </body>
 </html>

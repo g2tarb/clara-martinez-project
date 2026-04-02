@@ -1,9 +1,14 @@
 /* ================================================
-   CLARA MÉNDEZ — DESIGN SYSTEM 2026
+   CLARA MARTINEZ — DESIGN SYSTEM 2026
    Dark-first · Glassmorphism · Bento Grid · Aurora
    ================================================ */
 
-/* -------- CUSTOM PROPERTIES -------- */
+/* ================================================
+   VARIABLES CSS (DESIGN TOKENS)
+   Définit toutes les valeurs réutilisables du système
+   de design : couleurs, typographies, espacements,
+   ombres, transitions et breakpoints.
+   ================================================ */
 :root {
   --bg:         #08080F;
   --bg-2:       #0D0D1A;
@@ -30,7 +35,12 @@
   --max-w:      1160px;
 }
 
-/* -------- RESET -------- */
+/* ================================================
+   RESET
+   Normalise les marges, paddings et box-sizing.
+   Configure le scroll fluide, la police de base,
+   le fond sombre et masque le curseur natif.
+   ================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
   scroll-behavior: smooth;
@@ -55,7 +65,12 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 
-/* -------- WATER CANVAS -------- */
+/* ================================================
+   CANVAS AURORA (FOND ANIMÉ)
+   Le canvas #water-canvas occupe tout l'écran en
+   position fixe derrière tout le contenu. Il est
+   animé par la classe AuroraBorealis dans main.js.
+   ================================================ */
 #water-canvas {
   position: fixed;
   inset: 0;
@@ -66,8 +81,13 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
   display: block;
 }
 
-
-/* -------- NOISE OVERLAY -------- */
+/* ================================================
+   OVERLAY BRUIT (NOISE)
+   Texture grain SVG en position fixe superposée
+   à tout le contenu (z-index élevé) pour simuler
+   un bruit de film analogique. Opacité très basse
+   pour ne pas masquer le contenu.
+   ================================================ */
 .noise {
   position: fixed; inset: 0; z-index: 9999;
   pointer-events: none;
@@ -75,7 +95,14 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
-/* -------- CUSTOM CURSOR -------- */
+/* ================================================
+   CURSEUR PERSONNALISÉ
+   Double-calque : un point doré centré sur la souris
+   et un anneau suiveur avec inertie. Le curseur change
+   de taille et de style au survol des éléments
+   interactifs et des zones de texte.
+   Masqué sur les écrans tactiles (pointer: coarse).
+   ================================================ */
 .cursor {
   position: fixed; top: 0; left: 0;
   width: 10px; height: 10px;
@@ -109,7 +136,13 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .cursor-follower.text-hovered { opacity: 0; }
 @media (pointer: coarse) { .cursor, .cursor-follower { display: none; } }
 
-/* -------- AURORA BACKGROUND -------- */
+/* ================================================
+   AURORA CSS (DÉCORATION HERO & CONTACT)
+   Orbes flous animés (.aurora .a1/.a2/.a3/.a4)
+   positionnés en absolu dans les sections hero
+   et contact pour créer un halo coloré en arrière-plan.
+   Animés avec keyframe drift en boucle alternée.
+   ================================================ */
 .hero-aurora, .contact-aurora {
   position: absolute; inset: 0; overflow: hidden; z-index: 0;
   pointer-events: none;
@@ -130,7 +163,12 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
   100% { transform: translate(40px, 30px) scale(1.1); }
 }
 
-/* -------- GLASSMORPHISM -------- */
+/* ================================================
+   GLASSMORPHISM
+   Classe utilitaire appliquée aux cartes pour
+   créer l'effet verre dépoli : fond semi-transparent,
+   bordure subtile et flou de l'arrière-plan.
+   ================================================ */
 .glass {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
@@ -138,11 +176,20 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* -------- LAYOUT -------- */
+/* ================================================
+   LAYOUT
+   Conteneur centré à largeur maximale et sections
+   avec padding vertical uniforme.
+   ================================================ */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
 .section { padding: 7rem 0; }
 
-/* -------- TYPOGRAPHY -------- */
+/* ================================================
+   TYPOGRAPHIE — COMPOSANTS SECTION
+   Styles pour les éléments de titre de section :
+   label (étiquette dorée en majuscules), titre
+   principal, sous-titre et conteneur section-header.
+   ================================================ */
 .section-label {
   display: inline-block;
   font-size: 0.72rem;
@@ -163,7 +210,14 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .section-header.center { text-align: center; }
 .section-header.center .section-sub { margin: 0 auto; }
 
-/* -------- BUTTONS -------- */
+/* ================================================
+   BOUTONS
+   Trois variantes de boutons : primary (doré plein),
+   ghost (contour transparent), nav (doré discret).
+   Tous incluent un effet de survol et un pseudo-élément
+   pour le flash de lumière. Classe .full pour largeur 100%.
+   Classe .magnetic gérée par JS pour l'effet d'attraction.
+   ================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -216,10 +270,16 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 
 .btn.full { width: 100%; justify-content: center; }
 
-/* Magnetic button effect via JS */
+/* Effet magnétique géré par le JS */
 .magnetic { transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow var(--transition); }
 
-/* -------- ANIMATIONS -------- */
+/* ================================================
+   ANIMATIONS AU SCROLL
+   Classe de base .animate (opacité 0, décalé vers
+   le bas) et .visible (état final visible).
+   Les classes .delay-N ajoutent un délai de transition
+   pour créer un effet de cascade entre éléments.
+   ================================================ */
 .animate {
   opacity: 0;
   transform: translateY(28px);
@@ -232,7 +292,11 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .delay-4 { transition-delay: 0.5s; }
 
 /* ================================================
-   HEADER
+   HEADER / NAVIGATION
+   Header fixe en haut de page qui devient opaque
+   (effet blur + fond sombre) après 60px de scroll.
+   Navigation horizontale avec liens soulignés au survol,
+   logo serif et bouton CTA à droite.
    ================================================ */
 #header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -273,6 +337,7 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .nav-link:hover, .nav-link.active { color: var(--white); }
 .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
 
+/* Burger menu (non utilisé — masqué par CSS) */
 .burger {
   display: none;
   flex-direction: column;
@@ -288,6 +353,7 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .burger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .burger.active span:nth-child(2) { transform: translateY(-7.5px) rotate(-45deg); }
 
+/* Menu mobile (non utilisé — masqué par CSS) */
 .mobile-menu {
   display: none; position: fixed; inset: 0;
   background: rgba(8,8,15,0.97);
@@ -313,7 +379,11 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .mobile-link:hover { color: var(--gold); }
 
 /* ================================================
-   HERO
+   HERO SECTION
+   Section plein écran avec grille 2 colonnes :
+   texte à gauche, bento grid à droite.
+   Inclut les orbes aurora en arrière-plan, le badge,
+   le titre principal, sous-titre, CTA et indicateur scroll.
    ================================================ */
 #hero {
   position: relative; min-height: 100svh;
@@ -365,7 +435,13 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 }
 .hero-note i { color: var(--gold); }
 
-/* Hero Bento */
+/* ================================================
+   BENTO GRID (HERO)
+   Grille 2×3 dans le hero avec :
+   - Carte principale (avatar + nom + étoiles)
+   - 2 cartes statistiques (nombre + label)
+   - Barre de progression satisfaction
+   ================================================ */
 .hero-bento {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -412,7 +488,7 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 }
 .bento-wide-stat { font-size: 0.82rem; font-weight: 600; color: var(--white); }
 
-/* Scroll indicator */
+/* Indicateur de scroll (ligne animée + texte "Défiler") */
 .hero-scroll {
   position: absolute; bottom: 2.5rem; left: 50%;
   transform: translateX(-50%);
@@ -431,7 +507,10 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .hero-scroll span { font-size: 0.7rem; color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; }
 
 /* ================================================
-   MARQUEE
+   MARQUEE (DÉFILEMENT PRESSE)
+   Bandeau de défilement horizontal infini affichant
+   les noms des médias où Clara a été citée.
+   Animation CSS pure, pausée au survol via JS.
    ================================================ */
 #social-proof {
   padding: 1.25rem 0;
@@ -462,6 +541,9 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 
 /* ================================================
    STATS BENTO
+   Grille de 4 cartes chiffres clés (entrepreneurs,
+   satisfaction, croissance, années). Chaque carte a
+   une ligne dorée en haut et un effet hover de levée.
    ================================================ */
 #stats { padding: 5rem 0; }
 .stats-bento {
@@ -492,6 +574,10 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 
 /* ================================================
    PAIN POINTS BENTO
+   Grille de 3 cartes présentant les blocages des
+   freelances (sous-facturation, pas de système,
+   solitude). Chaque carte a un numéro en filigrane,
+   une icône, un titre, texte et citation stylisée.
    ================================================ */
 .pain-bento {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
@@ -537,6 +623,10 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 
 /* ================================================
    METHOD GRID
+   Grille de 3 cartes pour les piliers de la méthode
+   Clarity (Positionnement, Pricing, Acquisition).
+   Chaque carte a un numéro, icône, description,
+   liste de livrables et barre de progression animée.
    ================================================ */
 .method-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
@@ -578,6 +668,10 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 
 /* ================================================
    PRICING GRID
+   Grille de 3 cartes tarifs (Session, Programme 3 Mois,
+   VIP). La carte centrale est mise en avant (badge,
+   bordure or, fond légèrement teinté). Chaque carte
+   contient tag, titre, prix, features et CTA.
    ================================================ */
 .pricing-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -629,7 +723,10 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .pricing-features li i { color: var(--gold); flex-shrink: 0; width: 16px; height: 16px; }
 
 /* ================================================
-   ABOUT
+   SECTION À PROPOS
+   Grille 2 colonnes : visuel (illustration + badge
+   "8 ans") à gauche, contenu textuel à droite.
+   Valeurs affichées en grille 2×2 avec icônes.
    ================================================ */
 .about-grid {
   display: grid; grid-template-columns: 1fr 1.2fr;
@@ -670,7 +767,10 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .about-value span { font-size: 0.8rem; color: var(--muted); }
 
 /* ================================================
-   TESTIMONIALS
+   TÉMOIGNAGES
+   Grille 2×2 de cartes témoignages avec :
+   badge résultat, citation, auteur (avatar initiales
+   + nom + rôle + étoiles). Effet hover de levée.
    ================================================ */
 .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .testi-card {
@@ -705,7 +805,11 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .testi-stars { color: var(--gold); font-size: 0.8rem; margin-top: 0.15rem; letter-spacing: 0.05em; }
 
 /* ================================================
-   FAQ
+   FAQ (ACCORDÉON)
+   Liste de questions/réponses en accordéon.
+   Chaque item a un bouton avec icône + qui tourne
+   lors de l'ouverture. Le corps se révèle par
+   transition max-height CSS.
    ================================================ */
 .faq-list { max-width: 780px; margin: 0 auto; }
 .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -733,7 +837,9 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .faq-body-inner { padding-bottom: 1.75rem; font-size: 0.95rem; color: var(--muted); line-height: 1.8; }
 
 /* ================================================
-   CONTACT
+   SECTION CONTACT
+   Grille 2 colonnes : informations contact à gauche,
+   formulaire à droite. L'aurora décorative en fond.
    ================================================ */
 #contact { position: relative; overflow: hidden; }
 .contact-grid {
@@ -755,6 +861,13 @@ h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.1; }
 .contact-feat strong { display: block; font-size: 0.9rem; color: var(--white); font-weight: 600; margin-bottom: 0.15rem; }
 .contact-feat span { font-size: 0.82rem; color: var(--dim); }
 
+/* ================================================
+   FORMULAIRE DE CONTACT
+   Formulaire glassmorphisme avec labels, inputs,
+   textarea et select stylisés. États focus (or),
+   error (rouge) et valid (vert). Message de succès
+   superposé en position absolue après soumission.
+   ================================================ */
 .contact-form-wrap { position: relative; }
 .contact-form {
   border-radius: var(--radius-lg); padding: 2.5rem;
@@ -798,6 +911,8 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 
 /* ================================================
    FOOTER
+   Bande de bas de page avec logo, liens et copyright.
+   Fond légèrement assombri, séparé par une bordure.
    ================================================ */
 footer {
   border-top: 1px solid rgba(255,255,255,0.05);
@@ -816,13 +931,18 @@ footer {
 .footer-copy { font-size: 0.78rem; color: var(--dim); }
 
 /* ================================================
-   BURGER / MOBILE MENU — supprimés
+   BURGER / MENU MOBILE — DÉSACTIVÉS
+   Ces éléments sont masqués globalement car la
+   navigation mobile est remplacée par la bottom nav.
    ================================================ */
 .burger      { display: none !important; }
 .mobile-menu { display: none !important; }
 
 /* ================================================
-   BOTTOM NAVIGATION (mobile)
+   BOTTOM NAVIGATION (MOBILE)
+   Barre de navigation fixe en bas d'écran, visible
+   uniquement en dessous de 768px. 5 liens avec icône
+   et libellé. Le lien "Appel" a un style CTA doré.
    ================================================ */
 .bottom-nav {
   display: none;
@@ -871,7 +991,10 @@ footer {
 .bnav-cta:hover { opacity: 0.88; }
 
 /* ================================================
-   RESPONSIVE
+   MEDIA QUERIES RESPONSIVE
+   Breakpoints principaux : 1024px (tablette large),
+   900px (tablette), 768px (mobile — active bottom nav),
+   480px (petits mobiles), 375px (très petits écrans).
    ================================================ */
 @media (max-width: 1024px) {
   .stats-bento    { grid-template-columns: repeat(2, 1fr); }
@@ -908,7 +1031,7 @@ footer {
   .hero-bento   { max-width: 400px; margin: 0 auto; }
   .hero-title   { font-size: clamp(2.4rem, 8vw, 3.2rem); }
 
-  /* Grids */
+  /* Grilles */
   .pain-bento   { grid-template-columns: 1fr; }
   .method-grid  { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -922,7 +1045,7 @@ footer {
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
 
-  /* Cards */
+  /* Cartes */
   .pain-card, .method-card, .testi-card { padding: 1.75rem 1.5rem; }
   .pricing-card  { padding: 2rem 1.5rem; }
   .contact-form  { padding: 1.75rem 1.5rem; }
@@ -953,7 +1076,9 @@ footer {
 }
 
 /* ================================================
-   SCROLLBAR (WebKit)
+   SCROLLBAR WEBKIT
+   Personnalisation de la scrollbar dans les
+   navigateurs Chromium/Safari : fine, dorée.
    ================================================ */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -961,7 +1086,10 @@ footer {
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ================================================
-   FOCUS STYLES (Accessibility)
+   FOCUS (ACCESSIBILITÉ)
+   Outline doré visible sur tous les éléments
+   focusables au clavier pour respecter les standards
+   WCAG d'accessibilité.
    ================================================ */
 :focus-visible {
   outline: 2px solid var(--gold);

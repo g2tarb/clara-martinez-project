@@ -1,14 +1,19 @@
 'use strict';
 
 /* ================================================
-   CLARA MÉNDEZ — main.js (Vanilla ES2026+)
+   CLARA MARTINEZ — main.js (Vanilla ES2026+)
+   Scripts interactifs du site : aurora, curseur,
+   magnétisme, scroll, animations, formulaire, etc.
    ================================================ */
 
 /* ================================================
-   GENTLE WAVE — effet lumineux doux (gradient radial)
-   Aucune manipulation de pixels, très léger sur le CPU
+   AURORA BOREALIS
+   Fond animé interactif en canvas : rubans ondulants
+   colorés qui réagissent aux mouvements de la souris.
+   Utilise des courbes de Bézier quadratiques et des
+   dégradés canvas pour un rendu organique et léger.
    ================================================ */
-class GentleWave {
+class AuroraBorealis {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     if (!this.canvas) return;
@@ -16,9 +21,25 @@ class GentleWave {
     this.ctx = this.canvas.getContext('2d');
     this.t   = 0;
 
-    // Position souris courante (lissée) et cible
-    this.mx = null; this.my = null;
-    this.tx = null; this.ty = null;
+    // Souris normalisée [0-1] — cible + lissée
+    this.tx = 0.5; this.ty = 0.38;
+    this.mx = 0.5; this.my = 0.38;
+
+    /* Rubans aurora — chaque bande a :
+       y    : position verticale de base (fraction de H)
+       amp  : amplitude des vagues (fraction de H)
+       freq : fréquence spatiale
+       spd  : vitesse temporelle
+       ph   : déphasage initial
+       thk  : épaisseur du ruban (fraction de H)
+       c1   : couleur bord supérieur  [r,g,b]
+       c2   : couleur bord inférieur  [r,g,b]        */
+    this.bands = [
+      { y:0.32, amp:0.10, freq:0.70, spd:0.42, ph:0,              thk:0.20, c1:[80,55,180],   c2:[30,160,150]  },
+      { y:0.44, amp:0.08, freq:1.05, spd:0.30, ph:Math.PI*0.8,    thk:0.16, c1:[50,90,210],   c2:[130,60,215]  },
+      { y:0.24, amp:0.07, freq:0.55, spd:0.25, ph:Math.PI*1.4,    thk:0.13, c1:[201,168,76],  c2:[100,55,185]  },
+      { y:0.52, amp:0.06, freq:1.30, spd:0.55, ph:Math.PI*0.4,    thk:0.10, c1:[60,110,220],  c2:[30,170,155]  },
+    ];
 
     this._resize();
     this._setupEvents();
@@ -35,78 +56,114 @@ class GentleWave {
   _setupEvents() {
     window.addEventListener('resize', () => this._resize(), { passive: true });
     document.addEventListener('mousemove', (e) => {
-      this.tx = e.clientX;
-      this.ty = e.clientY;
+      this.tx = e.clientX / window.innerWidth;
+      this.ty = e.clientY / window.innerHeight;
     }, { passive: true });
   }
 
   _loop() {
     this.t += 0.006;
-    const { ctx, t, W, H } = this;
+    const { ctx, W, H, t } = this;
 
-    // Lissage souris (lerp doux)
-    if (this.tx !== null) {
-      if (this.mx === null) { this.mx = this.tx; this.my = this.ty; }
-      this.mx += (this.tx - this.mx) * 0.045;
-      this.my += (this.ty - this.my) * 0.045;
-    }
+    // Lerp souris (inertie douce)
+    this.mx += (this.tx - this.mx) * 0.032;
+    this.my += (this.ty - this.my) * 0.032;
 
-    // Fond
+    // Fond uni
     ctx.fillStyle = '#08080F';
     ctx.fillRect(0, 0, W, H);
 
-    // Blob ambiant 1 — dérive lentement (vague de fond)
-    this._drawBlob(
-      W * 0.5 + Math.sin(t * 0.55) * W * 0.28,
-      H * 0.5 + Math.cos(t * 0.42) * H * 0.22,
-      W * 0.72,
-      [[0,   'rgba(80, 55, 180, 0.18)'],
-       [0.6, 'rgba(40, 25, 110, 0.08)'],
-       [1,   'rgba(0,  0,  0,  0)'   ]]
-    );
+    // Ruban aurora — du fond vers l'avant
+    this.bands.forEach(b => this._drawBand(b));
 
-    // Blob ambiant 2 — contre-phase douce
-    this._drawBlob(
-      W * 0.35 + Math.cos(t * 0.48) * W * 0.22,
-      H * 0.55 + Math.sin(t * 0.65) * H * 0.18,
-      W * 0.55,
-      [[0,   'rgba(50, 90, 200, 0.14)'],
-       [0.6, 'rgba(25, 50, 140, 0.06)'],
-       [1,   'rgba(0,  0,  0,  0)'   ]]
-    );
-
-    // Lueur souris — suit le curseur avec douceur
-    if (this.mx !== null) {
-      this._drawBlob(
-        this.mx, this.my,
-        Math.min(W, H) * 0.42,
-        [[0,   'rgba(180, 150, 255, 0.22)'],
-         [0.35,'rgba(110,  85, 210, 0.10)'],
-         [1,   'rgba(0,    0,   0,  0)'   ]]
-      );
-    }
+    // Lueur souris — halo or/violet qui suit le curseur
+    const gx = this.mx * W;
+    const gy = this.my * H * 0.7;
+    const gr = Math.min(W, H) * 0.50;
+    const halo = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
+    halo.addColorStop(0,    'rgba(201,168, 76, 0.10)');
+    halo.addColorStop(0.40, 'rgba( 80, 55,180, 0.07)');
+    halo.addColorStop(1,    'rgba(  0,  0,  0, 0)'   );
+    ctx.fillStyle = halo;
+    ctx.fillRect(0, 0, W, H);
 
     requestAnimationFrame(() => this._loop());
   }
 
-  _drawBlob(cx, cy, r, stops) {
-    const g = this.ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-    stops.forEach(([pos, color]) => g.addColorStop(pos, color));
-    this.ctx.fillStyle = g;
-    this.ctx.fillRect(0, 0, this.W, this.H);
+  _drawBand(b) {
+    const { ctx, W, H, t, mx, my } = this;
+    const N       = 64;                               // échantillons horizontaux
+    const step    = W / N;
+    const yBase   = (b.y + (my - 0.5) * 0.06) * H;  // décalage vertical souris
+    const amp     = b.amp * H;
+    const thk     = b.thk * H;
+    const phShift = (mx - 0.5) * 0.45;               // décalage de phase horizontal souris
+
+    // Bord supérieur du ruban (ondes composées)
+    const top = Array.from({ length: N + 1 }, (_, i) => {
+      const x  = i * step;
+      const w1 = Math.sin(i * b.freq * 0.12 + t * b.spd + b.ph + phShift);
+      const w2 = Math.sin(i * b.freq * 0.07 + t * b.spd * 0.6 + b.ph * 0.5) * 0.38;
+      return { x, y: yBase + (w1 + w2) * amp };
+    });
+
+    // Bord inférieur (épaisseur variable — ruban organique)
+    const bot = top.map((p, i) => ({
+      x: p.x,
+      y: p.y + thk * (0.55 + 0.45 * Math.sin(i * 0.19 + t * 0.48 + b.ph * 1.1))
+    }));
+
+    // Tracé du chemin
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(top[0].x, top[0].y);
+    for (let i = 1; i <= N; i++) {
+      const mid = { x: (top[i-1].x + top[i].x) / 2, y: (top[i-1].y + top[i].y) / 2 };
+      ctx.quadraticCurveTo(top[i-1].x, top[i-1].y, mid.x, mid.y);
+    }
+    for (let i = N; i >= 0; i--) ctx.lineTo(bot[i].x, bot[i].y);
+    ctx.closePath();
+
+    // Dégradé vertical : c1 → c2 avec transparence aux bords
+    let minY = top[0].y, maxY = bot[0].y;
+    for (let i = 1; i <= N; i++) {
+      if (top[i].y < minY) minY = top[i].y;
+      if (bot[i].y > maxY) maxY = bot[i].y;
+    }
+    const grad = ctx.createLinearGradient(0, minY, 0, maxY);
+    const [r1,g1,bl1] = b.c1;
+    const [r2,g2,bl2] = b.c2;
+    grad.addColorStop(0,    `rgba(${r1},${g1},${bl1},0)`   );
+    grad.addColorStop(0.22, `rgba(${r1},${g1},${bl1},0.20)`);
+    grad.addColorStop(0.60, `rgba(${r2},${g2},${bl2},0.16)`);
+    grad.addColorStop(1,    `rgba(${r2},${g2},${bl2},0)`   );
+
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.restore();
   }
 }
 
-// Démarrage de l'effet doux
-new GentleWave('water-canvas');
+// Démarrage de l'aurora sur le canvas #water-canvas
+new AuroraBorealis('water-canvas');
 
-// -------- LUCIDE ICONS --------
+/* ================================================
+   LUCIDE ICONS
+   Initialisation de la bibliothèque d'icônes Lucide
+   après chargement du DOM. Remplace les attributs
+   data-lucide="..." par les SVG correspondants.
+   ================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof lucide !== 'undefined') lucide.createIcons();
 });
 
 /* ================================================
    CUSTOM CURSOR
+   Curseur personnalisé double-calque (point or +
+   anneau suiveur) qui remplace le curseur système
+   sur les appareils à pointeur précis (souris).
+   Change de forme au survol des liens, boutons
+   et textes pour améliorer l'expérience visuelle.
    ================================================ */
 const cursor       = document.getElementById('cursor');
 const cursorFollow = document.getElementById('cursor-follower');
@@ -170,6 +227,10 @@ if (cursor && cursorFollow && window.matchMedia('(pointer: fine)').matches) {
 
 /* ================================================
    MAGNETIC BUTTONS
+   Effet magnétique sur les boutons avec la classe
+   .magnetic : ils se déplacent légèrement vers la
+   souris lors du survol, créant un effet d'attraction.
+   Actif uniquement sur les dispositifs à souris fine.
    ================================================ */
 document.querySelectorAll('.magnetic').forEach(btn => {
   if (!window.matchMedia('(pointer: fine)').matches) return;
@@ -190,6 +251,9 @@ document.querySelectorAll('.magnetic').forEach(btn => {
 
 /* ================================================
    HEADER SCROLL
+   Le header devient opaque et réduit en padding
+   dès que l'utilisateur scrolle de plus de 60px.
+   La classe .scrolled est ajoutée/retirée en temps réel.
    ================================================ */
 const header = document.getElementById('header');
 let lastScroll = 0;
@@ -201,15 +265,23 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ================================================
-   BOTTOM NAV — état actif selon la page courante
+   BOTTOM NAV — ÉTAT ACTIF SELON LA PAGE COURANTE
+   Lit le nom du fichier actuel dans l'URL et ajoute
+   la classe .active au lien correspondant dans la
+   barre de navigation mobile en bas de page.
    ================================================ */
 const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+
 document.querySelectorAll('.bnav-link').forEach(link => {
   if (link.getAttribute('href') === currentFile) link.classList.add('active');
 });
 
 /* ================================================
-   INTERSECTION OBSERVER — SCROLL ANIMATIONS
+   INTERSECTION OBSERVER — ANIMATIONS AU SCROLL
+   Déclenche les animations d'apparition (.animate)
+   lorsque les éléments entrent dans le viewport.
+   Ajoute la classe .visible pour activer la transition
+   CSS. Chaque élément n'est observé qu'une fois.
    ================================================ */
 const animEls = document.querySelectorAll('.animate');
 
@@ -230,7 +302,10 @@ const animObs = new IntersectionObserver((entries) => {
 animEls.forEach(el => animObs.observe(el));
 
 /* ================================================
-   BENTO PROGRESS BAR — animate on load
+   BENTO PROGRESS BAR
+   Anime la barre de progression dans la carte bento
+   du hero (taux de satisfaction 94%) dès qu'elle
+   devient visible à l'écran, avec un délai de 600ms.
    ================================================ */
 const progressFill = document.querySelector('.bento-progress-fill');
 if (progressFill) {
@@ -246,7 +321,11 @@ if (progressFill) {
 }
 
 /* ================================================
-   METHOD BAR FILLS — animate on intersection
+   METHOD BAR FILLS
+   Anime les barres de progression des cartes méthode
+   (Positionnement 92%, Pricing 86%, Acquisition 78%)
+   dès que chaque barre entre dans le viewport.
+   La largeur cible est lue depuis le style inline HTML.
    ================================================ */
 document.querySelectorAll('.method-bar-fill').forEach(fill => {
   const targetW = fill.style.width;
@@ -265,6 +344,10 @@ document.querySelectorAll('.method-bar-fill').forEach(fill => {
 
 /* ================================================
    COUNTER ANIMATION
+   Anime les compteurs numériques (.counter) de 0
+   jusqu'à leur valeur cible (data-target) en 1800ms
+   avec un easing ease-out cubique. Déclenché dès
+   que le compteur entre dans le viewport (60% visible).
    ================================================ */
 const counters = document.querySelectorAll('.counter');
 
@@ -293,6 +376,10 @@ counters.forEach(c => countObs.observe(c));
 
 /* ================================================
    ACTIVE NAV LINK HIGHLIGHT
+   Met en surbrillance le lien de navigation qui
+   correspond à la section actuellement visible.
+   Utilise un IntersectionObserver avec des marges
+   calibrées pour détecter la section centrale.
    ================================================ */
 const sections  = document.querySelectorAll('main section[id]');
 const navLinks  = document.querySelectorAll('.nav-link');
@@ -311,7 +398,11 @@ const navObs = new IntersectionObserver((entries) => {
 sections.forEach(s => navObs.observe(s));
 
 /* ================================================
-   SMOOTH ANCHOR SCROLL — easing cubic doux
+   SMOOTH ANCHOR SCROLL
+   Remplace le scroll natif du navigateur pour les
+   liens ancres (#section) par un défilement fluide
+   avec easing ease-in-out cubique sur 900ms.
+   Prend en compte la hauteur du header fixe.
    ================================================ */
 const smoothScrollTo = (targetY, duration = 900) => {
   const startY = window.scrollY;
@@ -342,17 +433,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 /* ================================================
    FAQ ACCORDION
+   Gère l'ouverture/fermeture des items de FAQ.
+   Un seul item peut être ouvert à la fois (accordion).
+   Ajoute/retire la classe .open et met à jour
+   l'attribut aria-expanded pour l'accessibilité.
    ================================================ */
 document.querySelectorAll('.faq-item').forEach(item => {
   const btn = item.querySelector('.faq-btn');
   btn?.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
-    // Close all
+    // Ferme tous les items
     document.querySelectorAll('.faq-item').forEach(i => {
       i.classList.remove('open');
       i.querySelector('.faq-btn')?.setAttribute('aria-expanded', 'false');
     });
-    // Open current if was closed
+    // Ouvre l'item courant s'il était fermé
     if (!isOpen) {
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
@@ -361,7 +456,12 @@ document.querySelectorAll('.faq-item').forEach(item => {
 });
 
 /* ================================================
-   CONTACT FORM — Real-time validation + Submit
+   CONTACT FORM — VALIDATION + ENVOI
+   Validation en temps réel et à la soumission du
+   formulaire de contact. Affiche les erreurs inline,
+   désactive le bouton pendant l'envoi (animation
+   spinner), puis affiche un message de succès après
+   simulation d'envoi asynchrone (1600ms).
    ================================================ */
 const validators = {
   firstname: v => v.trim().length >= 2,
@@ -419,7 +519,7 @@ form?.addEventListener('submit', (e) => {
     return;
   }
 
-  // Loading state
+  // État de chargement
   submitBtn.disabled = true;
   const originalHTML = submitBtn.innerHTML;
   submitBtn.innerHTML = `
@@ -430,7 +530,7 @@ form?.addEventListener('submit', (e) => {
     Envoi en cours…
   `;
 
-  // Inject spinner keyframe once
+  // Injection de l'animation spinner (une seule fois)
   if (!document.getElementById('__spin')) {
     const s = document.createElement('style');
     s.id = '__spin';
@@ -438,7 +538,7 @@ form?.addEventListener('submit', (e) => {
     document.head.appendChild(s);
   }
 
-  // Simulate async send
+  // Simulation d'envoi asynchrone
   setTimeout(() => {
     form.style.display = 'none';
     formSuccess.classList.add('show');
@@ -447,7 +547,11 @@ form?.addEventListener('submit', (e) => {
 });
 
 /* ================================================
-   PARALLAX — subtle hero depth on mouse
+   PARALLAX HERO
+   Léger effet de profondeur sur la bento grid du hero
+   en réponse aux mouvements de la souris. La carte
+   pivote subtilement sur les axes X et Y.
+   Actif uniquement sur les dispositifs à souris fine.
    ================================================ */
 const heroBento = document.querySelector('.hero-bento');
 if (heroBento && window.matchMedia('(pointer: fine)').matches) {
@@ -464,7 +568,10 @@ if (heroBento && window.matchMedia('(pointer: fine)').matches) {
 }
 
 /* ================================================
-   MARQUEE — pause on hover
+   MARQUEE — PAUSE ON HOVER
+   Met en pause l'animation de défilement du bandeau
+   presse (.marquee-track) lorsque l'utilisateur
+   survole la zone, permettant de lire les noms.
    ================================================ */
 const marqueeTrack = document.querySelector('.marquee-track');
 if (marqueeTrack) {

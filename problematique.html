@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+<!-- ================================================
+     HEAD — Métadonnées SEO, polices et styles page
+     Titre, description, Google Fonts, Lucide icons,
+     style.css global + styles CSS spécifiques à la
+     page Problématique (hero, grille diagnostics,
+     bannière stats, section coût, CTA)
+     ================================================ -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,51 +19,299 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .page-hero { padding: 10rem 0 5rem; text-align: center; position: relative; }
-    .page-hero .hero-aurora { position: absolute; inset: 0; }
-    .page-hero-inner { position: relative; z-index: 1; }
-    .page-tag { display: inline-flex; align-items: center; gap: .5rem; background: rgba(201,168,76,.08); border: 1px solid rgba(201,168,76,.2); border-radius: 50px; padding: .45rem 1.1rem; font-size: .75rem; font-weight: 600; color: var(--gold); letter-spacing: .08em; margin-bottom: 1.5rem; }
-    .page-title { font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; line-height: 1.0; margin-bottom: 1.25rem; }
-    .page-desc { font-size: 1.1rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.5rem; }
-    .diag-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 4rem; }
-    .diag-card { border-radius: var(--radius-lg); padding: 2.5rem; position: relative; overflow: hidden; transition: transform var(--transition); }
-    .diag-card:hover { transform: translateY(-5px); }
-    .diag-card.full { grid-column: 1/-1; }
-    .diag-num { font-family: var(--font-serif); font-size: 5rem; font-weight: 900; color: rgba(201,168,76,.07); position: absolute; top:.5rem; right:1.5rem; line-height:1; }
-    .diag-icon { width:52px; height:52px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.2); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--gold); margin-bottom:1.5rem; }
-    .diag-title { font-size:1.3rem; margin-bottom:.75rem; color:var(--white); }
-    .diag-text { font-size:.92rem; color:var(--muted); line-height:1.8; margin-bottom:1.25rem; }
-    .diag-quote { padding:1rem 1.25rem; background:rgba(201,168,76,.05); border-left:2px solid var(--gold); border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-style:italic; font-size:.85rem; color:var(--gold-lt); line-height:1.6; }
-    .diag-detail { margin-top:1.25rem; display:flex; flex-direction:column; gap:.5rem; }
-    .diag-detail li { display:flex; align-items:flex-start; gap:.6rem; font-size:.85rem; color:var(--muted); }
-    .diag-detail li::before { content:'→'; color:var(--gold); flex-shrink:0; }
-    .stat-banner { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin:5rem 0; }
-    .stat-b-card { border-radius:var(--radius-lg); padding:2rem; text-align:center; position:relative; overflow:hidden; }
-    .stat-b-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold-lt)); }
-    .stat-b-num { font-family:var(--font-serif); font-size:3.5rem; font-weight:900; color:var(--gold); line-height:1; }
-    .stat-b-lbl { font-size:.85rem; color:var(--muted); margin-top:.5rem; line-height:1.5; }
-    .cost-section { padding:5rem 0; border-top:1px solid rgba(255,255,255,.06); }
-    .cost-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:3rem; }
-    .cost-items { display:flex; flex-direction:column; gap:1.5rem; }
-    .cost-item { display:flex; align-items:flex-start; gap:1rem; }
-    .cost-icon { width:44px; height:44px; flex-shrink:0; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; }
-    .cost-icon.red { background:rgba(248,113,113,.1); color:#F87171; }
-    .cost-icon.gold { background:rgba(201,168,76,.1); color:var(--gold); }
-    .cost-item-title { font-weight:600; color:var(--white); margin-bottom:.2rem; font-size:.95rem; }
-    .cost-item-text { font-size:.85rem; color:var(--muted); line-height:1.6; }
-    .cta-band { margin-top:5rem; border-radius:var(--radius-xl); padding:4rem; text-align:center; position:relative; overflow:hidden; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.15); }
-    .cta-band h2 { font-size:clamp(1.8rem,4vw,2.8rem); margin-bottom:1rem; }
-    .cta-band p { color:var(--muted); max-width:480px; margin:0 auto 2rem; }
-    .cta-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-    @media(max-width:768px){.diag-grid{grid-template-columns:1fr}.diag-card.full{grid-column:1}.stat-banner{grid-template-columns:1fr}.cost-grid{grid-template-columns:1fr}}
+    /* ================================================
+       STYLES SPÉCIFIQUES — Page Problématique
+       Héro de page, bannière stats 3 chiffres,
+       grille diagnostic 4 cartes, section coût,
+       bande CTA, responsive mobile
+       ================================================ */
+
+    .page-hero {
+      padding: 10rem 0 5rem;
+      text-align: center;
+      position: relative;
+    }
+    .page-hero .hero-aurora {
+      position: absolute;
+      inset: 0;
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .page-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(201, 168, 76, .08);
+      border: 1px solid rgba(201, 168, 76, .2);
+      border-radius: 50px;
+      padding: .45rem 1.1rem;
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .08em;
+      margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+    }
+    .page-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Grille de diagnostic : 4 cartes (2 colonnes) */
+    .diag-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+    .diag-card {
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition);
+    }
+    .diag-card:hover {
+      transform: translateY(-5px);
+    }
+    .diag-card.full {
+      grid-column: 1 / -1;
+    }
+    .diag-num {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(201, 168, 76, .07);
+      position: absolute;
+      top: .5rem;
+      right: 1.5rem;
+      line-height: 1;
+    }
+    .diag-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(201, 168, 76, .1);
+      border: 1px solid rgba(201, 168, 76, .2);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .diag-title {
+      font-size: 1.3rem;
+      margin-bottom: .75rem;
+      color: var(--white);
+    }
+    .diag-text {
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .diag-quote {
+      padding: 1rem 1.25rem;
+      background: rgba(201, 168, 76, .05);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      font-size: .85rem;
+      color: var(--gold-lt);
+      line-height: 1.6;
+    }
+    .diag-detail {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .diag-detail li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .diag-detail li::before {
+      content: '→';
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* Bannière statistiques 3 chiffres clés */
+    .stat-banner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 5rem 0;
+    }
+    .stat-b-card {
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-b-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+    }
+    .stat-b-num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-b-lbl {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: .5rem;
+      line-height: 1.5;
+    }
+
+    /* Section coût de l'inaction (grille 2 colonnes) */
+    .cost-section {
+      padding: 5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, .06);
+    }
+    .cost-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .cost-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .cost-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .cost-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cost-icon.red {
+      background: rgba(248, 113, 113, .1);
+      color: #F87171;
+    }
+    .cost-icon.gold {
+      background: rgba(201, 168, 76, .1);
+      color: var(--gold);
+    }
+    .cost-item-title {
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: .2rem;
+      font-size: .95rem;
+    }
+    .cost-item-text {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Bande CTA de clôture */
+    .cta-band {
+      margin-top: 5rem;
+      border-radius: var(--radius-xl);
+      padding: 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: rgba(201, 168, 76, .05);
+      border: 1px solid rgba(201, 168, 76, .15);
+    }
+    .cta-band h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+    .cta-band p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ================================================
+       RESPONSIVE — Adaptations mobiles (≤ 768px)
+       ================================================ */
+    @media (max-width: 768px) {
+      .diag-grid {
+        grid-template-columns: 1fr;
+      }
+      .diag-card.full {
+        grid-column: 1;
+      }
+      .stat-banner {
+        grid-template-columns: 1fr;
+      }
+      .cost-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body data-page="problematique">
+
+  <!-- ================================================
+       CANVAS AURORA — Fond animé aurora borealis
+       Élément canvas sur lequel main.js dessine
+       l'animation de fond via la classe AuroraBorealis
+       ================================================ -->
   <canvas id="water-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================================================
+       CURSEUR PERSONNALISÉ — Pointeur custom double couche
+       Point central (#cursor) + anneau suiveur (#cursor-follower)
+       Animés en JS via requestAnimationFrame
+       ================================================ -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ================================================
+       OVERLAY BRUIT — Texture grain photographique
+       Superposition CSS noise pour enrichir la profondeur
+       visuelle du fond sombre
+       ================================================ -->
   <div class="noise" aria-hidden="true"></div>
 
+  <!-- ================================================
+       HEADER — Navigation principale du site
+       Logo, liens de navigation (Problématique actif),
+       CTA "Appel Gratuit" avec effet magnétique
+       ================================================ -->
   <header id="header" role="banner">
     <div class="container">
       <nav class="nav" aria-label="Navigation principale">
@@ -67,27 +323,52 @@
           <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
           <li><a href="resultats.html" class="nav-link">Résultats</a></li>
         </ul>
-        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <a href="contact.html" class="btn btn-nav magnetic">
+          <span>Appel Gratuit</span>
+          <i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
       </nav>
     </div>
   </header>
 
   <main>
+
+    <!-- ================================================
+         HERO DE PAGE — En-tête visuel Problématique
+         Tag "Diagnostic honnête", titre principal,
+         description intro, CTA vers le diagnostic gratuit,
+         fond aurora décoratif
+         ================================================ -->
     <section class="page-hero">
       <div class="hero-aurora" aria-hidden="true">
-        <div class="aurora a1"></div><div class="aurora a2"></div>
+        <div class="aurora a1"></div>
+        <div class="aurora a2"></div>
       </div>
       <div class="container page-hero-inner">
-        <div class="page-tag animate"><i data-lucide="alert-triangle" style="width:13px;height:13px;" aria-hidden="true"></i> Diagnostic honnête</div>
+        <div class="page-tag animate">
+          <i data-lucide="alert-triangle" style="width:13px;height:13px;" aria-hidden="true"></i>
+          Diagnostic honnête
+        </div>
         <h1 class="page-title animate delay-1">Ces blocages invisibles<br /><em>plafonnent votre croissance</em></h1>
         <p class="page-desc animate delay-2">La plupart des freelances talentueux ne manquent pas de compétences. Ils manquent d'une architecture business solide. Vous reconnaissez-vous dans ces situations ?</p>
-        <a href="contact.html" class="btn btn-primary magnetic animate delay-3"><span>Faire mon diagnostic gratuit</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <a href="contact.html" class="btn btn-primary magnetic animate delay-3">
+          <span>Faire mon diagnostic gratuit</span>
+          <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
       </div>
     </section>
 
+    <!-- ================================================
+         BANNIÈRE STATS + GRILLE DIAGNOSTIC
+         3 cartes de statistiques clés (78%, 63%, 89%)
+         suivies du titre de section et d'une grille de
+         4 cartes diagnostics (sous-facturation, système,
+         solitude, syndrome imposteur — cette dernière pleine largeur)
+         ================================================ -->
     <section class="section">
       <div class="container">
 
+        <!-- Bannière statistiques -->
         <div class="stat-banner">
           <article class="stat-b-card glass animate" aria-label="78% des freelances sous-facturent">
             <div class="stat-b-num">78%</div>
@@ -103,12 +384,16 @@
           </article>
         </div>
 
+        <!-- En-tête de section diagnostic -->
         <div class="section-header animate">
           <span class="section-label">Les 3 blocages majeurs</span>
           <h2 class="section-title">Où en êtes-vous<br /><em>réellement ?</em></h2>
         </div>
 
+        <!-- Grille des 4 cartes diagnostic -->
         <div class="diag-grid">
+
+          <!-- Carte 01 : Sous-facturation -->
           <article class="diag-card glass animate" aria-label="Blocage 1 : Sous-facturation">
             <div class="diag-num">01</div>
             <div class="diag-icon"><i data-lucide="trending-down" style="width:24px;height:24px;" aria-hidden="true"></i></div>
@@ -123,6 +408,7 @@
             </ul>
           </article>
 
+          <!-- Carte 02 : Pas de système d'acquisition -->
           <article class="diag-card glass animate delay-1" aria-label="Blocage 2 : Pas de système">
             <div class="diag-num">02</div>
             <div class="diag-icon"><i data-lucide="shuffle" style="width:24px;height:24px;" aria-hidden="true"></i></div>
@@ -137,6 +423,7 @@
             </ul>
           </article>
 
+          <!-- Carte 03 : Solitude décisionnelle -->
           <article class="diag-card glass animate delay-2" aria-label="Blocage 3 : Solitude">
             <div class="diag-num">03</div>
             <div class="diag-icon"><i data-lucide="user-x" style="width:24px;height:24px;" aria-hidden="true"></i></div>
@@ -151,6 +438,7 @@
             </ul>
           </article>
 
+          <!-- Carte 04 : Syndrome de l'imposteur (pleine largeur) -->
           <article class="diag-card glass full animate delay-3" aria-label="Blocage 4 : Syndrome de l'imposteur">
             <div class="diag-num">04</div>
             <div class="diag-icon"><i data-lucide="brain" style="width:24px;height:24px;" aria-hidden="true"></i></div>
@@ -172,6 +460,12 @@
       </div>
     </section>
 
+    <!-- ================================================
+         COÛT DE L'INACTION — Section en 2 colonnes
+         Colonne gauche : titre, sous-titre, CTA
+         Colonne droite : 4 items de coût (3 rouges négatifs
+         + 1 doré positif "la bonne nouvelle")
+         ================================================ -->
     <section class="cost-section">
       <div class="container">
         <div class="cost-grid">
@@ -179,30 +473,50 @@
             <span class="section-label animate">Le coût de l'inaction</span>
             <h2 class="section-title animate delay-1">Chaque mois sans<br /><em>structure vous coûte cher.</em></h2>
             <p class="section-sub animate delay-2">Ces blocages ne se résolvent pas seuls avec le temps. Au contraire, ils s'ancrent et vous éloignent chaque mois un peu plus de l'activité que vous méritez.</p>
-            <a href="contact.html" class="btn btn-primary magnetic animate delay-3" style="margin-top:2rem;"><span>Sortir de ce cycle maintenant</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+            <a href="contact.html" class="btn btn-primary magnetic animate delay-3" style="margin-top:2rem;">
+              <span>Sortir de ce cycle maintenant</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
           </div>
           <div class="cost-items animate delay-1">
             <div class="cost-item">
               <div class="cost-icon red"><i data-lucide="x-circle" style="width:20px;height:20px;" aria-hidden="true"></i></div>
-              <div><div class="cost-item-title">Manque à gagner mensuel</div><div class="cost-item-text">Un freelance qui sous-facture de 200€/jour sur 15 jours travaillés perd 36 000€ par an. Chaque mois d'inaction est un mois de trop.</div></div>
+              <div>
+                <div class="cost-item-title">Manque à gagner mensuel</div>
+                <div class="cost-item-text">Un freelance qui sous-facture de 200€/jour sur 15 jours travaillés perd 36 000€ par an. Chaque mois d'inaction est un mois de trop.</div>
+              </div>
             </div>
             <div class="cost-item">
               <div class="cost-icon red"><i data-lucide="clock" style="width:20px;height:20px;" aria-hidden="true"></i></div>
-              <div><div class="cost-item-title">Énergie gaspillée</div><div class="cost-item-text">Chercher des clients en urgence chaque mois consomme 30% de votre énergie mentale. Énergie que vous pourriez investir dans votre expertise ou votre vie personnelle.</div></div>
+              <div>
+                <div class="cost-item-title">Énergie gaspillée</div>
+                <div class="cost-item-text">Chercher des clients en urgence chaque mois consomme 30% de votre énergie mentale. Énergie que vous pourriez investir dans votre expertise ou votre vie personnelle.</div>
+              </div>
             </div>
             <div class="cost-item">
               <div class="cost-icon red"><i data-lucide="trending-down" style="width:20px;height:20px;" aria-hidden="true"></i></div>
-              <div><div class="cost-item-title">Épuisement progressif</div><div class="cost-item-text">Travailler plus pour gagner pareil, sans perspective de sortie, mène inévitablement au burnout. 68% des freelances en ressentent les premiers signes dans les 3 premières années.</div></div>
+              <div>
+                <div class="cost-item-title">Épuisement progressif</div>
+                <div class="cost-item-text">Travailler plus pour gagner pareil, sans perspective de sortie, mène inévitablement au burnout. 68% des freelances en ressentent les premiers signes dans les 3 premières années.</div>
+              </div>
             </div>
             <div class="cost-item">
               <div class="cost-icon gold"><i data-lucide="lightbulb" style="width:20px;height:20px;" aria-hidden="true"></i></div>
-              <div><div class="cost-item-title">La bonne nouvelle</div><div class="cost-item-text">Ces trois blocages sont structurels, pas personnels. Ils se résolvent avec la bonne méthode et le bon accompagnement. Mes clients voient leurs premiers résultats en 30 jours.</div></div>
+              <div>
+                <div class="cost-item-title">La bonne nouvelle</div>
+                <div class="cost-item-text">Ces trois blocages sont structurels, pas personnels. Ils se résolvent avec la bonne méthode et le bon accompagnement. Mes clients voient leurs premiers résultats en 30 jours.</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ================================================
+         CTA FINAL — Appel à l'action de clôture
+         Invitation à réserver l'appel gratuit ou à
+         découvrir la méthode Clarity
+         ================================================ -->
     <section class="section">
       <div class="container">
         <div class="cta-band animate">
@@ -211,26 +525,47 @@
           <h2 class="section-title">Prêt à identifier<br /><em>vos vrais blocages ?</em></h2>
           <p>Un appel de 30 minutes suffit pour faire le diagnostic et repartir avec une direction claire. Sans engagement, sans pitch — juste une conversation honnête.</p>
           <div class="cta-actions">
-            <a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a>
-            <a href="methode.html" class="btn btn-ghost"><span>Voir la méthode Clarity</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+            <a href="contact.html" class="btn btn-primary magnetic">
+              <span>Réserver mon appel gratuit</span>
+              <i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+            <a href="methode.html" class="btn btn-ghost">
+              <span>Voir la méthode Clarity</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
+  <!-- ================================================
+       FOOTER — Pied de page du site
+       Logo CM., liens de navigation secondaires,
+       mention de copyright 2026
+       ================================================ -->
   <footer role="contentinfo">
     <div class="container">
       <div class="footer-inner">
         <div class="footer-logo">CM<span>.</span></div>
         <nav class="footer-links" aria-label="Liens pied de page">
-          <a href="methode.html">Méthode</a><a href="offres.html">Offres</a>
-          <a href="a-propos.html">À Propos</a><a href="contact.html">Contact</a>
+          <a href="methode.html">Méthode</a>
+          <a href="offres.html">Offres</a>
+          <a href="a-propos.html">À Propos</a>
+          <a href="contact.html">Contact</a>
         </nav>
         <p class="footer-copy">© 2026 Clara Martinez. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
+
+  <!-- ================================================
+       BOTTOM NAVIGATION — Navigation mobile fixe
+       Barre de navigation basse visible sur mobile
+       (< 768px) avec 5 destinations : Accueil, Méthode,
+       Offres, Résultats, Appel (CTA)
+       ================================================ -->
   <nav class="bottom-nav" aria-label="Navigation mobile">
     <div class="bnav-inner">
       <a href="index.html" class="bnav-link" aria-label="Accueil">
@@ -255,6 +590,13 @@
       </a>
     </div>
   </nav>
+
+  <!-- ================================================
+       SCRIPTS — Chargement du script principal
+       main.js initialisé en différé (defer) pour ne
+       pas bloquer le rendu HTML
+       ================================================ -->
   <script src="main.js" defer></script>
+
 </body>
 </html>

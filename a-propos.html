@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+<!-- ================================================
+     HEAD — SEO, POLICES, SCRIPTS
+     Métadonnées SEO (title, description), polices
+     Google (Playfair Display + Inter), icônes Lucide,
+     feuille de style globale et styles spécifiques
+     à cette page injectés dans une balise <style>.
+     ================================================ -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,12 +62,32 @@
     @media(max-width:768px){.story-grid{grid-template-columns:1fr}.career-grid,.values-grid{grid-template-columns:1fr}.certif-grid{grid-template-columns:repeat(2,1fr)}.story-visual{max-width:320px;margin:0 auto}}
   </style>
 </head>
+
 <body data-page="a-propos">
+
+  <!-- ================================================
+       CANVAS AURORA
+       Fond animé interactif, commun à toutes les pages.
+       ================================================ -->
   <canvas id="water-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================================================
+       CURSEUR PERSONNALISÉ
+       Double calque : point doré et anneau suiveur.
+       ================================================ -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ================================================
+       OVERLAY BRUIT (NOISE)
+       Texture grain SVG fixe sur toute la page.
+       ================================================ -->
   <div class="noise" aria-hidden="true"></div>
 
+  <!-- ================================================
+       HEADER / NAVIGATION PRINCIPALE
+       Header fixe avec lien actif sur "À Propos".
+       ================================================ -->
   <header id="header" role="banner">
     <div class="container">
       <nav class="nav">
@@ -71,22 +99,41 @@
           <li><a href="a-propos.html" class="nav-link active">À Propos</a></li>
           <li><a href="resultats.html" class="nav-link">Résultats</a></li>
         </ul>
-        <a href="contact.html" class="btn btn-nav magnetic"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <a href="contact.html" class="btn btn-nav magnetic">
+          <span>Appel Gratuit</span>
+          <i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
       </nav>
     </div>
   </header>
-  </div>
 
   <main>
+
+    <!-- ================================================
+         HERO DE PAGE — TITRE ET PRÉSENTATION
+         Section d'en-tête avec aurora décorative, tag,
+         titre et sous-titre présentant Clara Martinez.
+         ================================================ -->
     <section class="page-hero">
-      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div></div>
+      <div class="hero-aurora" aria-hidden="true">
+        <div class="aurora a1"></div>
+        <div class="aurora a2"></div>
+      </div>
       <div class="container page-hero-inner">
-        <div class="page-tag animate"><i data-lucide="user" style="width:13px;height:13px;" aria-hidden="true"></i> Mon histoire</div>
+        <div class="page-tag animate">
+          <i data-lucide="user" style="width:13px;height:13px;" aria-hidden="true"></i> Mon histoire
+        </div>
         <h1 class="page-title animate delay-1">Ex-DRH reconvertie<br /><em>en architecte de business.</em></h1>
         <p class="page-desc animate delay-2">Je suis Clara Martinez. Avant d'être business coach, j'ai été celle qui avait peur d'augmenter ses tarifs. Voici ce qui a tout changé.</p>
       </div>
     </section>
 
+    <!-- ================================================
+         HISTOIRE — RÉCIT EN 3 ACTES
+         Grille 2 colonnes : portrait SVG + badge chiffre
+         clé à gauche, récit narratif structuré (années DRH,
+         grand saut, transformation) à droite.
+         ================================================ -->
     <section class="story-section">
       <div class="container">
         <div class="story-grid">
@@ -140,6 +187,13 @@
       </div>
     </section>
 
+    <!-- ================================================
+         PARCOURS — CHRONOLOGIE CARRIÈRE
+         Grille de 6 cartes représentant les étapes clés
+         du parcours de Clara (2012–2026). Chaque carte
+         affiche l'année en filigrane, un tag, un titre
+         et un texte descriptif.
+         ================================================ -->
     <section class="career-section">
       <div class="container">
         <div class="section-header animate">
@@ -157,6 +211,12 @@
       </div>
     </section>
 
+    <!-- ================================================
+         VALEURS — CE QUI GUIDE CLARA
+         Grille de 6 cartes présentant les valeurs
+         fondamentales : authenticité, exigence, résultats
+         mesurables, confidentialité, partenariat, contexte.
+         ================================================ -->
     <section class="values-section">
       <div class="container">
         <div class="section-header center animate">
@@ -174,9 +234,17 @@
       </div>
     </section>
 
+    <!-- ================================================
+         CERTIFICATIONS ET FORMATIONS
+         Grille de 6 cartes de certifications professionnelles
+         (ICF, Sciences Po, PNL, Growth Hacking, HEC, MIT).
+         ================================================ -->
     <section class="certif-section">
       <div class="container">
-        <div class="section-header center animate"><span class="section-label">Formations & certifications</span><h2 class="section-title">Les bases de<br /><em>mon expertise</em></h2></div>
+        <div class="section-header center animate">
+          <span class="section-label">Formations & certifications</span>
+          <h2 class="section-title">Les bases de<br /><em>mon expertise</em></h2>
+        </div>
         <div class="certif-grid">
           <div class="certif-card glass animate"><div class="certif-icon"><i data-lucide="award" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Certification ICF (ACC)</div><div class="certif-org">International Coaching Federation · 2018</div></div>
           <div class="certif-card glass animate delay-1"><div class="certif-icon"><i data-lucide="graduation-cap" style="width:20px;height:20px;" aria-hidden="true"></i></div><div class="certif-title">Master RH & Management</div><div class="certif-org">Sciences Po Paris · 2012</div></div>
@@ -188,10 +256,56 @@
       </div>
     </section>
 
-    <section class="section"><div class="container"><div class="cta-band animate"><span class="section-label">Travaillons ensemble</span><h2 class="section-title">Vous voulez me parler<br /><em>de votre projet ?</em></h2><p style="color:var(--muted);max-width:480px;margin:0 auto 2rem;">Un appel de 30 minutes pour faire connaissance et voir si nous sommes alignés. Sans engagement, sans pitch — une vraie conversation.</p><div class="cta-actions"><a href="contact.html" class="btn btn-primary magnetic"><span>Réserver mon appel gratuit</span><i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i></a><a href="resultats.html" class="btn btn-ghost"><span>Voir les témoignages</span><i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i></a></div></div></div></section>
+    <!-- ================================================
+         CTA — APPEL À L'ACTION
+         Bande de conversion finale avec titre, sous-titre
+         et deux boutons (appel gratuit + voir témoignages).
+         ================================================ -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band animate">
+          <span class="section-label">Travaillons ensemble</span>
+          <h2 class="section-title">Vous voulez me parler<br /><em>de votre projet ?</em></h2>
+          <p style="color:var(--muted);max-width:480px;margin:0 auto 2rem;">Un appel de 30 minutes pour faire connaissance et voir si nous sommes alignés. Sans engagement, sans pitch — une vraie conversation.</p>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary magnetic">
+              <span>Réserver mon appel gratuit</span>
+              <i data-lucide="calendar" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+            <a href="resultats.html" class="btn btn-ghost">
+              <span>Voir les témoignages</span>
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer role="contentinfo"><div class="container"><div class="footer-inner"><div class="footer-logo">CM<span>.</span></div><nav class="footer-links"><a href="methode.html">Méthode</a><a href="offres.html">Offres</a><a href="resultats.html">Résultats</a><a href="contact.html">Contact</a></nav><p class="footer-copy">© 2026 Clara Martinez. Tous droits réservés.</p></div></div></footer>
+  <!-- ================================================
+       FOOTER
+       Pied de page avec logo, liens et copyright.
+       ================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">CM<span>.</span></div>
+        <nav class="footer-links">
+          <a href="methode.html">Méthode</a>
+          <a href="offres.html">Offres</a>
+          <a href="resultats.html">Résultats</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <p class="footer-copy">© 2026 Clara Martinez. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================
+       BOTTOM NAVIGATION (MOBILE)
+       Barre de navigation fixe en bas visible sur mobile.
+       ================================================ -->
   <nav class="bottom-nav" aria-label="Navigation mobile">
     <div class="bnav-inner">
       <a href="index.html" class="bnav-link" aria-label="Accueil">
@@ -216,6 +330,12 @@
       </a>
     </div>
   </nav>
+
+  <!-- ================================================
+       SCRIPTS — PIED DE PAGE
+       main.js chargé en différé (defer).
+       ================================================ -->
   <script src="main.js" defer></script>
+
 </body>
 </html>

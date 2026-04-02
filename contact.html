@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+<!-- ================================================
+     HEAD — SEO, POLICES, SCRIPTS
+     Métadonnées SEO (title, description), polices
+     Google, icônes Lucide, feuille de style globale
+     et styles spécifiques à cette page.
+     ================================================ -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,12 +52,33 @@
     @media(max-width:768px){.contact-layout{grid-template-columns:1fr}.contact-left{position:static}}
   </style>
 </head>
+
 <body data-page="contact">
+
+  <!-- ================================================
+       CANVAS AURORA
+       Fond animé interactif, commun à toutes les pages.
+       ================================================ -->
   <canvas id="water-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================================================
+       CURSEUR PERSONNALISÉ
+       Double calque : point doré et anneau suiveur.
+       ================================================ -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ================================================
+       OVERLAY BRUIT (NOISE)
+       Texture grain SVG fixe sur toute la page.
+       ================================================ -->
   <div class="noise" aria-hidden="true"></div>
 
+  <!-- ================================================
+       HEADER / NAVIGATION PRINCIPALE
+       Header fixe. Le bouton CTA est actif sur cette page
+       (style doré plein + aria-current="page").
+       ================================================ -->
   <header id="header" role="banner">
     <div class="container">
       <nav class="nav">
@@ -62,25 +90,50 @@
           <li><a href="a-propos.html" class="nav-link">À Propos</a></li>
           <li><a href="resultats.html" class="nav-link">Résultats</a></li>
         </ul>
-        <a href="contact.html" class="btn btn-nav active" style="background:var(--gold);color:#0D0D1A;border-color:var(--gold);" aria-current="page"><span>Appel Gratuit</span><i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i></a>
+        <a href="contact.html" class="btn btn-nav active" style="background:var(--gold);color:#0D0D1A;border-color:var(--gold);" aria-current="page">
+          <span>Appel Gratuit</span>
+          <i data-lucide="arrow-up-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+        </a>
       </nav>
     </div>
   </header>
 
   <main>
+
+    <!-- ================================================
+         HERO DE PAGE — TITRE CONTACT
+         Section d'en-tête avec aurora décorative, tag
+         "30 min · Gratuit · Sans engagement", titre
+         et sous-titre présentant l'appel découverte.
+         ================================================ -->
     <section class="contact-page-hero">
-      <div class="hero-aurora" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a4" style="opacity:.15;"></div></div>
+      <div class="hero-aurora" aria-hidden="true">
+        <div class="aurora a1"></div>
+        <div class="aurora a4" style="opacity:.15;"></div>
+      </div>
       <div class="container contact-page-hero-inner">
-        <div class="page-tag animate"><i data-lucide="phone" style="width:13px;height:13px;" aria-hidden="true"></i> 30 min · Gratuit · Sans engagement</div>
+        <div class="page-tag animate">
+          <i data-lucide="phone" style="width:13px;height:13px;" aria-hidden="true"></i> 30 min · Gratuit · Sans engagement
+        </div>
         <h1 class="page-title animate delay-1">Votre prochain chapitre<br /><em>commence ici.</em></h1>
         <p class="page-desc animate delay-2">Un appel de 30 minutes pour faire le point sur votre situation et voir ensemble quelle direction prendre. Honnête, direct, sans pitch commercial.</p>
       </div>
     </section>
 
+    <!-- ================================================
+         SECTION PRINCIPALE — LAYOUT CONTACT
+         Grille 2 colonnes : informations et étapes à
+         gauche (sticky), formulaire de réservation à droite.
+         ================================================ -->
     <section class="contact-main">
       <div class="container">
         <div class="contact-layout">
 
+          <!-- ================================================
+               COLONNE GAUCHE — INFORMATIONS ET DÉROULEMENT
+               Description du déroulement de l'appel (4 étapes),
+               éléments de réassurance et liens réseaux sociaux.
+               ================================================ -->
           <div class="contact-left">
             <span class="section-label animate">Ce qui vous attend</span>
             <h2 class="section-title animate delay-1" style="font-size:clamp(1.6rem,3vw,2.2rem);">Comment se passe<br /><em>l'appel découverte ?</em></h2>
@@ -111,6 +164,13 @@
             </div>
           </div>
 
+          <!-- ================================================
+               FORMULAIRE DE CONTACT
+               Formulaire complet avec prénom, nom, email,
+               activité, programme souhaité, CA annuel et
+               description de la situation. Validation et
+               message de succès gérés par main.js.
+               ================================================ -->
           <div class="animate delay-2">
             <div class="contact-form-block glass">
               <h2 class="form-title">Réserver mon appel gratuit</h2>
@@ -183,10 +243,17 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
+    <!-- ================================================
+         FAQ CONTACT — QUESTIONS SUR L'APPEL
+         Accordéon de 4 questions spécifiques à l'appel
+         découverte (gratuit ?, profil adapté ?, délai,
+         international ?). Géré par main.js.
+         ================================================ -->
     <section class="faq-contact">
       <div class="container">
         <div class="section-header center animate">
@@ -201,9 +268,32 @@
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer role="contentinfo"><div class="container"><div class="footer-inner"><div class="footer-logo">CM<span>.</span></div><nav class="footer-links"><a href="methode.html">Méthode</a><a href="offres.html">Offres</a><a href="a-propos.html">À Propos</a><a href="resultats.html">Résultats</a></nav><p class="footer-copy">© 2026 Clara Martinez. Tous droits réservés.</p></div></div></footer>
+  <!-- ================================================
+       FOOTER
+       Pied de page avec logo, liens et copyright.
+       ================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">CM<span>.</span></div>
+        <nav class="footer-links">
+          <a href="methode.html">Méthode</a>
+          <a href="offres.html">Offres</a>
+          <a href="a-propos.html">À Propos</a>
+          <a href="resultats.html">Résultats</a>
+        </nav>
+        <p class="footer-copy">© 2026 Clara Martinez. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================
+       BOTTOM NAVIGATION (MOBILE)
+       Barre de navigation fixe en bas visible sur mobile.
+       ================================================ -->
   <nav class="bottom-nav" aria-label="Navigation mobile">
     <div class="bnav-inner">
       <a href="index.html" class="bnav-link" aria-label="Accueil">
@@ -228,6 +318,12 @@
       </a>
     </div>
   </nav>
+
+  <!-- ================================================
+       SCRIPTS — PIED DE PAGE
+       main.js chargé en différé (defer).
+       ================================================ -->
   <script src="main.js" defer></script>
+
 </body>
 </html>
